@@ -5,7 +5,7 @@
   import FollowupItems from './pages/FollowupItems.vue'
   import PreventiveList from './pages/PreventiveList.vue'
 
-  const view = ref<AppView>('followups')
+  const view = ref<AppView>('preventive')
 </script>
 
 <template>
