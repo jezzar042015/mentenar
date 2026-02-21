@@ -1,10 +1,42 @@
 import type { FollowupItem } from "@/types/followups";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export const useFollowupsStore = defineStore('followups', () => {
     const data = ref<FollowupItem[]>([])
     const fetching = ref(false)
+
+    const sorted = computed(() => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        return [...data.value].sort((a, b) => {
+
+            const hasA = !!a.target;
+            const hasB = !!b.target;
+
+            // 1️⃣ No target dates go last
+            if (!hasA && !hasB) return 0;
+            if (!hasA) return 1;
+            if (!hasB) return -1;
+
+            const dateA = new Date(a.target);
+            const dateB = new Date(b.target);
+
+            dateA.setHours(0, 0, 0, 0);
+            dateB.setHours(0, 0, 0, 0);
+
+            const isLateA = dateA < today;
+            const isLateB = dateB < today;
+
+            // 2️⃣ Late items first
+            if (isLateA && !isLateB) return -1;
+            if (!isLateA && isLateB) return 1;
+
+            // 3️⃣ Within same category, sort by date ascending
+            return dateA.getTime() - dateB.getTime();
+        });
+    });
 
     const pull = async () => {
         try {
@@ -23,5 +55,6 @@ export const useFollowupsStore = defineStore('followups', () => {
         data,
         fetching,
         pull,
+        sorted,
     }
 });

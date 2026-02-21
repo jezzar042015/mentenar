@@ -6,7 +6,7 @@
         </div>
 
         <div class="flex flex-col space-y-2 p-2" v-else>
-            <template v-for="f in followupsStore.data" :key="f.task">
+            <template v-for="f in followupsStore.sorted" :key="f.task">
                 <FollowupItem :f />
             </template>
         </div>

@@ -1,13 +1,13 @@
 <template>
-    <div class="bg-white w-full h-full absolute top-0 left-0 p-4" v-if="show">
+    <div class="px-2 pb-5" v-if="show">
         <div class="flex justify-between items-center">
-            <div class="text-2xl font-semibold">{{ data.month }} 2026</div>
+            <div class="text-xl font-semibold">{{ data.month }} 2026</div>
             <span class="pr-2" @click="emits('close')">
                 <CloseIcon class="h-6 w-6 opacity-80" />
             </span>
         </div>
 
-        <div class="text-lg">{{ data.assigned }} Congregation</div>
+        <div class="text-base">{{ data.assigned }} Congregation</div>
 
         <div class="mt-6 text-xl mb-2 font-semibold">Task Items</div>
         <div class="space-y-2">

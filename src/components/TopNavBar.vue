@@ -1,10 +1,8 @@
 <template>
-    <div class="sticky w-full h-32 bg-white shadow top-0 left-0 flex flex-col justify-between">
+    <div class="sticky w-full h-32 bg-white shadow top-0 left-0 flex flex-col justify-between z-10">
         <div>
             <div class="p-4">
-                <h2 class="text-xl font-semibold">
-                    {{ header }}
-                </h2>
+                <h2 class="text-xl font-semibold">{{ header }}</h2>
                 <div>KH West Tacloban</div>
             </div>
         </div>

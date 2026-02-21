@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 py-6 mt-5">
+    <div class="px-4 py-5 mt-5">
 
         <div v-if="preventiveStore.fetching">
             <FetchingSpinner />
