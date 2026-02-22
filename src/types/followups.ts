@@ -6,3 +6,5 @@ export interface FollowupItem {
     status: string
     remarks: string
 }
+
+export type FollowupListFilter = 'all' | 'overdue' | 'due' | 'none'

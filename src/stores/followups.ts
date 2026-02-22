@@ -38,6 +38,40 @@ export const useFollowupsStore = defineStore('followups', () => {
         });
     });
 
+    const overdue = computed(() => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        return [...data.value]
+            .filter(item => {
+                if (!item.target) return false;
+                const date = new Date(item.target);
+                date.setHours(0, 0, 0, 0);
+                return date < today;
+            })
+            .sort((a, b) => new Date(a.target).getTime() - new Date(b.target).getTime());
+    })
+
+    const dueSoon = computed(() => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const sevenDaysFromNow = new Date(today);
+        sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
+
+        return [...data.value]
+            .filter(item => {
+                if (!item.target) return false;
+                const date = new Date(item.target);
+                date.setHours(0, 0, 0, 0);
+                return date >= today && date <= sevenDaysFromNow;
+            })
+            .sort((a, b) => new Date(a.target).getTime() - new Date(b.target).getTime());
+    })
+
+    const noDue = computed(() => {
+        return data.value.filter(item => !item.target);
+    })
+
     const pull = async () => {
         try {
             fetching.value = true
@@ -56,5 +90,8 @@ export const useFollowupsStore = defineStore('followups', () => {
         fetching,
         pull,
         sorted,
+        overdue,
+        dueSoon,
+        noDue,
     }
 });

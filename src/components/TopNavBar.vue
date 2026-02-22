@@ -6,7 +6,7 @@
                 <div>KH West Tacloban</div>
             </div>
         </div>
-        <div class="w-full flex justify-between pb-3 px-10">
+        <div class="w-full flex justify-between pb-3 px-15">
             <HomeIcon class="h-6 w-6 cursor-pointer transition-colors" :class="currentView === 'home' ? 'text-blue-500' : 'text-gray-500'" @click="emits('set','home')"/>
             <WarningIcon class="h-6 w-6 cursor-pointer transition-colors" :class="currentView === 'followups' ? 'text-blue-500' : 'text-gray-500'" @click="emits('set','followups')"/>
             <CalendarIcon class="h-6 w-6 cursor-pointer transition-colors" :class="currentView === 'preventive' ? 'text-blue-500' : 'text-gray-500'" @click="emits('set','preventive')"/>
