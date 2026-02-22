@@ -19,9 +19,9 @@
                 <span>No due date set</span>
             </template>
         </div>
-        <div class="flex items-center space-x-1 text-xs">
+        <div class="flex items-center space-x-2 text-xs">
             <span>
-                <PersonIcon class="-ml-1 h-4 w-4" />
+                <PersonIcon class="-m-0.5 h-3 w-3" />
             </span>
             <span>{{ assignee }}</span>
         </div>
