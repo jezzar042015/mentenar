@@ -11,21 +11,22 @@
 
         <div class="mt-5 flex flex-col p-2 bg-white space-y-4" v-else>
 
-            <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" class="space-y-2">
+            <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" 
+                class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">Overdue</div>
                 <template v-for="f in followupsStore.overdue" :key="f.task">
                     <FollowupItem :f :stat="'overdue'" />
                 </template>
             </div>
 
-            <div v-if="(filter == 'due' || filter == 'all') && followupsStore.dueSoon.length > 0" class="space-y-2">
+            <div v-if="(filter == 'due' || filter == 'all') && followupsStore.dueSoon.length > 0" class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">Due soon</div>
                 <template v-for="f in followupsStore.dueSoon" :key="f.task">
                     <FollowupItem :f :stat="'due'" />
                 </template>
             </div>
 
-            <div v-if="(filter == 'none' || filter == 'all') && followupsStore.noDue.length > 0" class="space-y-2">
+            <div v-if="(filter == 'none' || filter == 'all') && followupsStore.noDue.length > 0" class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">No due date</div>
                 <template v-for="f in followupsStore.noDue" :key="f.task">
                     <FollowupItem :f :stat="'none'" />

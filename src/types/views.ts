@@ -1,1 +1,1 @@
-export type AppView = 'home' | 'followups' | 'preventive' | 'settings';
+export type AppView = 'home' | 'followups' | 'preventive' | 'settings' | 'preventive-monthly';

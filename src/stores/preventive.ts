@@ -1,15 +1,16 @@
 import type { PreventiveResponse } from "@/types/preventive";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export const usePreventiveStore = defineStore('preventive', () => {
-    const data = ref<PreventiveResponse | null>(null)
+    const data = ref<PreventiveResponse[]>([])
     const fetching = ref(false)
+    const activeMonth = ref('')
 
-    const pullMonth = async (month: string) => {
+    const pullMonth = async () => {
         try {
             fetching.value = true
-            const response = await fetch(`https://script.google.com/macros/s/AKfycbwp6Q8pmodwrNiwL5ljOfNYj05q8EU91oz9WGfeB5Rk6q8ruy2Py-HfYAzZdSSIIM5P/exec?target=preventive&month=${month}`)
+            const response = await fetch(`https://script.google.com/macros/s/AKfycbwp6Q8pmodwrNiwL5ljOfNYj05q8EU91oz9WGfeB5Rk6q8ruy2Py-HfYAzZdSSIIM5P/exec?target=preventive`)
             const result = await response.json()
             data.value = result.data
             fetching.value = false
@@ -19,9 +20,15 @@ export const usePreventiveStore = defineStore('preventive', () => {
         }
     }
 
+    const activeMonthData = computed(() => {
+        return data.value.find(d => d.month === activeMonth.value)
+    })
+
     return {
         data,
         fetching,
-        pullMonth
+        activeMonth,
+        pullMonth,
+        activeMonthData
     }
 });
