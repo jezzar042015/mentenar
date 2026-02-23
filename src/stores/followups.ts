@@ -49,6 +49,7 @@ export const useFollowupsStore = defineStore('followups', () => {
                 date.setHours(0, 0, 0, 0);
                 return date < today;
             })
+            .filter(item => item.status !== 'Completed')
             .sort((a, b) => new Date(a.target).getTime() - new Date(b.target).getTime());
     })
 
@@ -65,11 +66,12 @@ export const useFollowupsStore = defineStore('followups', () => {
                 date.setHours(0, 0, 0, 0);
                 return date >= today && date <= sevenDaysFromNow;
             })
+            .filter(item => item.status !== 'Completed')
             .sort((a, b) => new Date(a.target).getTime() - new Date(b.target).getTime());
     })
 
     const noDue = computed(() => {
-        return data.value.filter(item => !item.target);
+        return data.value.filter(item => !item.target && item.status !== 'Completed');
     })
 
     const pull = async () => {

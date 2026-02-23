@@ -11,6 +11,7 @@ export const useViewsStore = defineStore('views', () => {
         "preventive": "Preventative Maintenance",
         "preventive-monthly": "Preventative Maintenance",
         "settings": "Settings",
+        "instruction": "Task Instruction"
     })
 
     const setView = (v: AppView) => {

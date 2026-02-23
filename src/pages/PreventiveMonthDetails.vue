@@ -1,5 +1,7 @@
 <template>
-    <div class="bg-white p-4">
+    <TaskInstuction v-if="viewTi" @close="viewTi=false"/>
+    
+    <div class="bg-white p-4" v-else>
         <div class="px-2 pb-5" v-if="pm.activeMonthData?.month">
             <div class="mt-5">
                 <div class="text-xl font-semibold flex gap-2 items-center">
@@ -20,7 +22,7 @@
             </div>
             <div class="space-y-2">
                 <div v-for="t in pm.activeMonthData.tasks" class="shadow p-3 flex justify-between gap-3 items-center"
-                    @click="openTaskInstructions(t.url)">
+                    @click="openTaskInstructions(t.tiId)">
                     <div :class="['h-5 w-5 rounded-full', t.completed ? 'bg-blue-400' : 'bg-red-400']"></div>
                     <div :class="['flex-1', t.completed ? 'line-through' : '']">{{ t.task }}</div>
                 </div>
@@ -33,10 +35,17 @@
 <script setup lang="ts">
     import CalendarIcon from '@/icons/CalendarIcon.vue';
     import { usePreventiveStore } from '@/stores/preventive';
+    import { useInstructionsStore } from '@/stores/tasks-instructions';
+    import { ref } from 'vue';
+    import TaskInstuction from './TaskInstuction.vue';
 
     const pm = usePreventiveStore()
+    const ti = useInstructionsStore()
+    const viewTi = ref(false)
 
-    const openTaskInstructions = (url: string) => {
-        window.open(url, '_blank');
-    } 
+    const openTaskInstructions = (tiId: string) => {
+        ti.activeId = tiId
+        viewTi.value = true
+    }
+
 </script>

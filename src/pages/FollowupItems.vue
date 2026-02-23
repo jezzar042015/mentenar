@@ -40,7 +40,7 @@
 <script setup lang="ts">
     import type { FollowupListFilter } from '@/types/followups'
     import { useFollowupsStore } from '@/stores/followups'
-    import { onMounted, ref } from 'vue'
+    import { ref } from 'vue'
     import FetchingSpinner from '@/components/FetchingSpinner.vue'
     import FollowupItem from '@/components/FollowupItem.vue'
     import FollowupFilters from '@/components/FollowupFilters.vue'
@@ -52,9 +52,4 @@
         filter.value = f
     }
 
-    onMounted(async () => {
-        if (followupsStore.data.length == 0) {
-            await followupsStore.pull()
-        }
-    })
 </script>

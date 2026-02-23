@@ -15,17 +15,12 @@
 
 <script setup lang="ts">
     import { usePreventiveStore } from '@/stores/preventive';
-    import { onMounted, ref } from 'vue';
+    import { ref } from 'vue';
     import FetchingSpinner from '@/components/FetchingSpinner.vue';
     import PreventiveMonthItem from '@/components/PreventiveMonthItem.vue';
 
     const preventiveStore = usePreventiveStore()
-
     const showTasks = ref(false)
 
-    onMounted(async () => {
-        if (preventiveStore.data.length === 0) {
-            await preventiveStore.pullMonth()
-        }
-    })
+
 </script>
