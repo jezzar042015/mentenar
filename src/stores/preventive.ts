@@ -34,6 +34,15 @@ export const usePreventiveStore = defineStore('preventive', () => {
         return data.value.find(d => d.month === monthString)
     })
 
+    const lateMonths = computed(() => {
+        return data.value.filter(d => {
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const currentMonthIndex = new Date().getMonth();
+            const dataMonthIndex = monthNames.indexOf(d.month);
+            return dataMonthIndex < currentMonthIndex;
+        })
+    })
+
     const shouldPull = computed(() => {
         if (!latestUpdate.value) return true;
         const lastUpdateDate = new Date(latestUpdate.value);
@@ -50,6 +59,7 @@ export const usePreventiveStore = defineStore('preventive', () => {
         pullMonth,
         activeMonthData,
         shouldPull,
-        currentMonth
+        currentMonth,
+        lateMonths
     }
 });
