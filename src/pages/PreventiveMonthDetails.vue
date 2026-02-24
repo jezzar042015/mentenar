@@ -21,9 +21,9 @@
             <div class="mt-10 text-xl mb-2 font-semibold">Task Items &bullet; {{ pm.activeMonthData.tasks.length }}
             </div>
             <div class="space-y-2">
-                <div v-for="t in pm.activeMonthData.tasks" class="shadow p-3 flex justify-between gap-3 items-center"
+                <div v-for="t in pm.activeMonthData.tasks" class="shadow p-3 flex justify-between gap-4 items-center"
                     @click="openTaskInstructions(t.tiId)">
-                    <div :class="['h-5 w-5 rounded-full', t.completed ? 'bg-blue-400' : 'bg-red-400']"></div>
+                    <div :class="['h-3 w-3 rounded-full', t.completed ? 'bg-blue-400' : 'bg-red-400']"></div>
                     <div :class="['flex-1', t.completed ? 'line-through' : '']">{{ t.task }}</div>
                 </div>
             </div>

@@ -1,11 +1,14 @@
 <template>
     <div class="absolute top-0 left-0 z-20 w-full h-full bg-white p-5 overflow-y-auto">
-        <div class="underline py-2" @click="emits('close')">Task Instructions</div>
-        
+        <div class="pt-2 mb-6 flex gap-0 items-center" @click="emits('close')">
+            <CaretLeftIcon class="h-5 w-5" />
+            <span class="text-sm"> Task Instructions </span>
+        </div>
+
         <div v-if="instructions.fetching">
             <FetchingSpinner />
         </div>
-        
+
         <div class="p-2" v-if="instructions.active">
             <div class="mb-5">
                 <div class="uppercase text-xs">{{ instructions.active.aspect }}</div>
@@ -34,6 +37,7 @@
 
 <script setup lang="ts">
     import FetchingSpinner from '@/components/FetchingSpinner.vue';
+    import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
     import { useInstructionsStore } from '@/stores/tasks-instructions';
 
     const instructions = useInstructionsStore()

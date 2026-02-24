@@ -10,7 +10,6 @@ export const usePreventiveStore = defineStore('preventive', () => {
     const fetching = ref(false)
     const activeMonth = ref('')
 
-
     const pullMonth = async () => {
         try {
             fetching.value = true
@@ -29,6 +28,12 @@ export const usePreventiveStore = defineStore('preventive', () => {
         return data.value.find(d => d.month === activeMonth.value)
     })
 
+    const currentMonth = computed(() => {
+        const now = new Date();
+        const monthString = now.toLocaleString('default', { month: 'long' });
+        return data.value.find(d => d.month === monthString)
+    })
+
     const shouldPull = computed(() => {
         if (!latestUpdate.value) return true;
         const lastUpdateDate = new Date(latestUpdate.value);
@@ -44,6 +49,7 @@ export const usePreventiveStore = defineStore('preventive', () => {
         activeMonth,
         pullMonth,
         activeMonthData,
-        shouldPull
+        shouldPull,
+        currentMonth
     }
 });

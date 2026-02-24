@@ -17,7 +17,7 @@ import FollowupDetails from './pages/FollowupDetails.vue';
   const instructions = useInstructionsStore()
 
   const reload = async () => {
-    if (viewStore.view == 'followups') await followup.pull()
+    if (viewStore.view == 'followups' || viewStore.view == 'followup-details') await followup.pull()
     if (viewStore.view == 'preventive') await preventive.pullMonth()
 
     if (viewStore.view == 'home') {
