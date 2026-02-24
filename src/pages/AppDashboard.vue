@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white p-4">
+    <div class="bg-white p-5">
         <div class="mt-4">
             <h2 class="text-sm">This month</h2>
 
