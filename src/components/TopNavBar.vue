@@ -16,7 +16,7 @@
                 :class="viewStore.view === 'home' ? 'text-blue-500' : 'text-gray-500'"
                 @click="viewStore.setView('home')" />
             <WrenchIcon class="h-6 w-6 cursor-pointer transition-colors"
-                :class="viewStore.view === 'followups' ? 'text-blue-500' : 'text-gray-500'"
+                :class="viewStore.view === 'followups' || viewStore.view === 'followup-details' ? 'text-blue-500' : 'text-gray-500'"
                 @click="viewStore.setView('followups')" />
             <WarningIcon class="h-6 w-6 cursor-pointer transition-colors"
                 :class="viewStore.view === 'preventive' || viewStore.view === 'preventive-monthly' ? 'text-blue-500' : 'text-gray-500'"

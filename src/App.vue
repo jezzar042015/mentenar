@@ -9,6 +9,7 @@
   import PreventiveList from './pages/PreventiveList.vue'
   import TopNavBar from './components/TopNavBar.vue'
   import PreventiveMonthDetails from './pages/PreventiveMonthDetails.vue';
+import FollowupDetails from './pages/FollowupDetails.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -38,6 +39,7 @@
     <TopNavBar @reload="reload"/>
     <AppDashboard v-if="viewStore.view == 'home'" />
     <FollowupItems v-if="viewStore.view == 'followups'" />
+    <FollowupDetails v-if="viewStore.view == 'followup-details'" />
     <PreventiveList v-if="viewStore.view == 'preventive'" />
     <PreventiveMonthDetails v-if="viewStore.view == 'preventive-monthly'" />
 

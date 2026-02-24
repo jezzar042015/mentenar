@@ -8,6 +8,7 @@ export const useFollowupsStore = defineStore('followups', () => {
     const data = useStorage<FollowupItem[]>('khoc-followup-items', [], localStorage, { mergeDefaults: true })
     const latestUpdate = useStorage<string>('khoc-followup-latest-update', '', localStorage)
     const fetching = ref(false)
+    const activeTask = ref("")
 
     const sorted = computed(() => {
         const today = new Date();
@@ -40,6 +41,10 @@ export const useFollowupsStore = defineStore('followups', () => {
             return dateA.getTime() - dateB.getTime();
         });
     });
+
+    const active = computed(() => {
+        return data.value.find(item => item.task === activeTask.value);
+    })
 
     const overdue = computed(() => {
         const today = new Date();
@@ -102,11 +107,13 @@ export const useFollowupsStore = defineStore('followups', () => {
     return {
         data,
         fetching,
+        activeTask,
         pull,
         sorted,
         overdue,
         dueSoon,
         noDue, 
         shouldPull,
+        active,
     }
 });

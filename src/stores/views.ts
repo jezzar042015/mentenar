@@ -8,6 +8,7 @@ export const useViewsStore = defineStore('views', () => {
     const headers = ref<Record<AppView, string>>({
         "home": "Maintenance Overview",
         "followups": "Follow Up Items",
+        "followup-details": "Follow Up Items",
         "preventive": "Preventative Maintenance",
         "preventive-monthly": "Preventative Maintenance",
         "settings": "Settings",

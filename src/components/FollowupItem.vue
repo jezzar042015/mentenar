@@ -1,5 +1,5 @@
 <template>
-    <div :class="['p-3 shadow-md bg-white space-y-1 border-l-7 rounded-md', sideBorderColor]">
+    <div @click="loadItem" :class="['p-3 shadow-md bg-white space-y-1 border-l-7 rounded-md', sideBorderColor]">
         <div class="text-base">{{ f.task }}</div>
         <div class="flex text-xs space-x-2 items-center">
             <span v-if="stat == 'overdue'" class="flex h-2 w-2 rounded-full bg-red-500"></span>
@@ -12,7 +12,7 @@
             </template>
 
             <template v-if="stat === 'due'">
-                <span>Due {{dueInDays}}</span>
+                <span>Due {{ dueInDays }}</span>
             </template>
 
             <template v-if="stat === 'none'">
@@ -29,9 +29,14 @@
 </template>
 
 <script setup lang="ts">
-    import PersonIcon from '@/icons/PersonIcon.vue';
     import type { FollowupItem, FollowupListFilter } from '@/types/followups';
+    import { useViewsStore } from '@/stores/views';
     import { computed } from 'vue';
+    import { useFollowupsStore } from '@/stores/followups';
+    import PersonIcon from '@/icons/PersonIcon.vue';
+
+    const view = useViewsStore()
+    const followup = useFollowupsStore()
 
     const { f, stat = 'no due' } = defineProps<{
         f: FollowupItem
@@ -93,4 +98,9 @@
     const assignee = computed(() => {
         return f.assignees ? `Assigned to ${f.assignees}` : "Not assigned"
     })
+
+    const loadItem = () => {
+        followup.activeTask = f.task
+        view.setView('followup-details')
+    }
 </script>
