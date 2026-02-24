@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="w-full flex justify-between py-2 px-10">
-            <HomeIcon class="h-6 w-6 cursor-pointer transition-colors"
+            <HardHatIcon class="h-6 w-6 cursor-pointer transition-colors"
                 :class="viewStore.view === 'home' ? 'text-blue-500' : 'text-gray-500'"
                 @click="viewStore.setView('home')" />
             <WrenchIcon class="h-6 w-6 cursor-pointer transition-colors"
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-    import HomeIcon from '@/icons/HomeIcon.vue'
+    import HardHatIcon from '@/icons/HardHatIcon.vue'
     import CalendarIcon from '@/icons/CalendarIcon.vue'
     import ReloadIcon from '@/icons/ReloadIcon.vue';
     import WarningIcon from '@/icons/WarningIcon.vue'

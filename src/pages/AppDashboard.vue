@@ -4,15 +4,17 @@
             <h2 class="text-sm">This month</h2>
 
             <!-- late preventive months -->
-            <DashCurrentPreventive />
+            <div class="space-y-5">
+                <DashCurrentPreventive />
 
-            <template v-for="item in followup.overdue" :key="item.task">
-                <DashFollowUpCard :item />
-            </template>
+                <template v-for="item in followup.overdue" :key="item.task">
+                    <DashFollowUpCard :item />
+                </template>
 
-            <template v-for="item in followup.dueSoon" :key="item.task">
-                <DashFollowUpCard :item />
-            </template>
+                <template v-for="item in followup.dueSoon" :key="item.task">
+                    <DashFollowUpCard :item />
+                </template>
+            </div>
         </div>
     </div>
 </template>
