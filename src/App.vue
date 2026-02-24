@@ -9,7 +9,7 @@
   import PreventiveList from './pages/PreventiveList.vue'
   import TopNavBar from './components/TopNavBar.vue'
   import PreventiveMonthDetails from './pages/PreventiveMonthDetails.vue';
-import FollowupDetails from './pages/FollowupDetails.vue';
+  import FollowupDetails from './pages/FollowupDetails.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -22,7 +22,8 @@ import FollowupDetails from './pages/FollowupDetails.vue';
 
     if (viewStore.view == 'home') {
       await followup.pull()
-      await preventive.pullMonth()}
+      await preventive.pullMonth()
+    }
   }
 
   onMounted(async () => {
@@ -35,8 +36,8 @@ import FollowupDetails from './pages/FollowupDetails.vue';
 </script>
 
 <template>
-  <div class="bg-gray-50 font-notosans">
-    <TopNavBar @reload="reload"/>
+  <div class="bg-gray-50 font-notosans md:max-w-200 mx-auto min-h-screen">
+    <TopNavBar @reload="reload" />
     <AppDashboard v-if="viewStore.view == 'home'" />
     <FollowupItems v-if="viewStore.view == 'followups'" />
     <FollowupDetails v-if="viewStore.view == 'followup-details'" />

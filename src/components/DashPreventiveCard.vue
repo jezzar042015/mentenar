@@ -1,6 +1,6 @@
 <template>
     <div @click="loadMonthDetail"
-        class="mt-3 px-3 py-2 border border-gray-100 rounded-lg shadow-lg cursor-pointer hover:bg-gray-50">
+        class="bg-white mt-3 px-3 py-2 border border-gray-100 rounded-lg shadow-lg cursor-pointer hover:bg-gray-50">
         <div class="relative mt-5 mb-2">
             <hr :class="[isLate ? 'border-b-red-500' : 'border-b-blue-500', 'border-0 border-b-2']">
             <span class="py-1 px-0 rounded-md text-xs absolute  -translate-y-full">

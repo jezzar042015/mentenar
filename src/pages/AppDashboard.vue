@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white p-5">
+    <div class="bg-gray-200 p-5">
         <div class="mt-4">
 
             <div class="space-y-5">

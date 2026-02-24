@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute top-0 left-0 z-20 w-full h-full bg-white p-5 overflow-y-auto">
+    <div class="absolute top-0 left-0 z-20 w-full h-full bg-white p-5 overflow-y-auto ">
         <div class="pt-2 mb-6 flex gap-0 items-center" @click="emits('close')">
             <CaretLeftIcon class="h-5 w-5" />
             <span class="text-sm"> Task Instructions </span>
