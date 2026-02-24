@@ -16,17 +16,27 @@
                 <div class="text-sm">{{ instructions.active.frequency }}</div>
             </div>
 
-            <div v-if="instructions.active.safety" class="bg-red-100 p-2 rounded-xs my-2">{{ instructions.active.safety
-                }}</div>
+            <div class="flex gap-3 items-start p-3 bg-yellow-100 rounded-md shadow mb-5">
+                <span>
+                    <MobileChatIcon class="h-18 w-18" />
+                </span>
+                <p class="text-sm "> <b> Please take photos</b> of any broken or deteriorating conditions that will not
+                    be
+                    addressed during your inspection and maintenance.
+                    Kindly send these photos to any KHOC member so they can coordinate the necessary repairs.
+                </p>
+            </div>
 
-            <div v-for="e in instructions.active.elements" :key="e.element" class="mb-8">
+            <div v-if="instructions.active.safety" class="bg-red-100 p-2 rounded-md my-2 shadow">
+                {{ instructions.active.safety }}
+            </div>
+
+            <div v-for="(e, ei) in instructions.active.elements" :key="e.element" class="mb-8">
                 <div class="text-blue-500 font-bold text-xl py-2">{{ e.element }}</div>
                 <div class="space-y-5">
-                    <div v-for="i in e.items" :key="i" class="">
-                        <div class="flex gap-2 items-start">
-                            <span class="flex mt-1 h-4 w-4 rounded-sm border"></span>
-                            <span class="flex-1">{{ i }}</span>
-                        </div>
+                    <div v-for="(checkItem, checkIndex) in e.items" :key="checkIndex" class="">
+                        <InstructionCheckItem :check-item :check-index :element-index="ei"
+                            :ti-id="instructions.active.id" />
                     </div>
                 </div>
             </div>
@@ -37,7 +47,9 @@
 
 <script setup lang="ts">
     import FetchingSpinner from '@/components/FetchingSpinner.vue';
+    import InstructionCheckItem from '@/components/InstructionCheckItem.vue';
     import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
+    import MobileChatIcon from '@/icons/MobileChatIcon.vue';
     import { useInstructionsStore } from '@/stores/tasks-instructions';
 
     const instructions = useInstructionsStore()

@@ -5,10 +5,9 @@ import { computed, ref } from "vue";
 
 export const useInstructionsStore = defineStore('instructions', () => {
     const fetching = ref(false)
-    // const data = ref<TaskInstruction[]>([])
     const data = useStorage<TaskInstruction[]>('khoc-tasks-instructions', [], localStorage, { mergeDefaults: true })
+    const checks = useStorage<string[]>('khoc-tasks-instructions-checks', [], localStorage)
     const activeId = ref('')
-
 
     const fetchAll = async () => {
         try {
@@ -26,11 +25,22 @@ export const useInstructionsStore = defineStore('instructions', () => {
         return data.value.find(d => d.id === activeId.value)
     })
 
+    const addCheck = (checkId: string) => {
+        checks.value = [...checks.value, checkId]
+    }
+
+    const removeCheck = (checkId: string) => {
+        checks.value = checks.value.filter(c => c !== checkId)
+    }
+
     return {
         data,
         activeId,
-        fetching,
+        checks,
         fetchAll,
+        addCheck,
+        removeCheck,
+        fetching,
         active
     }
 })
