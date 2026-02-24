@@ -1,11 +1,15 @@
 import type { PreventiveResponse } from "@/types/preventive";
+import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const usePreventiveStore = defineStore('preventive', () => {
-    const data = ref<PreventiveResponse[]>([])
+    // const data = ref<PreventiveResponse[]>([])
+    const data = useStorage<PreventiveResponse[]>('khoc-preventive-data', [], localStorage, { mergeDefaults: true })
+    const latestUpdate = useStorage<string>('khoc-preventive-latest-update', '', localStorage)
     const fetching = ref(false)
     const activeMonth = ref('')
+
 
     const pullMonth = async () => {
         try {
@@ -13,6 +17,7 @@ export const usePreventiveStore = defineStore('preventive', () => {
             const response = await fetch(`https://script.google.com/macros/s/AKfycbwp6Q8pmodwrNiwL5ljOfNYj05q8EU91oz9WGfeB5Rk6q8ruy2Py-HfYAzZdSSIIM5P/exec?target=preventive`)
             const result = await response.json()
             data.value = result.data
+            latestUpdate.value = result.timestamp
             fetching.value = false
         } catch (error) {
             console.log(error);
@@ -24,11 +29,21 @@ export const usePreventiveStore = defineStore('preventive', () => {
         return data.value.find(d => d.month === activeMonth.value)
     })
 
+    const shouldPull = computed(() => {
+        if (!latestUpdate.value) return true;
+        const lastUpdateDate = new Date(latestUpdate.value);
+        const now = new Date();
+        if (lastUpdateDate.getMonth() !== now.getMonth() || lastUpdateDate.getFullYear() !== now.getFullYear()) return true;
+        const daysDiff = (now.getTime() - lastUpdateDate.getTime()) / (1000 * 60 * 60 * 24);
+        return daysDiff > 5;
+    })
+
     return {
         data,
         fetching,
         activeMonth,
         pullMonth,
-        activeMonthData
+        activeMonthData,
+        shouldPull
     }
 });

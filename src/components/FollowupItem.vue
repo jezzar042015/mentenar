@@ -12,7 +12,7 @@
             </template>
 
             <template v-if="stat === 'due'">
-                <span>Due </span>
+                <span>Due {{dueInDays}}</span>
             </template>
 
             <template v-if="stat === 'none'">
@@ -53,11 +53,31 @@
         return daysUntil < 0 ? Math.abs(daysUntil) : 0;
     });
 
-    const overdueDisplay = computed(()=> {
+    const overdueDisplay = computed(() => {
         if (overdueDays.value <= 0) return null
         if (overdueDays.value == 1) return "Yesterday"
-        if (overdueDays.value > 1) return `in ${overdueDays.value} days`
+        if (overdueDays.value > 1) return `for ${overdueDays.value} days`
     })
+
+    const dueInDays = computed(() => {
+        // using the f.target and date this computed should return like in 3 days, today or tomorrow
+        if (!f.target) return null;
+
+        const today = new Date();
+        const target = new Date(f.target);
+
+        today.setHours(0, 0, 0, 0);
+        target.setHours(0, 0, 0, 0);
+
+        const diffMs = target.getTime() - today.getTime();
+        const daysUntil = Math.round(diffMs / (1000 * 60 * 60 * 24));
+
+        if (daysUntil === 0) return "today";
+        if (daysUntil === 1) return "tomorrow";
+        if (daysUntil > 1) return `in ${daysUntil} days`;
+
+        return null;
+    });
 
     const sideBorderColor = computed(() => {
         const theme: Record<string, string> = {

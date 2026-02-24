@@ -1,11 +1,14 @@
 import type { TaskInstruction } from "@/types/preventive";
+import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const useInstructionsStore = defineStore('instructions', () => {
     const fetching = ref(false)
-    const data = ref<TaskInstruction[]>([])
+    // const data = ref<TaskInstruction[]>([])
+    const data = useStorage<TaskInstruction[]>('khoc-tasks-instructions', [], localStorage, { mergeDefaults: true })
     const activeId = ref('')
+
 
     const fetchAll = async () => {
         try {
