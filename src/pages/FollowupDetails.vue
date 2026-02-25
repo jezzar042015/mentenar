@@ -15,7 +15,7 @@
                     <span>
                         <CalendarIcon class="h-4 w-4" />
                     </span>
-                    <span>Started:</span>
+                    <span>Noted:</span>
                     <span class="font-bold text-sm">{{ startDisplay }}</span>
                 </div>
 
@@ -32,12 +32,9 @@
                         <span>
                             <PersonIcon class="h-4 w-4" />
                         </span>
-                        <span v-if="followup.active.assignees">Assigned to: </span>
+                        <span v-if="followup.active.assignees">Assigned to {{ followup.active.assignees }}</span>
                         <span v-else>Not Assigned</span>
 
-                    </div>
-                    <div>
-                        <span class="font-bold text-sm">{{ followup.active.assignees }}</span>
                     </div>
                 </div>
             </div>
@@ -64,7 +61,7 @@
     const startDisplay = computed(() => {
         if (!followup.active) return ''
         if (!followup.active.started) return 'Not Started'
-        const d = new Date()
+        const d = new Date(followup.active.started)
         return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' '
     })
 

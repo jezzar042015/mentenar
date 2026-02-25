@@ -20,7 +20,7 @@
             </div>
 
             <div v-if="(filter == 'due' || filter == 'all') && followupsStore.dueSoon.length > 0" class="space-y-4">
-                <div class="px-3 text-sm text-gray-800">Due in a week</div>
+                <div class="px-3 text-sm text-gray-800">Due soon</div>
                 <template v-for="f in followupsStore.dueSoon" :key="f.task">
                     <FollowupItem :f :stat="'due'" />
                 </template>
@@ -28,7 +28,7 @@
 
             <div v-if="(filter == 'due' || filter == 'all') && followupsStore.dueNextWeeks.length > 0"
                 class="space-y-4">
-                <div class="px-3 text-sm text-gray-800">Due next 7 days</div>
+                <div class="px-3 text-sm text-gray-800">Due next week</div>
                 <template v-for="f in followupsStore.dueNextWeeks" :key="f.task">
                     <FollowupItem :f :stat="'due-weeks'" />
                 </template>
@@ -38,6 +38,13 @@
                 <div class="px-3 text-sm text-gray-800">No due date</div>
                 <template v-for="f in followupsStore.noDue" :key="f.task">
                     <FollowupItem :f :stat="'none'" />
+                </template>
+            </div>
+
+            <div v-if="(filter == 'completed') && followupsStore.completed.length > 0" class="space-y-4">
+                <!-- <div class="px-3 text-sm text-gray-800">No due date</div> -->
+                <template v-for="f in followupsStore.completed" :key="f.task">
+                    <FollowupItem :f :stat="'completed'" />
                 </template>
             </div>
         </div>
