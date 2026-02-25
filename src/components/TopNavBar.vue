@@ -7,7 +7,13 @@
                     <div>KH West Tacloban</div>
                 </div>
                 <div>
-                    <ReloadIcon class="h-6 w-6 cursor-pointer text-gray-600 mt-1 mr-2" @click="$emit('reload')" />
+                    <ReloadIcon 
+                        class="h-6 w-6 cursor-pointer mt-1 mr-2 transition-transform"
+                        :class="{
+                            'animate-spin text-blue-500': hasFetching,
+                            'text-gray-600': !hasFetching
+                        }"
+                        @click="$emit('reload')" />
                 </div>
             </div>
         </div>
@@ -34,9 +40,16 @@
     import WrenchIcon from '@/icons/WrenchIcon.vue';
     import { useViewsStore } from '@/stores/views';
     import { computed } from 'vue';
+    import { useInstructionsStore } from '@/stores/tasks-instructions';
+    import { usePreventiveStore } from '@/stores/preventive';
+    import { useFollowupsStore } from '@/stores/followups';
 
     const viewStore = useViewsStore()
+    const ti = useInstructionsStore()
+    const pm = usePreventiveStore()
+    const fu = useFollowupsStore()
+
+    const hasFetching = computed(() => ti.fetching || pm.fetching || fu.fetching)
 
     const header = computed(() => viewStore.headers[viewStore.view])
-
 </script>
