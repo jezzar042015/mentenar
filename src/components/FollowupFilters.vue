@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-5 py-1 px-1 flex justify-between shadow rounded-2xl text-sm gap-0">
+    <div class="mx-5 py-1 px-1 flex justify-between shadow rounded-2xl text-sm gap-0 bg-white">
         <div @click="setFilter('all')"
             :class="['px-3 py-1 rounded-2xl flex gap-2 items-center cursor-pointer', activeFilter == 'all' ? 'bg-blue-600 text-white ' : '']">
             <span>All</span>

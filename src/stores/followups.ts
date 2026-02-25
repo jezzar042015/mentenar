@@ -78,6 +78,23 @@ export const useFollowupsStore = defineStore('followups', () => {
             .sort((a, b) => new Date(a.target).getTime() - new Date(b.target).getTime());
     })
 
+    const dueNextWeeks = computed(() => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const sevenDaysFromNow = new Date(today);
+        sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
+
+        return [...data.value]
+            .filter(item => {
+                if (!item.target) return false;
+                const date = new Date(item.target);
+                date.setHours(0, 0, 0, 0);
+                return date > sevenDaysFromNow;
+            })
+            .filter(item => item.status !== 'Completed')
+            .sort((a, b) => new Date(a.target).getTime() - new Date(b.target).getTime());
+    })
+
     const noDue = computed(() => {
         return data.value.filter(item => !item.target && item.status !== 'Completed');
     })
@@ -112,6 +129,7 @@ export const useFollowupsStore = defineStore('followups', () => {
         sorted,
         overdue,
         dueSoon,
+        dueNextWeeks,
         noDue, 
         shouldPull,
         active,

@@ -1,15 +1,15 @@
 <template>
-    <div class="py-5">
+    <div class="py-5 bg-gray-100">
         <!-- filter -->
         <FollowupFilters @set-filters="setFilter" :active-filter="filter" :count-all="followupsStore.data.length"
-            :count-overdue="followupsStore.overdue.length" :count-upcoming="followupsStore.dueSoon.length" />
+            :count-overdue="followupsStore.overdue.length" :count-upcoming="followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length" />
 
 
         <div v-if="followupsStore.fetching">
             <FetchingSpinner />
         </div>
 
-        <div class="mt-5 flex flex-col p-2 bg-white space-y-4" v-else>
+        <div class="mt-5 flex flex-col p-2 bg-gray-100 space-y-4" v-else>
 
             <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" 
                 class="space-y-4">
@@ -20,9 +20,16 @@
             </div>
 
             <div v-if="(filter == 'due' || filter == 'all') && followupsStore.dueSoon.length > 0" class="space-y-4">
-                <div class="px-3 text-sm text-gray-800">Due soon</div>
+                <div class="px-3 text-sm text-gray-800">Due in a week</div>
                 <template v-for="f in followupsStore.dueSoon" :key="f.task">
                     <FollowupItem :f :stat="'due'" />
+                </template>
+            </div>
+
+             <div v-if="(filter == 'due' || filter == 'all') && followupsStore.dueNextWeeks.length > 0" class="space-y-4">
+                <div class="px-3 text-sm text-gray-800">Due next 7 days</div>
+                <template v-for="f in followupsStore.dueNextWeeks" :key="f.task">
+                    <FollowupItem :f :stat="'due-weeks'" />
                 </template>
             </div>
 

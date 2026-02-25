@@ -7,4 +7,4 @@ export interface FollowupItem {
     remarks: string
 }
 
-export type FollowupListFilter = 'all' | 'overdue' | 'due' | 'none'
+export type FollowupListFilter = 'all' | 'overdue' | 'due' | 'due-weeks' | 'none'

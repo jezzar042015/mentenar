@@ -11,7 +11,7 @@
                 <span>{{ overdueDisplay }}</span>
             </template>
 
-            <template v-if="stat === 'due'">
+            <template v-if="stat === 'due' || stat === 'due-weeks'">
                 <span>Due {{ dueInDays }}</span>
             </template>
 
@@ -90,6 +90,7 @@
             due: "border-l-orange-600",
             overdue: "border-l-red-600",
             none: "border-l-gray-500",
+            'due-weeks': "border-l-yellow-500",
         }
 
         return theme[stat] ?? ''
