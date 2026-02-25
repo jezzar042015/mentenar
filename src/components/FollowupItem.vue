@@ -91,6 +91,7 @@
             overdue: "border-l-red-600",
             none: "border-l-gray-500",
             'due-weeks': "border-l-yellow-500",
+            completed: "border-l-blue-600",
         }
 
         return theme[stat] ?? ''

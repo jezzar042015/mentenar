@@ -3,8 +3,17 @@ export interface FollowupItem {
     assignees: string
     started: string
     target: string
+    completed: string
+    location: string
     status: string
     remarks: string
+    list: FollowupChecklistItem[]
 }
 
-export type FollowupListFilter = 'all' | 'overdue' | 'due' | 'due-weeks' | 'none' | 'completed'
+export interface FollowupChecklistItem {
+    task: string
+    completed: boolean
+}
+
+
+export type FollowupListFilter = 'all' | 'overdue' | 'due' | 'due-weeks' | 'none'

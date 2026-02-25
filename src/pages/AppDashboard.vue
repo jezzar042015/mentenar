@@ -8,7 +8,7 @@
                     <DashPreventiveCard :monthItem="value" :is-late="true"/>
                 </template>
 
-                <DashPreventiveCard :month-item="pm.currentMonth" v-if="pm.currentMonth"/>
+                <DashPreventiveCard :month-item="pm.currentMonth" v-if="pm.currentMonth && !pm.currentMonthIsCompleted"/>
 
                 <template v-for="item in followup.overdue" :key="item.task">
                     <DashFollowUpCard :item />

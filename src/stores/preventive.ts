@@ -34,6 +34,11 @@ export const usePreventiveStore = defineStore('preventive', () => {
         return data.value.find(d => d.month === monthString)
     })
 
+    const currentMonthIsCompleted = computed(() => {
+        if (!currentMonth.value) return false;
+        return currentMonth.value.tasks.every(i => i.completed)
+    })
+
     const lateMonths = computed(() => {
         return data.value.filter(d => {
             const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -60,6 +65,7 @@ export const usePreventiveStore = defineStore('preventive', () => {
         activeMonthData,
         shouldPull,
         currentMonth,
-        lateMonths
+        lateMonths,
+        currentMonthIsCompleted
     }
 });
