@@ -1,7 +1,7 @@
 <template>
     <div class="py-5 bg-gray-100">
         <!-- filter -->
-        <FollowupFilters @set-filters="setFilter" :active-filter="filter" :count-all="followupsStore.data.length"
+        <FollowupFilters @set-filters="setFilter" :active-filter="filter" :count-all="allPendingCount"
             :count-overdue="followupsStore.overdue.length" :count-upcoming="followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length" />
 
 
@@ -58,5 +58,9 @@
     const setFilter = (f: FollowupListFilter) => {
         filter.value = f
     }
+
+    const allPendingCount = computed(()=> {
+        return followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length + followupsStore.overdue.length + followupsStore.noDue.length
+    })
 
 </script>
