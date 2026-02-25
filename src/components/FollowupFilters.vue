@@ -18,7 +18,7 @@
             <span class="text-xs">{{ countUpcoming }}</span>
         </div>
 
-        <div @click="setFilter('completed')"
+        <div @click="setFilter('completed')" v-if="countOverdue == 0"
             :class="['px-3 py-1 rounded-2xl flex gap-2 items-center cursor-pointer', activeFilter == 'completed' ? 'bg-blue-600 text-white ' : '']">
             <span>Completed</span>
             <span class="text-xs">{{ followups.completed.length }}</span>
