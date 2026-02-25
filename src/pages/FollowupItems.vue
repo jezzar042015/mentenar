@@ -2,7 +2,8 @@
     <div class="py-5 bg-gray-100">
         <!-- filter -->
         <FollowupFilters @set-filters="setFilter" :active-filter="filter" :count-all="allPendingCount"
-            :count-overdue="followupsStore.overdue.length" :count-upcoming="followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length" />
+            :count-overdue="followupsStore.overdue.length"
+            :count-upcoming="followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length" />
 
 
         <div v-if="followupsStore.fetching">
@@ -11,8 +12,7 @@
 
         <div class="mt-5 flex flex-col p-2 bg-gray-100 space-y-4" v-else>
 
-            <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" 
-                class="space-y-4">
+            <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">Overdue</div>
                 <template v-for="f in followupsStore.overdue" :key="f.task">
                     <FollowupItem :f :stat="'overdue'" />
@@ -26,7 +26,8 @@
                 </template>
             </div>
 
-             <div v-if="(filter == 'due' || filter == 'all') && followupsStore.dueNextWeeks.length > 0" class="space-y-4">
+            <div v-if="(filter == 'due' || filter == 'all') && followupsStore.dueNextWeeks.length > 0"
+                class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">Due next 7 days</div>
                 <template v-for="f in followupsStore.dueNextWeeks" :key="f.task">
                     <FollowupItem :f :stat="'due-weeks'" />
@@ -47,7 +48,7 @@
 <script setup lang="ts">
     import type { FollowupListFilter } from '@/types/followups'
     import { useFollowupsStore } from '@/stores/followups'
-    import { ref } from 'vue'
+    import { ref, computed } from 'vue'
     import FetchingSpinner from '@/components/FetchingSpinner.vue'
     import FollowupItem from '@/components/FollowupItem.vue'
     import FollowupFilters from '@/components/FollowupFilters.vue'
@@ -59,7 +60,7 @@
         filter.value = f
     }
 
-    const allPendingCount = computed(()=> {
+    const allPendingCount = computed(() => {
         return followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length + followupsStore.overdue.length + followupsStore.noDue.length
     })
 

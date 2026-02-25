@@ -46,6 +46,12 @@ export const useFollowupsStore = defineStore('followups', () => {
         return data.value.find(item => item.task === activeTask.value);
     })
 
+    const completed = computed(() => {
+        return data.value
+            .filter(item => item.status === 'Completed')
+            .sort((a, b) => new Date(a.target).getTime() - new Date(b.target).getTime());;
+    })
+
     const overdue = computed(() => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -130,8 +136,9 @@ export const useFollowupsStore = defineStore('followups', () => {
         overdue,
         dueSoon,
         dueNextWeeks,
-        noDue, 
+        noDue,
         shouldPull,
         active,
+        completed,
     }
 });

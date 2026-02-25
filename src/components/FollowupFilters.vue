@@ -6,7 +6,7 @@
             <span class="text-xs">{{ countAll }}</span>
         </div>
 
-        <div @click="setFilter('overdue')"
+        <div @click="setFilter('overdue')" v-if="countOverdue > 0"
             :class="['px-3 py-1 rounded-2xl flex gap-2 items-center cursor-pointer', activeFilter == 'overdue' ? 'bg-blue-600 text-white ' : '']">
             <span>Overdue</span>
             <span class="text-xs">{{ countOverdue }}</span>
@@ -17,24 +17,32 @@
             <span>Upcoming</span>
             <span class="text-xs">{{ countUpcoming }}</span>
         </div>
-        <!-- <span class="bg-red-600 text-white px-3 rounded-2xl">No Due</span> -->
+
+        <div @click="setFilter('completed')"
+            :class="['px-3 py-1 rounded-2xl flex gap-2 items-center cursor-pointer', activeFilter == 'completed' ? 'bg-blue-600 text-white ' : '']">
+            <span>Completed</span>
+            <span class="text-xs">{{ followups.completed.length }}</span>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
+    import { useFollowupsStore } from '@/stores/followups';
     import type { FollowupListFilter } from '@/types/followups';
 
     const { countAll,
         countOverdue,
         countUpcoming,
-        activeFilter 
+        activeFilter
     } = defineProps<{
-            countAll: number,
-            countOverdue: number,
-            countUpcoming: number,
-            activeFilter: FollowupListFilter
-        }>()
+        countAll: number,
+        countOverdue: number,
+        countUpcoming: number,
+        activeFilter: FollowupListFilter
+    }>()
     const emits = defineEmits(['set-filters'])
+
+    const followups = useFollowupsStore()
 
     const setFilter = (f: FollowupListFilter) => {
         emits('set-filters', f)
