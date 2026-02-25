@@ -16,4 +16,4 @@ export interface FollowupChecklistItem {
 }
 
 
-export type FollowupListFilter = 'all' | 'overdue' | 'due' | 'due-weeks' | 'none'
+export type FollowupListFilter = 'all' | 'overdue' | 'due' | 'due-weeks' | 'none' | 'completed'
