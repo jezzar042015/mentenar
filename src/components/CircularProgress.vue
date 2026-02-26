@@ -10,7 +10,7 @@
                 </svg>
                 <div class="absolute text-center text-xs font-semibold">
                     <div v-if="label == 'over'">{{ completedCount }}/{{ allCount }}</div>
-                    <div v-if="label == 'percent'">{{ completedCount / allCount * 100 }}%</div>
+                    <div v-if="label == 'percent'">{{ Math.round(completedCount / allCount * 100) }}%</div>
                 </div>
             </div>
         </div>
