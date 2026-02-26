@@ -20,17 +20,17 @@
                 {{ m.assigned }} Congregation
             </div>
         </div>
-        <PreventiveProgress :completed-count="completedTasks.length" :all-count="m.tasks.length" />
+        <CircularProgress :completed-count="completedTasks.length" :all-count="m.tasks.length" />
     </div>
 </template>
 
 <script setup lang="ts">
-    import CalendarIcon from '@/icons/CalendarIcon.vue';
     import type { PreventiveResponse } from '@/types/preventive';
     import { computed } from 'vue';
     import { useViewsStore } from '@/stores/views';
-    import PreventiveProgress from './PreventiveProgress.vue';
     import { usePreventiveStore } from '@/stores/preventive';
+    import CalendarIcon from '@/icons/CalendarIcon.vue';
+    import CircularProgress from './CircularProgress.vue';
 
     const { m } = defineProps<{
         m: PreventiveResponse

@@ -1,29 +1,35 @@
 <template>
-    <div @click="loadItem" :class="['p-3 shadow-md bg-white space-y-1 border-l-7 rounded-md', sideBorderColor]">
-        <div class="text-base">{{ f.task }}</div>
-        <div class="flex text-xs space-x-2 items-center">
-            <span v-if="stat == 'overdue'" class="flex h-2 w-2 rounded-full bg-red-500"></span>
-            <span v-if="stat == 'due'" class="flex h-2 w-2 rounded-full bg-orange-500"></span>
-            <span v-if="stat == 'none'" class="flex h-2 w-2 rounded-full bg-gray-500"></span>
-            <template v-if="stat === 'overdue'">
-                <span>Overdue</span>
-                <span>&bullet;</span>
-                <span>{{ overdueDisplay }}</span>
-            </template>
+    <div @click="loadItem"
+        :class="['p-3 shadow-md bg-white border-l-7 rounded-md flex justify-between', sideBorderColor]">
+        <div class="space-y-1">
+            <div class="text-base">{{ f.task }}</div>
+            <div class="flex text-xs space-x-2 items-center">
+                <span v-if="stat == 'overdue'" class="flex h-2 w-2 rounded-full bg-red-500"></span>
+                <span v-if="stat == 'due'" class="flex h-2 w-2 rounded-full bg-orange-500"></span>
+                <span v-if="stat == 'none'" class="flex h-2 w-2 rounded-full bg-gray-500"></span>
+                <template v-if="stat === 'overdue'">
+                    <span>Overdue</span>
+                    <span>&bullet;</span>
+                    <span>{{ overdueDisplay }}</span>
+                </template>
 
-            <template v-if="stat === 'due' || stat === 'due-weeks'">
-                <span>Due {{ dueInDays }}</span>
-            </template>
+                <template v-if="stat === 'due' || stat === 'due-weeks'">
+                    <span>Due {{ dueInDays }}</span>
+                </template>
 
-            <template v-if="stat === 'none'">
-                <span>No due date set</span>
-            </template>
+                <template v-if="stat === 'none'">
+                    <span>No due date set</span>
+                </template>
+            </div>
+            <div class="flex items-center space-x-2 text-xs">
+                <span>
+                    <PersonIcon class="-m-0.5 h-3 w-3" />
+                </span>
+                <span>{{ assignee }}</span>
+            </div>
         </div>
-        <div class="flex items-center space-x-2 text-xs">
-            <span>
-                <PersonIcon class="-m-0.5 h-3 w-3" />
-            </span>
-            <span>{{ assignee }}</span>
+        <div class="h-4" v-if="f.list.length > 0">
+            <CircularProgress :all-count="f.list.length" :completed-count="completedList.length" :color="'red'" :label="'percent'"/>
         </div>
     </div>
 </template>
@@ -34,6 +40,7 @@
     import { computed } from 'vue';
     import { useFollowupsStore } from '@/stores/followups';
     import PersonIcon from '@/icons/PersonIcon.vue';
+    import CircularProgress from './CircularProgress.vue';
 
     const view = useViewsStore()
     const followup = useFollowupsStore()
@@ -99,6 +106,10 @@
 
     const assignee = computed(() => {
         return f.assignees ? `Assigned to ${f.assignees}` : "Not assigned"
+    })
+
+    const completedList = computed(() => {
+        return f.list.filter(i => i.completed)
     })
 
     const loadItem = () => {

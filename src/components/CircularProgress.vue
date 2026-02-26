@@ -4,12 +4,13 @@
             <div class="relative w-full h-full flex items-center justify-center">
                 <svg class="w-full h-full" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#e5e7eb" stroke-width="8" />
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#3b82f6" stroke-width="8"
+                    <circle cx="50" cy="50" r="45" fill="none" :stroke="progressColor" stroke-width="8"
                         stroke-dasharray="282.7" :stroke-dashoffset="282.7 - (282.7 * completedCount) / allCount"
                         stroke-linecap="round" transform="rotate(-90 50 50)" class="transition-all duration-300" />
                 </svg>
                 <div class="absolute text-center text-xs font-semibold">
-                    <div>{{ completedCount }}/{{ allCount }}</div>
+                    <div v-if="label == 'over'">{{ completedCount }}/{{ allCount }}</div>
+                    <div v-if="label == 'percent'">{{ completedCount / allCount * 100 }}%</div>
                 </div>
             </div>
         </div>
@@ -17,8 +18,23 @@
 </template>
 
 <script setup lang="ts">
-    const { completedCount, allCount } = defineProps<{
+    import { computed } from 'vue';
+
+    const { completedCount, allCount, color = 'blue', label = 'over' } = defineProps<{
         completedCount: number
         allCount: number
+        color?: 'blue' | 'red' | 'green'
+        label?: 'over' | 'percent' | 'none'
     }>()
+
+    const progressColor = computed(() => {
+        switch (color) {
+            case 'red':
+                return '#ef4444'
+            case 'green':
+                return '#10b981'
+            default:
+                return '#3b82f6'
+        }
+    })
 </script>
