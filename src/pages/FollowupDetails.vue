@@ -1,8 +1,8 @@
 <template>
-    <div class="p-4 bg-white h-full">
+    <div class="p-4 bg-white h-full mb-20">
         <div v-if="followup.active">
-            <div class="my-4">
-                <span class="px-3 py-1 border border-amber-500 text-amber-600  text-sm rounded-md">
+            <div class="my-4 flex gap-4 items-center">
+                <span class="px-3 py-1 border border-amber-500 text-amber-600 text-sm rounded-md self-center">
                     {{ followup.active.status || 'Not Started' }}
                 </span>
             </div>
@@ -29,7 +29,7 @@
                         <span class="font-bold text-sm">{{ dueDisplay }}</span>
                     </div>
                 </template>
-                
+
                 <template v-else>
                     <div class="flex gap-2 items-center">
                         <span class="">
@@ -59,12 +59,19 @@
             </div>
 
             <div class="mt-8" v-if="followup.active.list.length > 0">
-                <h2 class="uppercase font-semibold mb-3 text-amber-600">Checklist</h2>
+                <div class="flex items-center justify-between pr-10">
+                    <h2 class="uppercase font-semibold mb-3 text-amber-600">Checklist</h2>
+                    <div class="-mt-3">
+                        <CircularProgress :all-count="followup.active.list.length" :completed-count="completedCount"
+                            :color="'amber'" :label="'percent'" />
+                    </div>
+                </div>
+
                 <div class="space-y-2 px-1">
                     <div v-for="value in followup.active.list" :key="value.task" class="flex items-start space-x-2">
                         <span :class="[
                             'flex mt-1 h-4 w-4 rounded-sm border relative overflow-hidden',
-                            value.completed ? 'bg-blue-500 border-blue-500 scale-105' : 'bg-transparent border-black/70 scale-100'
+                            value.completed ? 'bg-amber-500 border-amber-500 scale-105' : 'bg-transparent border-black/70 scale-100'
                         ]">
                             <CheckIcon v-if="value.completed" class="absolute -top-1 -left-0.5 h-5 w-5 text-white" />
                         </span>
@@ -79,6 +86,7 @@
 </template>
 
 <script setup lang="ts">
+    import CircularProgress from '@/components/CircularProgress.vue';
     import CalendarIcon from '@/icons/CalendarIcon.vue';
     import CheckIcon from '@/icons/CheckIcon.vue';
     import PersonIcon from '@/icons/PersonIcon.vue';
@@ -114,6 +122,11 @@
         if (!followup.active) return ''
         const d = new Date()
         return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' '
+    })
+
+    const completedCount = computed(() => {
+        if (!followup.active) return 0
+        return followup.active.list.filter(item => item.completed).length
     })
 
 </script>
