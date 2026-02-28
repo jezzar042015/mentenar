@@ -43,20 +43,29 @@ export const usePreventiveStore = defineStore('preventive', () => {
     })
 
     const lateMonths = computed(() => {
-        return data.value.filter(d => {
-            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            const now = new Date();
-            const currentMonthIndex = now.getMonth();
-            const currentYear = now.getFullYear();
-            const [dataMonth, dataYear] = d.month.split(' ');
+        const monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
 
+        const now = new Date();
+        const currentMonthIndex = now.getMonth();
+        const currentYear = now.getFullYear();
+
+        return data.value.filter(d => {
+            const [dataMonth, dataYear] = d.month.split(' ');
             const dataMonthIndex = monthNames.indexOf(dataMonth ?? '');
             const dataYearNum = Number.parseInt(dataYear ?? '');
-            if (dataYearNum < currentYear) return true;
-            if (dataYearNum === currentYear && dataMonthIndex < currentMonthIndex) return true;
-            return false;
-        })
-    })
+
+            const isPastMonth =
+                dataYearNum < currentYear ||
+                (dataYearNum === currentYear && dataMonthIndex < currentMonthIndex);
+
+            const hasUnfinishedTask = d.tasks.some(task => !task.completed);
+
+            return isPastMonth && hasUnfinishedTask;
+        });
+    });
 
     const shouldPull = computed(() => {
         if (!latestUpdate.value) return true;

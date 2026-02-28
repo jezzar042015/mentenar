@@ -1,6 +1,6 @@
 <template>
     <div @click="loadMonth"
-        :class="[isLate ? 'border-red-600' : 'border-blue-500', itemBg, 'p-4 rounded-sm border-l-8 flex justify-between cursor-pointer']">
+        :class="[itemBorder, itemBg, { 'text-white': isThisMonth }, 'p-4 rounded-sm border-l-8 flex justify-between cursor-pointer']">
         <div class="space-y-1 flex-1">
             <div class="flex items-center gap-3">
                 <span class="text-xs bg-red-500 p-1 text-white rounded-md" v-if="isLate">Late</span>
@@ -11,6 +11,7 @@
             </div>
             <div class="text-xs gap-2 flex items-center">
                 <span class="flex h-2 w-2 rounded-full bg-red-500" v-if="isLate"></span>
+                <span class="flex h-2 w-2 rounded-full bg-white" v-else-if="isThisMonth"></span>
                 <span class="flex h-2 w-2 rounded-full bg-blue-500" v-else></span>
                 <span>
                     {{ m.tasks.length }} tasks
@@ -76,8 +77,14 @@
     })
 
     const itemBg = computed(() => {
-        if (isThisMonth.value) return 'bg-blue-100 shadow-md'
+        if (isThisMonth.value) return 'bg-sky-600 shadow-lg'
         if (isLate.value) return 'bg-red-50 shadow-sm'
         return 'bg-white shadow-sm'
+    })
+
+    const itemBorder = computed(() => {
+        if (isThisMonth.value) return 'border-sky-700'
+        if (isLate.value) return 'border-red-600'
+        return 'border-blue-500'
     })
 </script>

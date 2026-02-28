@@ -30,7 +30,7 @@
         </div>
         <div class="h-4" v-if="f.list.length > 0">
             <CircularProgress :all-count="f.list.length" :completed-count="completedList.length"
-                :color="stat === 'due' ? 'red' : 'amber'" :label="'percent'" />
+                :color="stat === 'due' ? 'red' : 'orange'" :label="'percent'" />
         </div>
     </div>
 </template>

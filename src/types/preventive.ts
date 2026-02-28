@@ -1,14 +1,16 @@
-export interface PreventiveItem {
-    task: string
-    completed: boolean
-    tiId: string
-}
+
 
 export interface PreventiveResponse {
     month: string
     assigned: string
     target: string
     tasks: PreventiveItem[]
+}
+
+export interface PreventiveItem {
+    task: string
+    completed: boolean
+    tiId: string
 }
 
 export interface TaskInstruction {

@@ -23,7 +23,7 @@
     const { completedCount, allCount, color = 'blue', label = 'over' } = defineProps<{
         completedCount: number
         allCount: number
-        color?: 'blue' | 'red' | 'green' | 'amber'
+        color?: 'blue' | 'red' | 'green' | 'amber' | 'orange'
         label?: 'over' | 'percent' | 'none'
     }>()
 
@@ -35,6 +35,8 @@
                 return '#10b981'
             case 'amber':
                 return '#ffa431'
+            case 'orange':
+                return '#ea580c'
             default:
                 return '#3b82f6'
         }
