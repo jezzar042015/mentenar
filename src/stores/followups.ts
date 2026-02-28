@@ -108,13 +108,14 @@ export const useFollowupsStore = defineStore('followups', () => {
     const pull = async () => {
         try {
             fetching.value = true
-            const response = await fetch('https://script.google.com/macros/s/AKfycbwp6Q8pmodwrNiwL5ljOfNYj05q8EU91oz9WGfeB5Rk6q8ruy2Py-HfYAzZdSSIIM5P/exec')
+            const response = await fetch('https://script.google.com/macros/s/AKfycbz5xjY8PSmmuBnwgnBd8sf73HODcLqF-5tEmWBkUC4W_gDorNjXPVWWAfphZpXctDjH/exec')
             const result = await response.json()
             data.value = result.data
             latestUpdate.value = result.timestamp
             fetching.value = false
         } catch (error) {
             console.log(error);
+            fetching.value = false
             // data.value = `Error: ${error}`
         }
     }

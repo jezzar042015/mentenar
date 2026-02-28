@@ -17,6 +17,7 @@ export const useInstructionsStore = defineStore('instructions', () => {
             data.value = result.data
             fetching.value = false
         } catch (error) {
+            fetching.value = false
             console.log(error);
         }
     }

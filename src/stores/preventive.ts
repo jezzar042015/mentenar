@@ -19,6 +19,7 @@ export const usePreventiveStore = defineStore('preventive', () => {
             latestUpdate.value = result.timestamp
             fetching.value = false
         } catch (error) {
+            fetching.value = false
             console.log(error);
             // data.value = `Error: ${error}`
         }
