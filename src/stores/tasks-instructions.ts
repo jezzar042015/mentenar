@@ -12,7 +12,7 @@ export const useInstructionsStore = defineStore('instructions', () => {
     const fetchAll = async () => {
         try {
             fetching.value = true
-            const response = await fetch('/tasks-instructions.json')
+            const response = await fetch('/mentenar/tasks-instructions.json')
             const result = await response.json()
             data.value = result
             fetching.value = false

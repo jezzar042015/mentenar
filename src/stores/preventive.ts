@@ -13,7 +13,7 @@ export const usePreventiveStore = defineStore('preventive', () => {
     const pullMonth = async () => {
         try {
             fetching.value = true
-            const response = await fetch(`https://script.google.com/macros/s/AKfycbwp6Q8pmodwrNiwL5ljOfNYj05q8EU91oz9WGfeB5Rk6q8ruy2Py-HfYAzZdSSIIM5P/exec?target=preventive`)
+            const response = await fetch(`https://script.google.com/macros/s/AKfycbxVBoGAB_LAGXrexnNcVH2abKtax2aAxvWeQekUMq6c1OUzqyPEZ9JMVD6XerUb6FOt5w/exec`)
             const result = await response.json()
             data.value = result.data
             latestUpdate.value = result.timestamp

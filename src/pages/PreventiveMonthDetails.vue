@@ -9,7 +9,7 @@
                         <CalendarIcon class="h-6 w-6" />
                     </span>
                     <span>
-                        {{ pm.activeMonthData.month }} 2026
+                        {{ pm.activeMonthData.month }}
                     </span>
                 </div>
             </div>
