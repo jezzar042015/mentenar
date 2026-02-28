@@ -1,0 +1,1150 @@
+[
+    {
+        "id": "B01",
+        "task": "Exterior Inspection",
+        "frequency": "Every 6 Months",
+        "aspect": "Building Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Perimeter Wall or Front Fence (Including Top Angle Bar)",
+                "items": [
+                    "Check for bulges in walls.",
+                    "Check that the top of the wall is water sealed.",
+                    "Make sure vegetation, flowers and trees are not growing on or through the wall.",
+                    "Look for signs of moss or lichen growth that may indicate a water problem.",
+                    "Check metal for rust. The angle bar should be free from rust.",
+                    "Remove moss and lichen that grow on the wall.",
+                    "Clean and repaint angle bar and G.I pipe if necessary.",
+                    "Do not paint the concrete wall.",
+                    "Remove moss or algae (lumot) that grow on the concrete."
+                ]
+            },
+            {
+                "element": "Manual Gates",
+                "items": [
+                    "Check the condition and operation of the hinges and check that the hinges, G.I pipe post and angle bar are not rusting.",
+                    "Check that the lock/locking mechanism is functioning properly.",
+                    "Lubricate the hinges and pad lock if necessary.",
+                    "Check the gate for correct fit and proper closing.",
+                    "Check that the gate will stay open if a vehicle needs to be driven through.",
+                    "Check the meeting schedule, mail box and all metal parts are not rusted. Clean regularly.",
+                    "Check paint finish and touch up where needed.  Make sure the repair work does not spoil the overall appearance of the gates.",
+                    "Clean/Repaint if needed."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B02",
+        "task": "Roof Inspection",
+        "frequency": "Every Year",
+        "aspect": "Building Maintenance",
+        "safety": "DO NOT WORK ON WET OR SLIPPERY ROOFS. Appropriate fall protection must be used. If appropriate, use a properly secured extension ladder to gain access to the roof.",
+        "elements": [
+            {
+                "element": "Metalplas (Twin Rib Type)",
+                "items": [
+                    "Check the condition of all flashing and roof penetrations. Make sure the installation is still waterproof.",
+                    "Check for signs of surface rust where roof sheets and flashing or capping are in contact.",
+                    "Check for signs of rust or corrosion in the roof flashing, fascia board and capping.",
+                    "Check the condition of the ridge roll (bobong) and the fixings.",
+                    "Check the condition of the roofing sheets. Look for rust, lifting or movement.",
+                    "Check that outside fastenings are firm and properly sealed.",
+                    "Check for signs of rust on screw heads used to secure the roof.",
+                    "Check the clips on the underside of the roofing sheet; make sure that fittings have not come loose.",
+                    "Remove rust from screw heads and apply paint if necessary.",
+                    "Clean the roof to remove corrosive deposits by hosing down with water using neutral detergents.",
+                    "Clean the roof regularly and remove algae including end flashing and fascia board."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B03",
+        "task": "Exterior and Interior Doors",
+        "frequency": "Every 3 Months",
+        "aspect": "Building Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Metal Doors and Door Jamb",
+                "items": [
+                    "Tighten any loose fasteners/screws.  (Note: Do not overtighten already tightened fasteners).",
+                    "Check the condition of the paint.  Do touch-up work without spoiling the overall appearance.",
+                    "Check that all external door contacts are in good working order.",
+                    "Make sure the doors latch properly. Clean barrel bolt regularly.",
+                    "Check regularly for rust. Lubricate hinges if necessary.",
+                    "Check the underside of the doors.",
+                    "Make sure that all doors are free from rust.",
+                    "Lubricate door knob and dead bolt if needed.",
+                    "Remove rust immediately. Repaint as necessary.",
+                    "Clean the doors  and jamb regularly."
+                ]
+            },
+            {
+                "element": "Doors Stopper",
+                "items": [
+                    "Check the condition of the door stopper.",
+                    "Check all tighten screws.",
+                    "Make sure that there is no lost screw.",
+                    "Replace door stopper if needed. Check for rust.",
+                    "Clean/wipe clean cloth regularly."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B04",
+        "task": "Building Outside Wall and Outside Ceiling",
+        "frequency": "Every 6 Months",
+        "aspect": "Building Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Building Outside Wall",
+                "items": [
+                    "Check for obvious signs of deterioration of the surface.",
+                    "Look for signs of moss or algae (lumot) growth that may indicate a water problem.",
+                    "Clear away any plant growth that is growing against the building.",
+                    "Check the condition of the sealant joints, paintwork and that the general condition is good.",
+                    "Inspect all sealant joints for deterioration.",
+                    "Ensure the maintenance space around the building is clear for access at all times.",
+                    "Check for cracks and take note of their position and size. Repair as needed.",
+                    "Repaint standard color as necessary. (Boysen Permacoat Semi-Gloss Latex Paint B7502 Morning Winter)",
+                    "Clean regularly"
+                ]
+            },
+            {
+                "element": "Building Outside Ceiling",
+                "items": [
+                    "Check general appearance and condition under the eaves.",
+                    "Check for loose soffit material or gaps where animals could enter eaves.",
+                    "Check drywall and solid ceilings for damage and stains that may indicate a water problem.",
+                    "Check the condition of the edge trim.",
+                    "Make sure that there are no loose or missing screws.",
+                    "Repair or repaint as needed.",
+                    "Clean the outside ceiling regularly."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B05",
+        "task": "Door Mat & Wall Clock",
+        "frequency": "Every 3 Months",
+        "aspect": "Building Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Door Mats",
+                "items": [
+                    "Check the mat corners for curling and disintegration which could cause a trip hazard.",
+                    "Lift and remove mats outside of the building. In an appropriate location, sweep the mat on both sides and inspect the condition.",
+                    "Clean door entrance location where the mat belongs. Take appropriate steps to remove any debris that does not belong.",
+                    "Return the mat to its original place at the door entrance.",
+                    "Wash door mat regularly. Replace if needed."
+                ]
+            },
+            {
+                "element": "Wall Clock",
+                "items": [
+                    "Check the condition of the battery.",
+                    "Replace battery if necessary.",
+                    "Check the condition of the wall clock.",
+                    "Clean regularly."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B06",
+        "task": "Structural Inspection",
+        "frequency": "Every Year",
+        "aspect": "Building Maintenance",
+        "safety": "Note: Conduct annual inspection of all load-bearing construction elements (roof trusses, floor joists, columns, walls, and beams.",
+        "elements": [
+            {
+                "element": "Roof Area",
+                "items": [
+                    "Inspect the interior side of the roof.  Check for obvious signs of deterioration of the surface.",
+                    "Check for any separation of roof sheets from trusses/rafters/joisting.",
+                    "Check for any separation of trusses/rafters/joisting from any load bearing walls (especially from exterior walls).",
+                    "Remove rust and apply paint immediately."
+                ]
+            },
+            {
+                "element": "Interior",
+                "items": [
+                    "Check for misalignment of doors or windows, obvious sagging of floors, cracking of partition walls.",
+                    "Check for rusted, significant cracking/splitting, or other deterioration in metal structural members.",
+                    "Remove rust. Repaint as necessary.",
+                    "Clean or wash regularly."
+                ]
+            },
+            {
+                "element": "Exterior",
+                "items": [
+                    "Check for new or widening cracks in blocks or columns.",
+                    "Inspect for distortion of structural steel members or damaged welds.  This may indicate either movement at one or both of the extremities where the steel is fixed, or that the steel member is overloaded.",
+                    "Check for rust stains on exposed interior and exterior concrete surfaces. This may indicate possible corrosion of reinforcement. Corrosion of the reinforcement or structural steel members themselves, such as beams, columns, and bracing, reduces their strength and load-bearing capacity.",
+                    "Remove rust. Repaint as necessary.",
+                    "Wash regularly"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B07",
+        "task": "Windows and Window Grills",
+        "frequency": "Every 6 Months",
+        "aspect": "Building Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Windows",
+                "items": [
+                    "Check for broken glass, scratches, rust, loose or missing fixing screws, broken or damaged hardware and handle.",
+                    "Check that windows operate properly.",
+                    "Check the condition of the sealant both inside and out.",
+                    "Check and inspect the condition of the aluminum structure and frame.",
+                    "Screw and hinges should be free from rust.",
+                    "Check that the locking handle mechanisms operate smoothly.",
+                    "Repair any damage found or replace if necessary.",
+                    "Clean regularly."
+                ]
+            },
+            {
+                "element": "Window Grills",
+                "items": [
+                    "Check and inspect metal structure and screws are free from rust.",
+                    "Remove rust. Retouch if necessary.",
+                    "Check no loose screws. Replace if necessary.",
+                    "Wipe all other dirt from the grill using a damp cloth.  Make sure to get behind the leading edges of the grills.",
+                    "Repaint as needed."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B08",
+        "task": "Floor Tiles and Cabinets",
+        "frequency": "Every 3 Months",
+        "aspect": "Building Maintenance",
+        "safety": "NOTE: DO NOT USE ZONROX OR MURIATIC ACID FOR CLEANING TILES.",
+        "elements": [
+            {
+                "element": "Ceramic Floors/Tiles",
+                "items": [
+                    "Check for chipped, cracked, or loose tiles.",
+                    "Check for missing, damaged, permanently wet, or moldy grout.",
+                    "Check for cracks in the tile grout.",
+                    "Regrout or replace if necessary.",
+                    "Repair or replace broken tiles as needed.",
+                    "Do not use strong chemicals to avoid damage. Clean regularly."
+                ]
+            },
+            {
+                "element": "Cabinets",
+                "items": [
+                    "The doors should operate freely. Inspect shelving.",
+                    "Check the hinges and hardware for tightness, no loose screws or rusted.",
+                    "Make sure that no hinges and handles are rusted, broken or damaged.",
+                    "Plywood should not be damaged by pests (AGAY-AY).",
+                    "Spray or inject pesticide as needed.",
+                    "The doors should have good alignment, being level and parallel with the cabinet lines.",
+                    "Organize the items. Repair or repaint if necessary.",
+                    "Remove personal belongings and unnecessary things.",
+                    "Clean all cabinets regularly to avoid stains or dirt."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B09",
+        "task": "Fire Extinguisher and Pest Control and Treatment",
+        "frequency": "Every 3 Months",
+        "aspect": "Building Maintenance",
+        "safety": "Note: Verify accuracy of tag information and maintenance due dates. If the tagged due date will be void within one month from this inspection, have the extinguisher serviced.  For any extinguishers requiring servicing, have service completed by a certified contractor.",
+        "elements": [
+            {
+                "element": "Fire Extinguishers",
+                "items": [
+                    "Check that each extinguisher is conspicuous, readily accessible and is in its assigned location.",
+                    "Check to make sure that the instructions are legible and facing forward and that the serial number is legible.",
+                    "Clean extinguisher. Shake regularly.",
+                    "Pick up the extinguisher to make sure it is full and/or check that the pressure gauge indicator is in green.",
+                    "Inspect cylinder for corrosion, abrasion, dents or weld damage and for damaged, missing or substitute parts.",
+                    "Inspect discharge lever for any dirt or corrosion which might impair freedom of movement.",
+                    "Check ring pin for freedom of movement",
+                    "Return the extinguisher to the hanger or in the bracket. Replace hanger or bracket if necessary.",
+                    "Shake regularly. Refill as needed."
+                ]
+            },
+            {
+                "element": "Pest ( Birds, Insects, Agay-ay, Ants) Inspection and Treatment",
+                "items": [
+                    "Inspect the building internally at all entrances.",
+                    "Inspect all garbage collection rooms and trash bins, sweeping as needed.",
+                    "Inspect all building’s interior and exterior for bird or wasp nests and remove them if possible.",
+                    "Inspect between handicap signs, c-purlins and rafters.",
+                    "Inspect underside of exterior lights.",
+                    "Put a bird trap for bird entrances.",
+                    "Spray pesticide or insecticide if necessary and if the LGU allows doing so.",
+                    "Clean regularly."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B10",
+        "task": "Interior Inspection - General",
+        "frequency": "Every 6 Months",
+        "aspect": "Building Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Building Interior Walls (Inside the building)",
+                "items": [
+                    "Check painted for lifting, water damage, and other damage.",
+                    "Retouch as needed.",
+                    "Check for cracks and take note of position and size.",
+                    "Repair as necessary.",
+                    "Remove spider web regularly and clean with wet clean cloth as needed.",
+                    "Repaint standard color if necessary. (Boysen Permacoat Semi-Gloss Latex Paint B708 Gray Castle)",
+                    "Clean/wash as necessary."
+                ]
+            },
+            {
+                "element": "Porch",
+                "items": [
+                    "Check drywall ceiling systems for broken, damaged, and stains that may indicate a water problem.",
+                    "Check the condition of the hardiflex ceiling and ceiling frame. Repair as needed.",
+                    "Check the condition of the edge trim. Check the screws are not rusted.",
+                    "Clean and remove spider web regularly.",
+                    "Repair and repaint as needed."
+                ]
+            },
+            {
+                "element": "Fittings",
+                "items": [
+                    "Check straightness and firmness of mounted items/hardware such as :",
+                    "Curtain,curtain rod and holder and repair or replace any damage found.",
+                    "Clean donation box.",
+                    "Clean the information board and update regularly.",
+                    "Check that no screws, clips, curtain rod & holder are loose and rusted.",
+                    "Clean regularly."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B11",
+        "task": "Storage Room and Storage Cabinet",
+        "frequency": "Every 3 Months",
+        "aspect": "Building Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Storage Room and Storage Cabinet",
+                "items": [
+                    "Clean the room and hang the cabinet regularly.",
+                    "Inspect shelving - remove unused, outdated or no longer needed items.",
+                    "Confirm shelving is in good condition and repair if needed.",
+                    "Check the screws and hinges are free from rust.",
+                    "Remove highly combustible materials (ex. paint thinner) from buildings.",
+                    "Organize the items so they are accessible. Remove unnecessary things or personal belongings."
+                ]
+            },
+            {
+                "element": "Storage Inside Wall",
+                "items": [
+                    "Check painted for lifting, water damage, and other damage.",
+                    "Check for cracks and repair as necessary.",
+                    "Remove spider webs regularly and clean with wet cloth.",
+                    "Repaint if necessary."
+                ]
+            },
+            {
+                "element": "Storage Ceiling",
+                "items": [
+                    "Check suspended ceiling systems for broken, damaged, wet or dirty tiles.",
+                    "Remove dust from the ceiling system.",
+                    "Check the condition of the edge trim.",
+                    "Clean and remove spider web regularly.",
+                    "Replace any broken ceiling board. Clean the ceiling board regularly."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B12",
+        "task": "Interior Ceiling",
+        "frequency": "Every year",
+        "aspect": "Building Maintenance",
+        "safety": "Location: Inside of the building",
+        "elements": [
+            {
+                "element": "Suspended Ceilings (Inside the Building)",
+                "items": [
+                    "Check suspended ceiling systems (main tee, cross tee and wall angle) for broken, damaged, wet or dirty tiles.",
+                    "Check the condition of the edge trim.",
+                    "Remove dust from the ceiling system.",
+                    "Clean and remove spider web regularly.",
+                    "Replace any broken ceiling board.",
+                    "Clean the dust and wipe with wet cloth in front of the ceiling board."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B13",
+        "task": "Interior Signages",
+        "frequency": "Every 6 months",
+        "aspect": "Building Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "All Signages",
+                "items": [
+                    "Check that none of the signs are broken, taken off or damaged.",
+                    "Check for rust on metal surfaces.",
+                    "Check for rust or missing, loose bolts or screws. Replace screws as needed.",
+                    "Screws and screw caps or covers should be free from rust.",
+                    "Check that all signs (kingdom hall, meeting schedule, jw.org and exit, meeting schedule, male, female,) are readable and securely fastened.",
+                    "Replace handicap signs if necessary and clean regularly.",
+                    "Repaint signage as needed if this is paintable."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B14",
+        "task": "Podium and Chairs",
+        "frequency": "Every 6 Months",
+        "aspect": "Building Maintenance",
+        "safety": "NOTE: DO NOT USE ZONROX OR MURIATIC ACID FOR CLEANING CHAIRS.",
+        "elements": [
+            {
+                "element": "Speaker Stand or Podium",
+                "items": [
+                    "Check the condition of the speaker stand; make sure that there are no loose bolts or screws.",
+                    "Check for rust on screws/metal surfaces.",
+                    "Check paint and wood material for peeling off.",
+                    "Make sure a wooden material is not infested by pests.",
+                    "Check the height adjuster of the speaker stand is functioning correctly.",
+                    "Check the condition of the paint and/or stain.",
+                    "Retouch or repair if necessary."
+                ]
+            },
+            {
+                "element": "Plastic and Upholstered Chairs & Glass Table",
+                "items": [
+                    "Confirm that the chairs and the table tops are not broken.",
+                    "Confirm the legs of chairs & tables are secure.",
+                    "Check for scratches and general condition of the finish.",
+                    "Check for loose and missing nuts, check screws free from rust.",
+                    "Check for tear off cover and rubber foot cover. Replace foot rubber as needed.",
+                    "Repaint metal structure in an upholstered chair and glass table if necessary.",
+                    "When making repairs take care not to spoil the overall appearance of the chairs.",
+                    "The top of the glass table should be free from flower vases.",
+                    "Clean plastic chairs using liquid mild soap."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B15",
+        "task": "Roof Gutters and Downspouts",
+        "frequency": "Every Year",
+        "aspect": "Building Maintenance",
+        "safety": "WARNING!  DO NOT WORK ON WET OR SLIPPERY ROOFS. Appropriate fall protection must be used. If appropriate, use a properly secured extension ladder to gain access to the roof. Do not walk on the screw heads.",
+        "elements": [
+            {
+                "element": "Roof Gutters and Downspouts",
+                "items": [
+                    "Inspect if gutters are still properly attached to the fascia. Look for spaces in between or signs of water running down to the fascia.",
+                    "Inspect for loose gutter spikes and/or hangers. Recure each. Replace if necessary.",
+                    "Inspect gutters for any signs of corrosion.",
+                    "Look for holes or leaking joints and check for any loose, missing or bent gutter hangers.",
+                    "Inspect proper connection between downspout and gutter.",
+                    "Inspect if downspouts are properly attached to the structure.",
+                    "Inspect all parts for clogs and/or leaks especially in the elbow joints.",
+                    "Patch holes, leaks, and tears.",
+                    "Replace damaged gutter sections.",
+                    "Adjust the pitch of the gutters.",
+                    "Clean and remove any dirt or debris from the gutter.",
+                    "If clogged, unclog the downspout. Remove the elbow joint and inspect all parts for clogs. If the downspout is still not clear, run a garden hose through the downspout and turn on the water valve/faucet on full blast until the clog breaks apart."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "C01",
+        "task": "Landscape",
+        "frequency": "Every 3 Months",
+        "aspect": "Civil Maintenance",
+        "safety": "NOTE:  Normal gardening activities are not covered in this manual.  The tasks on this task instruction are to protect the property and grounds from damage.",
+        "elements": [
+            {
+                "element": "Flower, Plants and Weeds",
+                "items": [
+                    "Check for any vegetation near the buildings that needs to be trimmed back to prevent dampness from developing.",
+                    "Check if roots are causing damage to paths, roads, or the building foundation.",
+                    "Check the entire property for signs of soil erosion and whether drainage channels are being filled by natural soil movement.",
+                    "Make sure that no vegetation and flowers are growing over the concrete wall and parking areas.",
+                    "Make simple landscape and remove thorny flowers (may mga tinik na bulaklak).",
+                    "Trim flowers and plants regularly."
+                ]
+            },
+            {
+                "element": "Block/Concrete",
+                "items": [
+                    "Entirely remove vegetation growing through joints in the paving.",
+                    "Check for loose concrete.",
+                    "Inspect the concrete for cracks, repair if needed.",
+                    "Make sure that none of the drainage channels alongside the road are blocked."
+                ]
+            },
+            {
+                "element": "Dirt",
+                "items": [
+                    "Check that the provision for removing storm water from the road surface is still functional. Make sure that none of the drainage channels alongside the road are blocked.",
+                    "Check the evenness of dirt roads and walkways.  Place new gravel or dirt as needed.  Level and compact these areas.",
+                    "Remove weeds and grass from the road or walkway.",
+                    "Examine the road verges.  Check that erosion has not taken place.",
+                    "Make sure grading allows water to run off the road and that the road is above areas of standing water.",
+                    "Water plants or flowers and trim regularly if necessary."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "C02",
+        "task": "Septic Tank System",
+        "frequency": "Every 2 Years",
+        "aspect": "Civil Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Septic Tank",
+                "items": [
+                    "Determine the depth of the sludge at the openings.",
+                    "When the sludge layer exceeds 1000 mm deep or the floating mat of scum builds downward to within 300 mm of the bottom of the scum board, the tank will need to be partially emptied by a commercial company.",
+                    "If the sludge or scum level is nearing the limit, check the levels during the next three monthly.",
+                    "Do not allow the pumping interval to exceed 2 years otherwise the scum and sludge may harden to the point where it is difficult for the suction pump to remove.",
+                    "When it is necessary, hire a commercial company to pump sludge and scum out of the septic tank.",
+                    "Refill the tank with water up to the maximum level.",
+                    "Clean out the septic tank vent pipe using water. Remove any insect nests in the pipe.",
+                    "Remove the moss/algae (Lumot) in the concrete cover."
+                ]
+            },
+            {
+                "element": "Manholes",
+                "items": [
+                    "Inspect the manhole chamber.  Clean the odor seal channel, the rim of the manhole lid and the support frame for the manhole lid.",
+                    "Check that the manhole cover closes properly.",
+                    "Clean and disinfect the floor area around the manhole.",
+                    "Disinfect all tools and equipment used for the service."
+                ]
+            },
+            {
+                "element": "Sanitary Cleanouts in Septic Tank",
+                "items": [
+                    "Take off covers to check for buildup of waste or blockage.",
+                    "Clean if necessary.",
+                    "Ensure that these openings remain well marked and accessible.",
+                    "Clean and grease the lid for easy access.",
+                    "Check the cover closes properly."
+                ]
+            },
+            {
+                "element": "Sanitary Cleanout (Stainless cover, below information board)",
+                "items": [
+                    "Take off covers to check for buildup of waste or blockage.",
+                    "Clean if necessary.",
+                    "Clean and grease the lid for easy access."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "C03",
+        "task": "Pavement, Pathways and Gravel",
+        "frequency": "Every 6 Months",
+        "aspect": "Civil Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Pavement or Pathway and Sidewalk",
+                "items": [
+                    "Inspect all concreted areas for signs of damage or disrepair.",
+                    "Inspect the roads and sidewalks for cracks. Cracks in the roadway or pavement greater than 3mm should be repaired.  Cracks in the sidewalks greater than 1.5mm should be repaired",
+                    "Inspect surfaces, fill cracks with sealant.",
+                    "Check for subsidence (sagging/settling of surface) in the concreted areas and investigate the cause.",
+                    "Entirely remove vegetation growing through joints in the pavement.",
+                    "Check all unsealed joints for erosion, cracking, and brittle corners.",
+                    "Repair concrete as necessary.",
+                    "Remove the moss/algae (lumot) in concrete pavement or sidewalks."
+                ]
+            },
+            {
+                "element": "Gravel Area",
+                "items": [
+                    "Check the evenness of gravel roads and footpaths.",
+                    "Place new gravel as needed.  Level and compact these areas.",
+                    "Remove weeds and grass by their roots from the gravel.",
+                    "Make sure that gravel and soil are not mixing.",
+                    "Make sure that water drainage is free from blockage."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "E01",
+        "task": "Distribution Panels (Circuit Breakers)",
+        "frequency": "Every Year",
+        "aspect": "Electrical Maintenance",
+        "safety": "HIGH RISK: This task instruction should be done by a qualified personnal or in the presence of a qualified personnal.  Disconnect power at main disconnect and verify power is off before performing maintenance. Location: Electrical post and inside the Kingdom Hall.",
+        "elements": [
+            {
+                "element": "Visual Checking of Exterior",
+                "items": [
+                    "Proper clearance should be maintained in front of the panels to allow easy access.",
+                    "Check that screws from cell covers of the panel are not missing.",
+                    "Check that panel cover can be closed properly. Repair or replace if damaged.",
+                    "Check that the frame and cell covers of the panel are mechanically in good condition.",
+                    "Make sure that screws,bolts and all metal parts are not rusted.",
+                    "Repair/repaint and replace panel board if needed."
+                ]
+            },
+            {
+                "element": "After isolating a panel and opening the covers check for:",
+                "items": [
+                    "Confirm that panels are labeled and free from rust.",
+                    "DANGER SIGN should be posted on the power panel board inside of the building.",
+                    "Discolored wire and insulation at connection points - this is an indication of overheating due to poor connections.",
+                    "Check that all switches, circuit breakers and other equipment are mechanically and electrically in good condition.",
+                    "Check and tighten if needed the Neutral and Ground screws.",
+                    "Check that only the allowed amount of wires are installed under every Neutral & Ground screw.",
+                    "Make sure that screws, bolts and all metal parts are not rusted.",
+                    "Check that all wires are properly labeled and properly installed."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "E02",
+        "task": "Emergency Lights, Switches, Outlets",
+        "frequency": "Every 3 Months",
+        "aspect": "Electrical Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Emergency Lights",
+                "items": [
+                    "Clean the exterior of the emergency lights.",
+                    "Follow the specific instructions on cleaning supplied by the manufacturer.  If these are unavailable, use a mild soap wash to clean then dry the surface.",
+                    "Do not use solvents or abrasive cleansers.",
+                    "Clean the reflector. Do not use solvents or abrasive cleansers.",
+                    "Check the correct operation of the emergency lights by operating their test facility.",
+                    "Check that all indicator lamps are functioning.",
+                    "Discharge/unplug emergency lights regularly every 3 months."
+                ]
+            },
+            {
+                "element": "Switches and Outlets",
+                "items": [
+                    "Check to ensure they are safe and operating properly.",
+                    "Test switches under load for proper operation; for instance, turn on and off all lights.",
+                    "Make sure that all are level and properly mounted.",
+                    "Tighten any loose screws. Repair as necessary.",
+                    "Clean regularly. When making repaint of the concrete wall, take care not to spoil switches and outlets."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "E03",
+        "task": "Interior Lighting",
+        "frequency": "Every Year",
+        "aspect": "Electrical Maintenance",
+        "safety": "Note: Please turn off switches before cleaning and maintenance.",
+        "elements": [
+            {
+                "element": "Cleaning and Maintenance",
+                "items": [
+                    "To maintain interior lights, clean the lens, lamps, reflectors with glass cleaner and dry with a paper towel.",
+                    "Remove any spider webs.",
+                    "The downlight frame should be free from rust.",
+                    "Repair or replace if necessary.",
+                    "Replace any damage found."
+                ]
+            },
+            {
+                "element": "Fluorescent and Light Bulb",
+                "items": [
+                    "Remove the lens, reflector taking care not to twist or distort it.",
+                    "Remove surface dust on the fixture with a duster.",
+                    "Change burnt out lamps. Note and report to the maintenance coordinator any defective parts.",
+                    "Replace lamps in kind.",
+                    "Refit the lamps and lens or aluminum reflectors.",
+                    "Clean and remove any spider webs regularly.",
+                    "Make sure that the light reflector is clean."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "E04",
+        "task": "Exterior Lighting",
+        "frequency": "Every Year",
+        "aspect": "Electrical Maintenance",
+        "safety": "Note: Please turn off switches before cleaning and maintenance.",
+        "elements": [
+            {
+                "element": "Cleaning and Maintenance",
+                "items": [
+                    "To maintain exterior lights, clean the lens, lamps, reflectors with glass cleaner and dry with a paper towel.",
+                    "Make sure that no tree branches or obstacles are in front of each fixture.",
+                    "Remove any spider webs.",
+                    "The downlight frame outside the building should be free from rust.",
+                    "Repair or replace if necessary.",
+                    "Replace any damage found."
+                ]
+            },
+            {
+                "element": "Light Bulb",
+                "items": [
+                    "Remove the lens, reflector taking care not to twist or distort it.",
+                    "Remove surface dust on the fixture with a duster.",
+                    "Change burnt out lamps. Note and report to the maintenance coordinator any defective parts.",
+                    "Replace lamps in kind.",
+                    "Refit the lamps and lens or aluminum reflectors.",
+                    "Clean and remove any spider webs regularly.",
+                    "Make sure that the light reflector is clean."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "E05",
+        "task": "Parking Lights",
+        "frequency": "Every 3 Months",
+        "aspect": "Electrical Maintenance",
+        "safety": "Important Reminder!  Read the user manual before performing. Usually you can find the warning in the user manual. This part is what you should need to consider so as to lessen the trouble you may encounter in the future. Also, don’t randomly disassemble the light without instruction. It may damage the circuit and create a bad influence of a lifetime.",
+        "elements": [
+            {
+                "element": "Parking Lights",
+                "items": [
+                    "Inspect LED light if it is functioning by turning on the switches.",
+                    "Remove and replace if LED lights are broken.",
+                    "Wipe dust and debris from the reflector using fiber cloth or soft brush.",
+                    "Inspect if the post penetrated on the ground is properly installed and is not tilting or swaying.",
+                    "Inspect the electrical boxes if they are properly covered. Check for loose screws then tighten.",
+                    "Check the post if it is free from rust. Repaint if necessary."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "Q01",
+        "task": "Literature Cart and Ladder",
+        "frequency": "Every 6 Months",
+        "aspect": "Equipment Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Literature Cart",
+                "items": [
+                    "Check the condition of the wheels, ABS plastic, bearing and trolley.",
+                    "Check the condition of the rear box.",
+                    "Check for loose and missing nuts, bolts, cotter pins and screws.",
+                    "Check for tear off rain cover.",
+                    "Lubricate moving parts and bearings and lock if necessary.",
+                    "Update poster cover as needed.",
+                    "Wash if necessary.",
+                    "Clean regularly."
+                ]
+            },
+            {
+                "element": "Ladder",
+                "items": [
+                    "Inspect ladders for broken rungs, loose hinges, bent braces or other defects.  Remove defective ladders.",
+                    "Check that the feet are in good condition.",
+                    "Check that all attachments are in good condition.",
+                    "Check that the ladders are sturdy and stable when set up for use.",
+                    "Clean the ladder regularly."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "Q02",
+        "task": "Generator",
+        "frequency": "Every 6 Months",
+        "aspect": "Equipment Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Generator",
+                "items": [
+                    "Check the overall condition of the generator. Check for corroded elements, loose wire, stuck buttons.",
+                    "Fix anything loose, stuck or frying. Seek professional advice if you’re not sure what to do.",
+                    "Check the lubricant oil and filters.",
+                    "Clean the spark plugs.",
+                    "Check all bolts of the generator. Check the gasket head and piston for solid condition, replace if worn or cracked.",
+                    "Check the fuel.",
+                    "Start up the generator regularly.",
+                    "Clean generator before and after using."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "M01",
+        "task": "Toilet, Tissue Holder and Cabinet",
+        "frequency": "Every 6 Months",
+        "aspect": "Mechanical Maintenance",
+        "safety": "Warning: Do not use Zonrox or muriatic acid for cleaning the comfort room. Recommendation: Used baking soda mix with white vinegar and liquid soap for cleaning CRs.",
+        "elements": [
+            {
+                "element": "Tissue Paper Holder, Grab Bar",
+                "items": [
+                    "Check for rust.",
+                    "Clean regularly."
+                ]
+            },
+            {
+                "element": "Toilet Bowl",
+                "items": [
+                    "Inspect for leaks.",
+                    "Check that the toilet bowl is properly fixed to the floor and tighten if the toilet seat is loose.",
+                    "Do not use Zonrox, muriatic acid, and other strong chemicals that cause damage or crack.",
+                    "Clean the toilet regularly."
+                ]
+            },
+            {
+                "element": "Floor Drains",
+                "items": [
+                    "Remove floor drain cover.",
+                    "If the floor drain has a removable trap, remove and clean out any dirt.",
+                    "Replace floor drain cover if necessary.",
+                    "Pour water down the floor drain to form a new water seal.",
+                    "Clean regularly."
+                ]
+            },
+            {
+                "element": "Storage Cabinet",
+                "items": [
+                    "Inspect shelving - remove unused, outdated or no longer needed items.",
+                    "Confirm shelving is in good condition and repair if needed.",
+                    "Check the screws, brackets or bolts are free from rust.",
+                    "Remove highly combustible materials from buildings.",
+                    "Plywood should not be damaged by pests (AGAY-AY).",
+                    "Organize the items so they are accessible. Remove unnecessary things or personal belongings"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "M02",
+        "task": "CR Tiles and Ceiling",
+        "frequency": "Every 2 Months",
+        "aspect": "Mechanical Maintenance",
+        "safety": "Warning: Do not use Zonrox or muriatic acid for cleaning the comfort room. Recommendation: Used baking soda mix with white vinegar and liquid soap for cleaning CRs.",
+        "elements": [
+            {
+                "element": "Tiles in C.R Male and Female",
+                "items": [
+                    "Check for broken tiles.",
+                    "Check for chipped, cracked, or loose tiles. Repair if necessary.",
+                    "Check for missing, damaged, permanently wet, or moldy grout.  Check for cracks in the tile grout.",
+                    "Clean faucet and mirror regularly.",
+                    "Replace or regrout if necessary.",
+                    "Floor tiles should always be dry and clean.",
+                    "Clean regularly."
+                ]
+            },
+            {
+                "element": "CR’s Inside Wall",
+                "items": [
+                    "Check painted for lifting, water damage, and other damage.",
+                    "Check for cracks and repair as necessary.",
+                    "Clean and remove spider web regularly.",
+                    "Clean C.R mirror regularly.",
+                    "Repaint if necessary."
+                ]
+            },
+            {
+                "element": "CR’s Ceiling",
+                "items": [
+                    "Check ceiling systems for broken, damaged, wet or dirty ceiling.",
+                    "Check the condition of the edge trim and ceiling frame.",
+                    "Check the condition of hardiflex. Clean and remove spider web regularly."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "M03",
+        "task": "Electric Pump and Water Tank",
+        "frequency": "Every 6 Months",
+        "aspect": "Mechanical Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Electric Pump",
+                "items": [
+                    "Check that all circulating pumps are working properly.",
+                    "Check all pumps for any signs of leakage.",
+                    "Replace rubber gasket if necessary.",
+                    "Check cable condition.",
+                    "Check that all bolts are free from rust.",
+                    "Repair or repaint as needed."
+                ]
+            },
+            {
+                "element": "Water Tank",
+                "items": [
+                    "Check that all metal parts are free from rust and in good condition.",
+                    "Check that all bolts/screws are secure.",
+                    "Check welded metal for cracks and splitting.",
+                    "Clear debris blown into the structure.",
+                    "Check all structures are free from rust.",
+                    "Remove rust and paint as needed."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "M04",
+        "task": "Plumbing System",
+        "frequency": "Every 6 Months",
+        "aspect": "Mechanical Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Faucets",
+                "items": [
+                    "Test faucets that work properly.",
+                    "Inspect for leaks.",
+                    "Repair or replace if necessary.",
+                    "Clean regularly."
+                ]
+            },
+            {
+                "element": "Valves",
+                "items": [
+                    "Do not fully open the valve to prevent leaking pipe.",
+                    "Manually open and close shut off valves on either side of the water meter; check for leakage.",
+                    "Manually open and close all other valves.",
+                    "Check all valves for any sign of leakage.",
+                    "Repair or replace if needed."
+                ]
+            },
+            {
+                "element": "Main Supply Water Meter",
+                "items": [
+                    "Check meter for any signs of leakage.",
+                    "Report leakage to the Maintenance coordinator.",
+                    "Make sure that gauge sight glass is clean and readable.",
+                    "Generally, repairs are made by city personnel or a licensed plumber.",
+                    "Close the valve every after meeting."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "M05",
+        "task": "Steel Louvers or Ventilation",
+        "frequency": "Every Year",
+        "aspect": "Mechanical Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Steel Louvers or Ventilation (above stage and above entrance door)",
+                "items": [
+                    "Clean all outside of louvers for fresh air intake or vents wherever they are mounted; check for restrictions",
+                    "Clean any buildup of dirt or cobwebs from the louver. Do not spray down with a water hose.",
+                    "Use a small hand brush to remove the loose dirt.",
+                    "Wipe all other dirt from the grill using a damp cloth.  Make sure to get behind the leading edges of the grills.",
+                    "Check for rust, remove rust immediately and repaint if necessary.",
+                    "Make sure that no birds can enter the louver.",
+                    "Put a plastic screen for bird traps."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "M06",
+        "task": "Wall Fan",
+        "frequency": "Every 6 Months",
+        "aspect": "Mechanical Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Wall Fan",
+                "items": [
+                    "Check and tighten all screws.",
+                    "Check operation in all three speeds.",
+                    "Check for excessive noise or wobbling.",
+                    "Unplug the item.",
+                    "Clean the inside of the fan housing and the blade.",
+                    "Check that the fan is securely mounted.",
+                    "Check fan housing is free from rust.",
+                    "Repaint fan housing or repair wall fan if necessary.",
+                    "Tighten any loose screws.",
+                    "Clean regularly"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "M07",
+        "task": "Liquid Soap and Paper Dispensers",
+        "frequency": "Every Month",
+        "aspect": "Mechanical Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "Liquid Soap Dispenser",
+                "items": [
+                    "Inspect if the dispenser is mounted properly.",
+                    "Check if the pump is functioning properly.",
+                    "Inspect for rust or stain.",
+                    "Clean the outside of the dispenser by removing dirt or dust.",
+                    "Remove rust using WD40 oil or rust remover.",
+                    "Clean the pump by flushing it with warm water and a bit of vinegar. If the pump clogs, use a bit more vinegar. Using a toothpick is also possible by picking the stiffened liquid soap.",
+                    "Dry thoroughly before adding soap to the dispenser."
+                ]
+            },
+            {
+                "element": "Paper Towel dispenser",
+                "items": [
+                    "Inspect if the paper towel dispenser is properly mounted on the wall.",
+                    "Check if it is not broken or damaged. Replace as soon as possible if damage is found.",
+                    "Clean the outside of the dispenser by removing dirt or dust.",
+                    "Open the paper-towel dispenser's cover by turning it counter-clockwise. Generally, the lock is located on the top.",
+                    "Refill or place a paper towel."
+                ]
+            },
+            {
+                "element": "Tissue Dispenser",
+                "items": [
+                    "Inspect if the tissue dispenser is properly mounted on the wall.",
+                    "Inspect if the dispenser cap is free from rust or stain.",
+                    "Remove rust if found using WD40 oil or rust remover.",
+                    "Dry the dispenser if it is wet to avoid rust or stain.",
+                    "Put tissue paper if empty."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "M08",
+        "task": "CR Partition and Lavatory",
+        "frequency": "Every 2 Months",
+        "aspect": "Mechanical Maintenance",
+        "safety": "",
+        "elements": [
+            {
+                "element": "CR Partition",
+                "items": [
+                    "Check the partition panel, screws, door stopper, partitions stand, bracket and partitions door lock.",
+                    "Remove rust from screws, hinges, bracket, barrel bolt and holder.",
+                    "Repair or repaint wood partitions if necessary."
+                ]
+            },
+            {
+                "element": "Lavatory",
+                "items": [
+                    "Test the tap to see if it works properly. Inspect for leaks.",
+                    "Clean out any debris. Clean regularly.",
+                    "Check that the plug holds water in the sink.",
+                    "Check that the adjustment of the plug assembly is tight and properly adjusted.",
+                    "Check the angle valve free from leaks.",
+                    "Check the condition of the flexible water hose connections to the tap.",
+                    "Repair/replace as needed."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "T01",
+        "task": "Audio System",
+        "frequency": "Every 2 Months",
+        "aspect": "Technical Maintenance",
+        "safety": "WARNING: Unplug power supply before commencing with any servicing or repair work. The electrical equipment is delicately constructed and it is necessary to be extra careful while dismantling and assembling components.",
+        "elements": [
+            {
+                "element": "All Sound Equipment (including speaker boxes)",
+                "items": [
+                    "Clean the outside of the equipment with a clean cloth gently and carefully.",
+                    "Perform a general electrical check.  Check the condition of the cable and plug.",
+                    "Check for loose, damaged, or overheated wires. Brush/clean the screen.",
+                    "With power on, check all switches and controls on the unit for condition and function.",
+                    "Clean speaker boxes and speaker grill.",
+                    "Clean the sound system cabinet and remove personal and unnecessary things."
+                ]
+            },
+            {
+                "element": "Microphones and Cables/Cord",
+                "items": [
+                    "Replace windscreen if necessary.",
+                    "Check all microphone cables for damage and wear.  This occurs mostly on the connections.  Test by moving cable at both ends with the sound system operating.",
+                    "Listen for crackling from the loudspeaker system.",
+                    "Repair if necessary."
+                ]
+            },
+            {
+                "element": "Microphone Stands",
+                "items": [
+                    "Check all the functions of the stand. Should be free from rust.",
+                    "Repair as needed."
+                ]
+            },
+            {
+                "element": "Performance Test",
+                "items": [
+                    "With the sound level high, listen for crackling or distortion from the loudspeaker system.",
+                    "Verify that each speaker is working.",
+                    "Verify that all microphones work."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "T02",
+        "task": "Video System",
+        "frequency": "Every 2 Months",
+        "aspect": "Technical Maintenance",
+        "safety": "WARNING: Unplug power supply before commencing with any servicing or repair work. The electrical equipment is delicately constructed and it is necessary to be extra careful while dismantling and assembling components.",
+        "elements": [
+            {
+                "element": "Television and TV Cabinet",
+                "items": [
+                    "Clean television/monitor screens and frame with an anti-static cloth and LCD monitor cleaner.",
+                    "Dust television frame and mounting brackets behind television with antistatic duster where dust collects.",
+                    "Check for loose, damaged, or overheated wires.",
+                    "Check audio cable and video cable. All cable and cord should install properly and organize.",
+                    "Water, cleaning fluids and wax should never be used. You may use a screen cleaning solution purchased from stores that deal with digital screens to remove greasy marks and fingerprints from the LED screen.",
+                    "Remember never to use scouring powder, soap or any window cleaner for this purpose. Also, cleaners that have solvents such as paint thinner, alcohol should be avoided. Wipe the screen only with a soft cloth; do not use paper towels or abrasive pads.",
+                    "Check the condition of the hinges, lubricate as needed.",
+                    "Clean steel cabinet and repaint if necessary."
+                ]
+            },
+            {
+                "element": "Video Projector",
+                "items": [
+                    "Clean out the projector filters and change the bulb when necessary.",
+                    "Clean the body of the projector with an antistatic duster.",
+                    "Clean the lens with lens paper and lens cleaner.",
+                    "Power on projector to test functionality.",
+                    "Clean screen projector regularly.",
+                    "Check for loose, damaged, or overheated wires."
+                ]
+            }
+        ]
+    }
+]

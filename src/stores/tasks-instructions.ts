@@ -12,9 +12,9 @@ export const useInstructionsStore = defineStore('instructions', () => {
     const fetchAll = async () => {
         try {
             fetching.value = true
-            const response = await fetch(`https://script.google.com/macros/s/AKfycbyx7V2Hg4dC9NBjPuh-DjKk3dwyfBkbuhiwblLyk1sh30iNKkAl8lz0V6BpGwbZ4SMqiw/exec`)
+            const response = await fetch('/tasks-instructions.json')
             const result = await response.json()
-            data.value = result.data
+            data.value = result
             fetching.value = false
         } catch (error) {
             fetching.value = false

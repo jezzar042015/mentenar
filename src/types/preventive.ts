@@ -1,6 +1,5 @@
 export interface PreventiveItem {
     task: string
-    url: string
     completed: boolean
     tiId: string
 }
