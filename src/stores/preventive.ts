@@ -26,13 +26,15 @@ export const usePreventiveStore = defineStore('preventive', () => {
     }
 
     const activeMonthData = computed(() => {
-        return data.value.find(d => d.month === activeMonth.value)
+        return data.value.find(d => d.month.startsWith(activeMonth.value))
     })
 
     const currentMonth = computed(() => {
         const now = new Date();
         const monthString = now.toLocaleString('default', { month: 'long' });
-        return data.value.find(d => d.month === monthString)
+        const yearString = now.getFullYear().toString();
+        const currentMonthYear = `${monthString} ${yearString}`;
+        return data.value.find(d => d.month === currentMonthYear)
     })
 
     const currentMonthIsCompleted = computed(() => {
@@ -43,9 +45,16 @@ export const usePreventiveStore = defineStore('preventive', () => {
     const lateMonths = computed(() => {
         return data.value.filter(d => {
             const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            const currentMonthIndex = new Date().getMonth();
-            const dataMonthIndex = monthNames.indexOf(d.month);
-            return dataMonthIndex < currentMonthIndex;
+            const now = new Date();
+            const currentMonthIndex = now.getMonth();
+            const currentYear = now.getFullYear();
+            const [dataMonth, dataYear] = d.month.split(' ');
+
+            const dataMonthIndex = monthNames.indexOf(dataMonth ?? '');
+            const dataYearNum = Number.parseInt(dataYear ?? '');
+            if (dataYearNum < currentYear) return true;
+            if (dataYearNum === currentYear && dataMonthIndex < currentMonthIndex) return true;
+            return false;
         })
     })
 
