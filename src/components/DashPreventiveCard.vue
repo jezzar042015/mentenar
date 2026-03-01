@@ -1,21 +1,21 @@
 <template>
     <div @click="loadMonthDetail"
-        class="bg-white mt-3 px-3 py-2 border border-gray-100 rounded-lg shadow-lg cursor-pointer hover:bg-gray-50">
+        class="bg-white mt-3 px-3 py-2 border border-gray-100 rounded-lg shadow-lg cursor-pointer hover:bg-gray-50 md:px-5 md:py-5 md:text-2xl">
         <div class="relative mt-5 mb-2">
             <hr :class="[isLate ? 'border-b-red-500' : 'border-b-blue-500', 'border-0 border-b-2']">
-            <span class="py-1 px-0 rounded-md text-xs absolute  -translate-y-full">
+            <span class="py-1 px-0 rounded-md text-xs md:text-base absolute  -translate-y-full">
                 {{ target }}
             </span>
-            <span v-if="isLate" class="absolute right-0 text-xs -translate-y-full py-0.5 px-2 -mt-1 bg-red-600 text-white rounded-sm">Late</span>
+            <span v-if="isLate" class="absolute right-0 text-xs md:text-base -translate-y-full py-0.5 px-2 -mt-1 bg-red-600 text-white rounded-sm">Late</span>
         </div>
 
         <div class="flex gap-2 items-center">
             <span class="font-semibold">Preventative Maintenance</span>
             <span>&bullet;</span>
-            <span class="text-xs">{{ monthItem.tasks.length }} tasks</span>
+            <span class="text-xs md:text-base">{{ monthItem.tasks.length }} tasks</span>
         </div>
-        <div class="text-sm flex gap-2 items-center mt-2">
-            <span :class="[isLate ? 'bg-red-500' : 'bg-blue-500', 'h-2 w-2 rounded-full']"></span>
+        <div class="text-sm md:text-base flex gap-2 md:gap-3 items-center mt-2">
+            <span :class="[isLate ? 'bg-red-500' : 'bg-blue-500', 'h-2 w-2 md:h-4 md:w-4 rounded-full']"></span>
             <span>{{ monthItem.assigned }} Congregation</span>
         </div>
 

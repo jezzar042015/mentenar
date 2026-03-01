@@ -36,7 +36,7 @@
 </script>
 
 <template>
-  <div class="bg-gray-50 font-notosans md:max-w-200 mx-auto min-h-screen">
+  <div class="bg-gray-50 font-notosans md:max-w-300 mx-auto min-h-screen">
     <TopNavBar @reload="reload" />
     <AppDashboard v-if="viewStore.view == 'home'" />
     <FollowupItems v-if="viewStore.view == 'followups'" />
