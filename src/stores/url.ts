@@ -22,8 +22,6 @@ export const useURLStore = defineStore('url', () => {
         if (params.has('ref')) allowedParams.value['ref'] = params.get('ref') 
     }
 
-
-
     return {
         parseURL,
         allowedParams
