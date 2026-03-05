@@ -1,6 +1,7 @@
 <template>
     <div class="sticky w-full bg-white shadow top-0 left-0 flex flex-col justify-between z-10">
-        <div class="">
+        
+        <div>
             <div class="pt-4 px-4 md:pt-6 md:px-10 flex justify-between">
                 <div class="md:space-y-1">
                     <h2 class="text-xl md:text-3xl font-semibold">{{ header }}</h2>
@@ -14,6 +15,7 @@
                 </div>
             </div>
         </div>
+
         <div class="w-full flex justify-between py-2 px-10 md:py-4 md:px-55">
             <div>
                 <HardHatIcon class="h-6 w-6 md:h-9 md:w-9 cursor-pointer transition-colors"
@@ -30,7 +32,12 @@
                 <WarningIcon class="h-6 w-6 md:h-9 md:w-9 cursor-pointer transition-colors"
                     :class="viewStore.view === 'preventive' || viewStore.view === 'preventive-monthly' ? 'text-blue-500' : 'text-gray-500'"
                     @click="viewStore.setView('preventive')" />
-                <CalendarIcon class="h-6 w-6 md:h-9 md:w-9 cursor-pointer transition-colors" v-if="false" />
+            </div>
+            <div v-if="false">
+                <CalendarIcon class="h-6 w-6 md:h-9 md:w-9 cursor-pointer transition-colors" 
+                    :class="viewStore.view === 'calendar' ? 'text-blue-500' : 'text-gray-500'"
+                    @click="viewStore.setView('calendar')" />
+
             </div>
         </div>
     </div>
