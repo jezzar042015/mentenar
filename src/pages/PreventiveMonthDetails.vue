@@ -1,4 +1,10 @@
 <template>
+    <div v-if="pm.fetching || fu.fetching" class="flex flex-col gap-4 items-center justify-center py-20">
+        <FetchingSpinner />
+        <div class="px-20 text-center">
+            Holding on, fetching preventive maintenance assignments...
+        </div>
+    </div>
     <TaskInstuction v-if="viewTi" @close="viewTi = false" />
 
     <div class="bg-white p-4" v-else>
@@ -46,9 +52,12 @@
     import { usePreventiveStore } from '@/stores/preventive';
     import { useInstructionsStore } from '@/stores/tasks-instructions';
     import { computed, ref } from 'vue';
+    import { useFollowupsStore } from '@/stores/followups';
     import TaskInstuction from './TaskInstuction.vue';
+    import FetchingSpinner from '@/components/FetchingSpinner.vue';
 
     const pm = usePreventiveStore()
+    const fu = useFollowupsStore()
     const ti = useInstructionsStore()
     const viewTi = ref(false)
 

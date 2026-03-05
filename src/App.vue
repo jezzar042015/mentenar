@@ -30,7 +30,8 @@
 
   onMounted(async () => {
     // pull data if not loaded or pull if last pull was a week ago
-    url.parseURL()
+    await url.parseURL()
+    await viewStore.handleViewRequest()
     if (followup.shouldPull) await followup.pull()
     if (preventive.shouldPull) await preventive.pullMonth()
     if (instructions.data.length === 0) await instructions.fetchAll() 

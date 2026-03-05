@@ -1,8 +1,14 @@
 import type { AppView } from "@/types/views";
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { useURLStore } from "./url";
+import { usePreventiveStore } from "./preventive";
 
 export const useViewsStore = defineStore('views', () => {
+
+    const url = useURLStore()
+    const pm = usePreventiveStore()
+
     // default view
     const view = ref<AppView>('home')
 
@@ -24,10 +30,20 @@ export const useViewsStore = defineStore('views', () => {
         view.value = v
     }
 
+    const handleViewRequest = async () => {
+        showHeader.value = url.allowedParams.nh;
+        view.value = url.allowedParams.v
+
+        if (url.allowedParams.v === 'preventive-monthly' && url.allowedParams.ref) {
+            pm.activeMonth = url.allowedParams.ref
+        }
+    }
+
     return {
         view,
         showHeader,
         headers,
-        setView
+        setView,
+        handleViewRequest
     }
 });

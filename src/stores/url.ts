@@ -1,26 +1,28 @@
+import type { AppView } from "@/types/views"
 import { defineStore } from "pinia"
 import { ref } from "vue"
 
 export const useURLStore = defineStore('url', () => {
 
     const allowedParams = ref<{
-        v: string | null,
+        v: AppView
         ref: string | null,
-        nh: string | null
+        nh: boolean
     }>({
-        v: null,
+        v: 'home',
         ref: null,
-        nh: null,
+        nh: true,
     })
 
-    const parseURL = () => {
+    const parseURL = async () => {
         const params = new URLSearchParams(globalThis.location.search)
-        for (const key in allowedParams.value) {
-            if (params.has(key)) {
-                allowedParams.value[key as keyof typeof allowedParams.value] = params.get(key)
-            }
-        }
+
+        if (params.has('nh')) allowedParams.value['nh'] = false
+        if (params.has('v')) allowedParams.value['v'] = params.get('v') as AppView
+        if (params.has('ref')) allowedParams.value['ref'] = params.get('ref') 
     }
+
+
 
     return {
         parseURL,
