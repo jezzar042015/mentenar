@@ -36,7 +36,10 @@ export const useViewsStore = defineStore('views', () => {
 
         if (url.allowedParams.v === 'preventive-monthly' && url.allowedParams.ref) {
             pm.activeMonth = url.allowedParams.ref
+            if (!pm.activeMonthData?.month) pm.activeMonth = ''  
         }
+
+
     }
 
     return {
