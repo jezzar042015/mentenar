@@ -59,7 +59,7 @@
             </div>
 
             <div class="mt-8" v-if="followup.active.list.length > 0">
-                <div class="flex items-center justify-between pr-10">
+                <div class="flex items-center justify-between pr-5">
                     <h2 class="uppercase font-semibold mb-3 text-orange-600">Checklist</h2>
                     <div class="-mt-3">
                         <CircularProgress :all-count="followup.active.list.length" :completed-count="completedCount"
