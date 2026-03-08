@@ -1,3 +1,4 @@
+import type { CalendarEvent } from "@/types/events";
 import type { FollowupItem } from "@/types/followups";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
@@ -128,6 +129,16 @@ export const useFollowupsStore = defineStore('followups', () => {
         return hoursDiff > 6;
     })
 
+    const events = computed<CalendarEvent[]>(() => {
+        return sorted.value.map(s => ({
+            date: s.target,
+            origin: 'followup',
+            title: s.task,
+            description: s.remarks,
+            assignee: s.assignees
+        }))
+    })
+
     return {
         data,
         fetching,
@@ -141,5 +152,6 @@ export const useFollowupsStore = defineStore('followups', () => {
         shouldPull,
         active,
         completed,
+        events
     }
 });

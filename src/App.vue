@@ -11,6 +11,7 @@
   import TopNavBar from './components/TopNavBar.vue'
   import PreventiveMonthDetails from './pages/PreventiveMonthDetails.vue';
   import FollowupDetails from './pages/FollowupDetails.vue';
+  import CalendarView from './pages/CalendarView.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -34,7 +35,7 @@
     await viewStore.handleViewRequest()
     if (followup.shouldPull) await followup.pull()
     if (preventive.shouldPull) await preventive.pullMonth()
-    if (instructions.data.length === 0) await instructions.fetchAll() 
+    if (instructions.data.length === 0) await instructions.fetchAll()
   })
 </script>
 
@@ -46,6 +47,6 @@
     <FollowupDetails v-if="viewStore.view == 'followup-details'" />
     <PreventiveList v-if="viewStore.view == 'preventive'" />
     <PreventiveMonthDetails v-if="viewStore.view == 'preventive-monthly'" />
-
+    <CalendarView v-if="viewStore.view == 'calendar'" />
   </div>
 </template>
