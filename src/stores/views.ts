@@ -3,11 +3,13 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useURLStore } from "./url";
 import { usePreventiveStore } from "./preventive";
+import { useFollowupsStore } from "./followups";
 
 export const useViewsStore = defineStore('views', () => {
 
     const url = useURLStore()
     const pm = usePreventiveStore()
+    const fu = useFollowupsStore()
 
     // default view
     const view = ref<AppView>('home')
@@ -36,10 +38,14 @@ export const useViewsStore = defineStore('views', () => {
 
         if (url.allowedParams.v === 'preventive-monthly' && url.allowedParams.ref) {
             pm.activeMonth = url.allowedParams.ref
-            if (!pm.activeMonthData?.month) pm.activeMonth = ''  
+            if (!pm.activeMonthData?.month) pm.activeMonth = ''
         }
 
-
+        if (url.allowedParams.v === 'followup-details' && url.allowedParams.ref) {
+            fu.activeTask = url.allowedParams.ref
+            if (!fu.active?.task) 
+                view.value = 'followups'
+        }
     }
 
     return {

@@ -23,6 +23,13 @@
             <div class="text-base">
                 {{ pm.activeMonthData.assigned }} Congregation
             </div>
+            
+            <div class="flex gap-2 items-center mt-3">
+                <span class="text-sm text-gray-500">Schedule:</span>
+                <span>
+                    {{ target }}
+                </span>
+            </div>
 
             <div class="mt-10 text-xl mb-2 font-semibold flex gap-4 items-center">
                 <span>
@@ -40,6 +47,9 @@
                     @click="openTaskInstructions(t.tiId)">
                     <div :class="['h-3 w-3 rounded-full', t.completed ? 'bg-blue-400' : 'bg-red-400']"></div>
                     <div :class="['flex-1', t.completed ? 'line-through' : '']">{{ t.task }}</div>
+                    <div class="h-full flex">
+                        <CaretLeftIcon class="h-5 w-5 rotate-180"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,6 +65,7 @@
     import { useFollowupsStore } from '@/stores/followups';
     import TaskInstuction from './TaskInstuction.vue';
     import FetchingSpinner from '@/components/FetchingSpinner.vue';
+import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
 
     const pm = usePreventiveStore()
     const fu = useFollowupsStore()
@@ -77,6 +88,13 @@
     const completedTasksCount = computed(() => {
         if (!pm.activeMonthData) return 0
         return pm.activeMonthData.tasks.filter(t => t.completed).length
+    })
+
+    const target = computed(() => {
+        if (!pm.activeMonthData?.target) return ''
+        const now = new Date(pm.activeMonthData.target);
+        const monthString = now.toLocaleString('default', { month: 'short', day: 'numeric' });
+        return monthString
     })
 
 </script>
