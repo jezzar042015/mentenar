@@ -1,4 +1,7 @@
 <template>
+
+    <ShareModal :link="''" v-if="showShareModal" @close="stopShare" />
+
     <div v-if="pm.fetching || fu.fetching" class="flex flex-col gap-4 items-center justify-center py-20">
         <FetchingSpinner />
         <div class="px-20 text-center">
@@ -24,8 +27,8 @@
                 {{ pm.activeMonthData.assigned }} Congregation
             </div>
 
-            <div class="flex gap-2 items-center mt-3">
-                <span class="text-sm text-gray-500">Schedule:</span>
+            <div class="flex flex-col mt-5">
+                <span class="text-xs text-gray-500">Schedule</span>
                 <span>
                     {{ target }}
                 </span>
@@ -38,7 +41,7 @@
                 <span class="text-gray-500">
                     &bullet;
                 </span>
-                <span class="text-base font-normal text-gray-500">
+                <span class="text-sm font-normal text-gray-500">
                     {{ completedTasksCount }} of {{ pm.activeMonthData.tasks.length }}
                 </span>
             </div>
@@ -47,9 +50,9 @@
                     <PreventiveInstructionItem :t @open-instructions="openTaskInstructions" />
                 </template>
             </div>
-            
+
             <div class="mt-10" v-if="false">
-                <button class="flex gap-3 items-center shadow-md py-2 px-4 rounded-md bg-white">
+                <button @click.stop="share" class="flex gap-3 items-center shadow-md py-2 px-4 rounded-md bg-white">
                     <ShareIcon class="h-4 w-4" />
                     <span>Share</span>
                 </button>
@@ -69,11 +72,20 @@
     import FetchingSpinner from '@/components/FetchingSpinner.vue';
     import PreventiveInstructionItem from '@/components/PreventiveInstructionItem.vue';
     import ShareIcon from '@/icons/ShareIcon.vue';
+    import ShareModal from '@/components/ShareModal.vue';
 
     const pm = usePreventiveStore()
     const fu = useFollowupsStore()
     const ti = useInstructionsStore()
     const viewTi = ref(false)
+    const showShareModal = ref(false)
+
+    const share = () => {
+        showShareModal.value = true
+    }
+    const stopShare = () => {
+        showShareModal.value = false
+    }
 
     const openTaskInstructions = (tiId: string) => {
         ti.activeId = tiId
