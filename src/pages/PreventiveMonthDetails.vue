@@ -7,7 +7,7 @@
     </div>
     <TaskInstuction v-if="viewTi" @close="viewTi = false" />
 
-    <div class="bg-white p-4" v-else>
+    <div class="bg-white p-4 mb-20" v-else>
         <div class="px-2 pb-5" v-if="pm.activeMonthData?.month">
             <div class="mt-5">
                 <div class="text-xl font-semibold flex gap-2 items-center">
@@ -44,8 +44,15 @@
             </div>
             <div class="space-y-2">
                 <template v-for="t in sortedTasks">
-                    <PreventiveInstructionItem :t @open-instructions="openTaskInstructions"/>
+                    <PreventiveInstructionItem :t @open-instructions="openTaskInstructions" />
                 </template>
+            </div>
+            
+            <div class="mt-10" v-if="false">
+                <button class="flex gap-3 items-center shadow-md py-2 px-4 rounded-md bg-white">
+                    <ShareIcon class="h-4 w-4" />
+                    <span>Share</span>
+                </button>
             </div>
         </div>
 
@@ -53,14 +60,15 @@
 </template>
 
 <script setup lang="ts">
-    import CalendarIcon from '@/icons/CalendarIcon.vue';
     import { usePreventiveStore } from '@/stores/preventive';
     import { useInstructionsStore } from '@/stores/tasks-instructions';
     import { computed, ref } from 'vue';
     import { useFollowupsStore } from '@/stores/followups';
+    import CalendarIcon from '@/icons/CalendarIcon.vue';
     import TaskInstuction from './TaskInstuction.vue';
     import FetchingSpinner from '@/components/FetchingSpinner.vue';
     import PreventiveInstructionItem from '@/components/PreventiveInstructionItem.vue';
+    import ShareIcon from '@/icons/ShareIcon.vue';
 
     const pm = usePreventiveStore()
     const fu = useFollowupsStore()
@@ -88,7 +96,7 @@
     const target = computed(() => {
         if (!pm.activeMonthData?.target) return ''
         const now = new Date(pm.activeMonthData.target);
-        const monthString = now.toLocaleString('default', { month: 'short', day: 'numeric' });
+        const monthString = now.toLocaleString('default', { month: 'long', day: 'numeric' });
         return monthString
     })
 
