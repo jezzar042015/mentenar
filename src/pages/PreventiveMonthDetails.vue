@@ -1,7 +1,16 @@
 <template>
-    <TaskInstuction v-if="viewTi" @close="viewTi=false"/>
-    
-    <div class="bg-white p-4" v-else>
+
+    <ShareModal :link="''" v-if="showShareModal" @close="stopShare" />
+
+    <div v-if="pm.fetching || fu.fetching" class="flex flex-col gap-4 items-center justify-center py-20">
+        <FetchingSpinner />
+        <div class="px-20 text-center">
+            Holding on, fetching preventive maintenance assignments...
+        </div>
+    </div>
+    <TaskInstuction v-if="viewTi" @close="viewTi = false" />
+
+    <div class="bg-white p-4 mb-20" v-else>
         <div class="px-2 pb-5" v-if="pm.activeMonthData?.month">
             <div class="mt-5">
                 <div class="text-xl font-semibold flex gap-2 items-center">
@@ -18,14 +27,35 @@
                 {{ pm.activeMonthData.assigned }} Congregation
             </div>
 
-            <div class="mt-10 text-xl mb-2 font-semibold">Task Items &bullet; {{ pm.activeMonthData.tasks.length }}
+            <div class="flex flex-col mt-5">
+                <span class="text-xs text-gray-500">Schedule</span>
+                <span>
+                    {{ target }}
+                </span>
+            </div>
+
+            <div class="mt-10 text-xl mb-2 font-semibold flex gap-4 items-center">
+                <span>
+                    Task Items
+                </span>
+                <span class="text-gray-500">
+                    &bullet;
+                </span>
+                <span class="text-sm font-normal text-gray-500">
+                    {{ completedTasksCount }} of {{ pm.activeMonthData.tasks.length }}
+                </span>
             </div>
             <div class="space-y-2">
-                <div v-for="t in pm.activeMonthData.tasks" class="shadow p-3 flex justify-between gap-4 items-center"
-                    @click="openTaskInstructions(t.tiId)">
-                    <div :class="['h-3 w-3 rounded-full', t.completed ? 'bg-blue-400' : 'bg-red-400']"></div>
-                    <div :class="['flex-1', t.completed ? 'line-through' : '']">{{ t.task }}</div>
-                </div>
+                <template v-for="t in sortedTasks">
+                    <PreventiveInstructionItem :t @open-instructions="openTaskInstructions" />
+                </template>
+            </div>
+
+            <div class="mt-10" v-if="false">
+                <button @click.stop="share" class="flex gap-3 items-center shadow-md py-2 px-4 rounded-md bg-white">
+                    <ShareIcon class="h-4 w-4" />
+                    <span>Share</span>
+                </button>
             </div>
         </div>
 
@@ -33,19 +63,53 @@
 </template>
 
 <script setup lang="ts">
-    import CalendarIcon from '@/icons/CalendarIcon.vue';
     import { usePreventiveStore } from '@/stores/preventive';
     import { useInstructionsStore } from '@/stores/tasks-instructions';
-    import { ref } from 'vue';
+    import { computed, ref } from 'vue';
+    import { useFollowupsStore } from '@/stores/followups';
+    import CalendarIcon from '@/icons/CalendarIcon.vue';
     import TaskInstuction from './TaskInstuction.vue';
+    import FetchingSpinner from '@/components/FetchingSpinner.vue';
+    import PreventiveInstructionItem from '@/components/PreventiveInstructionItem.vue';
+    import ShareIcon from '@/icons/ShareIcon.vue';
+    import ShareModal from '@/components/ShareModal.vue';
 
     const pm = usePreventiveStore()
+    const fu = useFollowupsStore()
     const ti = useInstructionsStore()
     const viewTi = ref(false)
+    const showShareModal = ref(false)
+
+    const share = () => {
+        showShareModal.value = true
+    }
+    const stopShare = () => {
+        showShareModal.value = false
+    }
 
     const openTaskInstructions = (tiId: string) => {
         ti.activeId = tiId
         viewTi.value = true
     }
+
+    const sortedTasks = computed(() => {
+        if (!pm.activeMonthData) return []
+        return [...pm.activeMonthData.tasks].sort((a, b) => {
+            if (a.completed === b.completed) return 0
+            return a.completed ? 1 : -1
+        })
+    });
+
+    const completedTasksCount = computed(() => {
+        if (!pm.activeMonthData) return 0
+        return pm.activeMonthData.tasks.filter(t => t.completed).length
+    })
+
+    const target = computed(() => {
+        if (!pm.activeMonthData?.target) return ''
+        const now = new Date(pm.activeMonthData.target);
+        const monthString = now.toLocaleString('default', { month: 'long', day: 'numeric' });
+        return monthString
+    })
 
 </script>

@@ -21,7 +21,7 @@
                 {{ m.assigned }} Congregation
             </div>
         </div>
-        <CircularProgress :completed-count="completedTasks.length" :all-count="m.tasks.length" :color="isLate ? 'red' : 'blue'"/>
+        <CircularProgress :label="'percent'" :completed-count="completedTasks.length" :all-count="m.tasks.length" :color="isLate ? 'red' : 'blue'"/>
     </div>
 </template>
 

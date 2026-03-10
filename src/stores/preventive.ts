@@ -1,3 +1,4 @@
+import type { CalendarEvent } from "@/types/events";
 import type { PreventiveResponse } from "@/types/preventive";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
@@ -76,6 +77,15 @@ export const usePreventiveStore = defineStore('preventive', () => {
         return daysDiff > 5;
     })
 
+    const events = computed<CalendarEvent[]>(() => {
+        return data.value.map(s => ({
+            date: s.target,
+            origin: 'followup',
+            title: s.month,
+            assignee: s.assigned,
+        }))
+    })
+
     return {
         data,
         fetching,
@@ -85,6 +95,7 @@ export const usePreventiveStore = defineStore('preventive', () => {
         shouldPull,
         currentMonth,
         lateMonths,
-        currentMonthIsCompleted
+        currentMonthIsCompleted,
+        events
     }
 });
