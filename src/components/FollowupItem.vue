@@ -20,6 +20,10 @@
                 <template v-if="stat === 'none'">
                     <span>No due date set</span>
                 </template>
+
+                <template v-if="stat === 'completed'">
+                    <span>Completed on {{ completedDate }}</span>
+                </template>
             </div>
             <div class="flex items-center space-x-2 text-xs">
                 <span>
@@ -28,7 +32,7 @@
                 <span>{{ assignee }}</span>
             </div>
         </div>
-        <div class="h-4" v-if="f.list.length > 0">
+        <div class="h-4" v-if="f.list.length > 0 && stat !== 'completed'">
             <CircularProgress :all-count="f.list.length" :completed-count="completedList.length"
                 :color="stat === 'due' ? 'red' : 'orange'" :label="'percent'" />
         </div>
@@ -64,6 +68,13 @@
         const daysUntil = Math.round(diffMs / (1000 * 60 * 60 * 24));
 
         return daysUntil < 0 ? Math.abs(daysUntil) : 0;
+    });
+
+    const completedDate = computed(() => {
+        if (!f.completed) return null;
+
+        const completed = new Date(f.completed);
+        return completed.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
     });
 
     const overdueDisplay = computed(() => {
