@@ -50,7 +50,7 @@ export const useFollowupsStore = defineStore('followups', () => {
     const completed = computed(() => {
         return data.value
             .filter(item => item.status === 'Completed')
-            .sort((a, b) => new Date(b.target).getTime() - new Date(a.target).getTime());;
+            .sort((a, b) => new Date(b.completed).getTime() - new Date(a.completed).getTime());;
     })
 
     const overdue = computed(() => {
