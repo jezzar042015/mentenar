@@ -5,7 +5,7 @@
             <div class="space-y-4">
 
                 <div v-if="scheds.thisWeek">
-                    <div class="bg-white p-3 rounded-md space-y-2 shadow-xl">
+                    <div class="bg-white p-4 rounded-md space-y-2 shadow-xl">
                         <div>
                             <h2 class="font-semibold">Weekly Schedules</h2>
                             <h2>{{ scheds.thisWeek.week }}</h2>
@@ -16,8 +16,8 @@
                                 <GarbageIcon class="h-15 w-10" />
                             </span>
                             <div class="flex flex-col">
-                                <span>Garbage Disposal</span>
-                                <span class="text-lg font-bold">
+                                <span class="text-gray-600 text-sm">Garbage Disposal</span>
+                                <span class="text-lg font-semibold">
                                     {{ scheds.thisWeek.garbage }} Congregation
                                 </span>
                             </div>
@@ -31,19 +31,20 @@
                                     <CleaningMop class="h-10 w-10" />
                                 </span>
                                 <div class="flex flex-col">
-                                    <span>HALL 1 & Outdoors</span>
-                                    <span class="text-lg font-bold">
+                                    <span class="text-gray-600 text-sm">HALL 1 & Outdoors</span>
+                                    <span class="text-lg font-semibold">
                                         {{ scheds.thisWeek.cleaning.hall1 }}
                                     </span>
                                 </div>
                             </div>
+                            <hr class="border-0 border-b border-b-gray-300">
                             <div class="flex gap-5 items-center">
                                 <span>
                                     <CleaningMop class="h-10 w-10" />
                                 </span>
                                 <div class="flex flex-col">
-                                    <span>HALL 2 & Outdoors</span>
-                                    <span class="text-lg font-bold">
+                                    <span class="text-gray-600 text-sm">HALL 2 & Outdoors</span>
+                                    <span class="text-lg font-semibold">
                                         {{ scheds.thisWeek.cleaning.hall2 }}
                                     </span>
                                 </div>
