@@ -4,6 +4,7 @@
   import { useFollowupsStore } from './stores/followups';
   import { usePreventiveStore } from './stores/preventive';
   import { useInstructionsStore } from './stores/tasks-instructions';
+  import { useScheduleStore } from './stores/schedules';
   import { useURLStore } from './stores/url';
   import AppDashboard from './pages/AppDashboard.vue'
   import FollowupItems from './pages/FollowupItems.vue'
@@ -17,6 +18,7 @@
   const followup = useFollowupsStore()
   const preventive = usePreventiveStore()
   const instructions = useInstructionsStore()
+  const scheds = useScheduleStore()
   const url = useURLStore()
 
   const reload = async () => {
@@ -33,8 +35,9 @@
     // pull data if not loaded or pull if last pull was a week ago
     await url.parseURL()
     await viewStore.handleViewRequest()
-    if (followup.shouldPull) await followup.pull()
+    if (scheds.shouldPull) await scheds.pull()
     if (preventive.shouldPull) await preventive.pullMonth()
+    if (followup.shouldPull) await followup.pull()
     if (instructions.data.length === 0) await instructions.fetchAll()
   })
 </script>
