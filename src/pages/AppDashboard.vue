@@ -3,12 +3,15 @@
         <div class="mt-4">
 
             <div class="space-y-5">
+                
 
                 <template v-for="value in pm.lateMonths" :key="value.month">
                     <DashPreventiveCard :monthItem="value" :is-late="true"/>
                 </template>
 
-                <DashPreventiveCard :month-item="pm.currentMonth" v-if="pm.currentMonth && !pm.currentMonthIsCompleted"/>
+                <template v-if="pm.currentMonth && !pm.currentMonthIsCompleted">
+                    <DashPreventiveCard :month-item="pm.currentMonth" />
+                </template>
 
                 <template v-for="item in followup.overdue" :key="item.task">
                     <DashFollowUpCard :item />

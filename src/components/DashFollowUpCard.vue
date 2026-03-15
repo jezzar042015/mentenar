@@ -3,13 +3,13 @@
         >
         <div class="relative mt-5 mb-2">
             <hr class="border-0 border-b-2 border-b-red-500">
-            <span class="py-1 px-0 rounded-md text-xs md:text-base absolute  -translate-y-full">
+            <span class="py-1 px-0 rounded-md text-xs md:text-sm absolute  -translate-y-full">
                 {{ dueDisplay }}
             </span>
 
             <div class="absolute right-0 text-xs -translate-y-full py-1">
                 <div class="flex gap-1">
-                    <span v-if="isLate" class="px-2 py-0.5 -mt-1 bg-red-600 text-white md:text-base rounded-sm">Late</span>
+                    <span v-if="isLate" class="px-2 py-0.5 -mt-1 bg-red-600 text-white md:text-sm rounded-sm">Late</span>
                     <span v-else>Follow Up</span>
                 </div>
             </div>
@@ -17,11 +17,11 @@
         </div>
 
         <div class="flex gap-2 items-center">
-            <span class="font-semibold"> {{ item.task }}</span>
+            <span class="font-semibold md:text-lg"> {{ item.task }}</span>
         </div>
         
         <div class="text-sm md:text-base flex gap-2 md:gap-3 items-center mt-2">
-            <span class="h-2 w-2 md:h-4 md:w-4 bg-red-500 rounded-full"></span>
+            <span class="h-2 w-2 md:h-3 md:w-3 bg-red-500 rounded-full"></span>
             <span>{{ item.assignees || 'Not Assigned' }}</span>
         </div>
 

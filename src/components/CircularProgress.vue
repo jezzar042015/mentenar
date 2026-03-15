@@ -37,6 +37,8 @@
                 return '#ffa431'
             case 'orange':
                 return '#ea580c'
+            case 'blue':
+                return '#155dfc'
             default:
                 return '#3b82f6'
         }
