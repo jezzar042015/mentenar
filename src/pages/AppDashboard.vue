@@ -1,10 +1,9 @@
 <template>
-    <div class="bg-gray-200 p-5">
+    <div class="bg-gray-200 p-4">
         <div class="mt-4">
 
             <div class="space-y-5">
                 
-
                 <template v-for="value in pm.lateMonths" :key="value.month">
                     <DashPreventiveCard :monthItem="value" :is-late="true"/>
                 </template>
