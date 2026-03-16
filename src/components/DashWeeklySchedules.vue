@@ -6,42 +6,48 @@
                 <h2 class="text-sm">{{ weekSched.week }}</h2>
             </div>
             <hr class="border-0 border-b border-b-gray-300">
-            <div class="flex gap-5 items-center">
-                <span>
-                    <GarbageIcon class="h-15 w-10" />
-                </span>
-                <div class="flex flex-col">
-                    <span class="text-gray-600 text-sm">Garbage Disposal</span>
-                    <span class="text-lg font-semibold">
-                        {{ weekSched.garbage }} Congregation
-                    </span>
-                </div>
-            </div>
-            <hr class="border-0 border-b border-b-gray-300">
 
-            <div class="space-y-3 mt-4">
-                <div>Weekly Cleaning Tasks Assignments</div>
-                <div class="flex gap-5 items-center">
+            <div class="md:flex justify-between">
+                <div class="flex gap-5 items-center md:w-1/3">
                     <span>
-                        <CleaningMop class="h-10 w-10" />
+                        <GarbageIcon class="h-15 w-10" />
                     </span>
                     <div class="flex flex-col">
-                        <span class="text-gray-600 text-sm">HALL 1 & Outdoors</span>
+                        <span class="text-gray-600 text-sm">Garbage Disposal</span>
                         <span class="text-lg font-semibold">
-                            {{ weekSched.cleaning.hall1 }}
+                            {{ weekSched.garbage }} Congregation
                         </span>
                     </div>
                 </div>
-                <hr class="border-0 border-b border-b-gray-300">
-                <div class="flex gap-5 items-center">
-                    <span>
-                        <CleaningMop class="h-10 w-10" />
-                    </span>
-                    <div class="flex flex-col">
-                        <span class="text-gray-600 text-sm">HALL 2 & Outdoors</span>
-                        <span class="text-lg font-semibold">
-                            {{ weekSched.cleaning.hall2 }}
-                        </span>
+
+                <hr class="border-0 border-b border-b-gray-300 mt-4 md:hidden">
+
+                <div class="space-y-3 mt-4 md:w-2/3">
+                    <div class="md:hidden">Weekly Cleaning Tasks Assignments</div>
+                    <div class="md:flex space-y-4 md:px-4 md:items-start">
+                        <div class="flex gap-5 items-center md:pr-10">
+                            <span>
+                                <CleaningMop class="h-10 w-10" />
+                            </span>
+                            <div class="flex flex-col">
+                                <span class="text-gray-600 text-sm">HALL 1 & Outdoors</span>
+                                <span class="text-lg font-semibold">
+                                    {{ weekSched.cleaning.hall1 }}
+                                </span>
+                            </div>
+                        </div>
+                        <hr class="border-0 border-b border-b-gray-300 md:hidden">
+                        <div class="flex gap-5 items-center">
+                            <span>
+                                <CleaningMop class="h-10 w-10" />
+                            </span>
+                            <div class="flex flex-col">
+                                <span class="text-gray-600 text-sm">HALL 2 & Outdoors</span>
+                                <span class="text-lg font-semibold">
+                                    {{ weekSched.cleaning.hall2 }}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
