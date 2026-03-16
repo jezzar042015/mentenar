@@ -3,7 +3,7 @@
         <hr class="border-0 border-b border-b-gray-300">
         <div class="p-3"></div>
         <div class="relative mt-5 mb-2">
-            <span class="py-1 px-0 rounded-md text-base md:text-sm absolute  -translate-y-full">
+            <span class="py-1 px-0 rounded-md text-sm absolute  -translate-y-full">
                 {{ target }}
             </span>
             <span v-if="isLate"

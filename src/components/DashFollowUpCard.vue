@@ -2,7 +2,7 @@
     <div @click="loadItemDetail" class="pt-2">
         <div class="relative mt-5 mb-2">
             <!-- <hr class="border-0 border-b border-b-red-500"> -->
-            <span class="py-1 px-0 rounded-md text-xs md:text-sm absolute  -translate-y-full">
+            <span class="py-1 px-0 rounded-md text-sm md:text-sm absolute  -translate-y-full">
                 {{ dueDisplay }}
             </span>
 

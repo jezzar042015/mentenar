@@ -3,7 +3,7 @@
         <div class="bg-white p-4 rounded-md space-y-2 shadow-xl">
             <div>
                 <h2 class="text-lg font-semibold">Weekly Schedules</h2>
-                <h2>{{ weekSched.week }}</h2>
+                <h2 class="text-sm">{{ weekSched.week }}</h2>
             </div>
             <hr class="border-0 border-b border-b-gray-300">
             <div class="flex gap-5 items-center">

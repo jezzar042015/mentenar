@@ -51,6 +51,24 @@
                 </template>
             </div>
 
+            <div v-if="pm.lateMonths.length > 0 && !pm.lateMonths.map(m => m.month).includes(pm.activeMonthData.month)"
+                class="mt-10 mb-2">
+                <div class="text-xl font-semibold">
+                    <span>
+                        Late Tasks From Previous Months
+                    </span>
+                </div>
+                <div v-for="p in pm.lateMonths">
+                    <div class="mt-2 mb-3">{{ p.month }}</div>
+
+                    <div v-for="t in p.tasks" :key="t.tiId">
+                        <div v-if="!t.completed">
+                            <PreventiveInstructionItem :t @open-instructions="openTaskInstructions" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="mt-10" v-if="false">
                 <button @click.stop="share" class="flex gap-3 items-center shadow-md py-2 px-4 rounded-md bg-white">
                     <ShareIcon class="h-4 w-4" />
