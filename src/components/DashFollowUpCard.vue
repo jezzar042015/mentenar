@@ -1,15 +1,15 @@
 <template>
-    <div @click="loadItemDetail" class=" mt-3 px-3 py-2 border  rounded-lg shadow-lg cursor-pointer hover:bg-gray-50 bg-white border-gray-100 md:px-5 md:py-5 md:text-2xl"
-        >
+    <div @click="loadItemDetail" class="pt-2">
         <div class="relative mt-5 mb-2">
-            <hr class="border-0 border-b-2 border-b-red-500">
+            <!-- <hr class="border-0 border-b border-b-red-500"> -->
             <span class="py-1 px-0 rounded-md text-xs md:text-sm absolute  -translate-y-full">
                 {{ dueDisplay }}
             </span>
 
             <div class="absolute right-0 text-xs -translate-y-full py-1">
                 <div class="flex gap-1">
-                    <span v-if="isLate" class="px-2 py-0.5 -mt-1 bg-red-600 text-white md:text-sm rounded-sm">Late</span>
+                    <span v-if="isLate"
+                        class="px-2 py-0.5 -mt-1 bg-red-600 text-white md:text-sm rounded-sm">Late</span>
                     <span v-else>Follow Up</span>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="flex gap-2 items-center">
             <span class="font-semibold md:text-lg"> {{ item.task }}</span>
         </div>
-        
+
         <div class="text-sm md:text-base flex gap-2 md:gap-3 items-center mt-2">
             <span class="h-2 w-2 md:h-3 md:w-3 bg-red-500 rounded-full"></span>
             <span>{{ item.assignees || 'Not Assigned' }}</span>
@@ -35,6 +35,9 @@
                     </div>
                 </div>
             </span>
+        </div>
+        <div class="pt-3">
+            <hr class="border-0 border-b border-b-gray-300">
         </div>
     </div>
 </template>

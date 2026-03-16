@@ -1,22 +1,25 @@
 <template>
-    <div @click="loadMonthDetail"
-        class="bg-white mt-3 px-3 py-2 border border-gray-100 rounded-lg shadow-lg cursor-pointer hover:bg-gray-50 md:px-5 md:py-5 md:text-2xl">
+    <div @click="loadMonthDetail">
+        <hr class="border-0 border-b border-b-gray-300">
+        <div class="p-3"></div>
         <div class="relative mt-5 mb-2">
-            <hr :class="[isLate ? 'border-b-red-500' : 'border-b-blue-500', 'border-0 border-b-2']">
-            <span class="py-1 px-0 rounded-md text-xs md:text-sm absolute  -translate-y-full">
+            <span class="py-1 px-0 rounded-md text-base md:text-sm absolute  -translate-y-full">
                 {{ target }}
             </span>
-            <span v-if="isLate" class="absolute right-0 text-xs md:text-sm -translate-y-full py-0.5 px-2 -mt-1 bg-red-600 text-white rounded-sm">Late</span>
+            <span v-if="isLate"
+                class="absolute right-0 text-xs md:text-sm -translate-y-full py-0.5 px-2 -mt-1 bg-red-600 text-white rounded-sm">Late</span>
         </div>
 
-        <div class="flex gap-2 items-center">
-            <span class="font-semibold md:text-lg">🔎 Preventative Maintenance</span>
-            <span>&bullet;</span>
-            <span class="text-xs md:text-base">{{ monthItem.tasks.length }} tasks</span>
+        <div class="uppercase flex items-center gap-2">
+            <span class="opacity-60">
+                <CalendarIcon class="h-4 w-4" />
+            </span>
+            <span> {{ monthItem.month }}</span>
         </div>
+
         <div class="text-sm md:text-base flex gap-2 md:gap-3 items-center mt-2">
             <span :class="[isLate ? 'bg-red-500' : 'bg-blue-500', 'h-2 w-2 md:h-3 md:w-3 rounded-full']"></span>
-            <span>{{ monthItem.assigned }} Congregation</span>
+            <span class="text-base font-semibold">{{ monthItem.assigned }} Congregation</span>
         </div>
 
         <div class="mt-2 flex items-center gap-2">
@@ -40,6 +43,7 @@
     import { usePreventiveStore } from '@/stores/preventive';
     import { useViewsStore } from '@/stores/views';
     import { computed } from 'vue';
+    import CalendarIcon from '@/icons/CalendarIcon.vue';
 
     const pm = usePreventiveStore()
     const view = useViewsStore()
