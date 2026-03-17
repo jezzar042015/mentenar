@@ -5,7 +5,7 @@
             <div class="pt-4 px-4 md:pt-6 md:px-10 flex justify-between">
                 <div class="md:space-y-1">
                     <h2 class="text-xl md:text-xl font-semibold">{{ header }}</h2>
-                    <div class="md:text-lg">KH West Tacloban</div>
+                    <div class="md:text-sm">KH West Tacloban</div>
                 </div>
                 <div>
                     <ReloadIcon class="h-6 w-6 cursor-pointer mt-1 mr-2 transition-transform" :class="{

@@ -6,9 +6,11 @@
         </div>
 
         <div class="grid grid-cols-1 gap-2 " v-else-if="!showTasks">
-            <template v-for="m in preventiveStore.data">
-                <PreventiveMonthItem :m />
-            </template>
+            <div class="md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 md:gap-3">
+                <template v-for="m in preventiveStore.data">
+                    <PreventiveMonthItem :m />
+                </template>
+            </div>
         </div>
     </div>
 </template>
