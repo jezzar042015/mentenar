@@ -1,6 +1,6 @@
 <template>
-    <div @click="loadMonthDetail">
-        <hr class="border-0 border-b border-b-gray-300">
+    <div @click="loadMonthDetail" class="md:w-1/2 p-2 md:shadow-lg md:h-full md:rounded-md">
+        <hr class="border-0 border-b border-b-gray-300 md:hidden">
         <div class="p-3"></div>
         <div class="relative mt-5 mb-2">
             <span class="py-1 px-0 rounded-md text-sm absolute  -translate-y-full">
