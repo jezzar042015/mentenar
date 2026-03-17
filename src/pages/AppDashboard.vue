@@ -29,7 +29,7 @@
                         <h2 class="text-lg font-semibold">Due this week</h2>
                     </div>
 
-                    <div class="space-y-4">
+                    <div class="space-y-4 md:grid md:grid-cols-2 md:gap-3">
                         <template v-for="item in followup.overdue" :key="item.task">
                             <DashFollowUpCard :item />
                         </template>

@@ -1,5 +1,5 @@
 <template>
-    <div @click="loadItemDetail" class="pt-2 ">
+    <div @click="loadItemDetail" class="pt-2 md:p-2 md:shadow-lg md:rounded-md md:h-full">
         <div class="relative mt-5 mb-2">
             <!-- <hr class="border-0 border-b border-b-red-500"> -->
             <span class="py-1 px-0 rounded-md text-sm md:text-sm absolute  -translate-y-full">
@@ -36,7 +36,7 @@
                 </div>
             </span>
         </div>
-        <div class="pt-3">
+        <div class="pt-3 md:hidden">
             <hr class="border-0 border-b border-b-gray-300">
         </div>
     </div>
