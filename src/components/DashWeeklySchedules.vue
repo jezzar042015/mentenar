@@ -27,7 +27,7 @@
                     <div class="md:flex space-y-4 md:px-4 md:items-start">
                         <div class="flex gap-5 items-center md:pr-10">
                             <span>
-                                <CleaningMop class="h-10 w-10" />
+                                <CleaningMop class="h-10 w-10 opacity-50" />
                             </span>
                             <div class="flex flex-col">
                                 <span class="text-gray-600 text-sm">HALL 1 & Outdoors</span>
@@ -39,7 +39,7 @@
                         <hr class="border-0 border-b border-b-gray-300 md:hidden">
                         <div class="flex gap-5 items-center">
                             <span>
-                                <CleaningMop class="h-10 w-10" />
+                                <CleaningMop class="h-10 w-10 opacity-50" />
                             </span>
                             <div class="flex flex-col">
                                 <span class="text-gray-600 text-sm">HALL 2 & Outdoors</span>

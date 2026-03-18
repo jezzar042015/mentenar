@@ -1,8 +1,9 @@
 <template>
-    <div class="bg-gray-200 p-4">
+    <WeeklyCleaningTasks v-if="weeklyModal" />
+    <div class="bg-gray-200 p-4 h-screen">
         <div class="mt-0 mb-10">
 
-            <div class="space-y-4">
+            <div class="space-y-4  ">
 
                 <template v-if="scheds.thisWeek">
                     <DashWeeklySchedules :week-sched="scheds.thisWeek" />
@@ -48,11 +49,19 @@
     import DashFollowUpCard from '@/components/DashFollowUpCard.vue';
     import DashPreventiveCard from '@/components/DashPreventiveCard.vue';
     import DashWeeklySchedules from '@/components/DashWeeklySchedules.vue';
+    import WeeklyCleaningTasks from '@/components/WeeklyCleaningTasks.vue';
     import { useFollowupsStore } from '@/stores/followups';
     import { usePreventiveStore } from '@/stores/preventive';
     import { useScheduleStore } from '@/stores/schedules';
+    import { ref, watch } from 'vue';
 
     const followup = useFollowupsStore()
     const pm = usePreventiveStore()
     const scheds = useScheduleStore()
+
+    const weeklyModal = ref(false)
+
+    watch(weeklyModal, (val) => {
+        document.body.style.overflow = val ? 'hidden' : ''
+    })
 </script>

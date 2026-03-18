@@ -19,7 +19,7 @@
                 class="border border-gray-300 p-4 min-h-24"
                 :class="cell.inCurrentMonth ? 'bg-gray-100' : 'bg-gray-50 text-gray-400'"
             >
-                <div class="text-sm font-semibold">
+                <div class="text-sm font-light ">
                     {{ cell.day }}
                 </div>
             </div>
