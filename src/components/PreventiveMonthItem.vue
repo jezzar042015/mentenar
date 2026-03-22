@@ -12,6 +12,7 @@
             <div class="text-xs gap-2 flex items-center">
                 <span class="flex h-2 w-2 rounded-full bg-red-500" v-if="isLate"></span>
                 <span class="flex h-2 w-2 rounded-full bg-white" v-else-if="isThisMonth"></span>
+                <span class="flex h-2 w-2 rounded-full bg-gray-300" v-else-if="isFutureMonth"></span>
                 <span class="flex h-2 w-2 rounded-full bg-blue-500" v-else></span>
                 <span>
                     {{ m.tasks.length }} tasks
@@ -21,7 +22,8 @@
                 {{ m.assigned }} Congregation
             </div>
         </div>
-        <CircularProgress :label="'percent'" :completed-count="completedTasks.length" :all-count="m.tasks.length" :color="isLate ? 'red' : 'blue'"/>
+        <CircularProgress :label="'percent'" :completed-count="completedTasks.length" :all-count="m.tasks.length"
+            :color="isLate ? 'red' : 'blue'" />
     </div>
 </template>
 
@@ -69,6 +71,24 @@
         return monthDate.getFullYear() === today.getFullYear() && monthDate.getMonth() === today.getMonth() + 1
     })
 
+    const isFutureMonth = computed(() => {
+        const today = new Date()
+
+        const monthDate = new Date(m.month + '-01') // assumes format like '2026-04'
+
+        // Normalize both dates to year + month only (ignore day)
+        const currentYear = today.getFullYear()
+        const currentMonth = today.getMonth()
+
+        const targetYear = monthDate.getFullYear()
+        const targetMonth = monthDate.getMonth()
+
+        return (
+            targetYear > currentYear ||
+            (targetYear === currentYear && targetMonth > currentMonth)
+        )
+    })
+
     const isThisMonth = computed(() => {
         const today = new Date()
         const monthDate = new Date(m.month + '-01')
@@ -79,12 +99,15 @@
     const itemBg = computed(() => {
         if (isThisMonth.value) return 'bg-sky-600 shadow-lg'
         if (isLate.value) return 'bg-red-50 shadow-sm'
+        if (isFutureMonth.value) return 'bg-gray-200 shadow-sm'
         return 'bg-white shadow-sm'
     })
 
     const itemBorder = computed(() => {
         if (isThisMonth.value) return 'border-sky-700'
         if (isLate.value) return 'border-red-600'
+        if (isFutureMonth.value) return 'border-gray-200'
+
         return 'border-blue-500'
     })
 </script>
