@@ -18,7 +18,7 @@
 
             <div class="space-y-3">
 
-                <template v-if="isCompleted">
+                <template v-if="!isCompleted">
                     <div class="flex gap-2 items-center">
                         <span>
                             <CalendarIcon class="h-4 w-4" />
