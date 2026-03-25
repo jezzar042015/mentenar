@@ -25,7 +25,9 @@ export const useViewsStore = defineStore('views', () => {
         "preventive-monthly": "Preventative Maintenance",
         "settings": "Settings",
         "instruction": "Task Instruction",
-        "calendar": "Calendar Activies"
+        "calendar": "Calendar Activies",
+        "profile": "My Profile",
+        "signin": ""
     })
 
     const setView = (v: AppView) => {

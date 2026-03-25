@@ -13,6 +13,8 @@
   import PreventiveMonthDetails from './pages/PreventiveMonthDetails.vue';
   import FollowupDetails from './pages/FollowupDetails.vue';
   import CalendarView from './pages/CalendarView.vue';
+  import MyProfile from './pages/MyProfile.vue';
+  import ProfileSignIn from './pages/ProfileSignIn.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -51,5 +53,7 @@
     <PreventiveList v-if="viewStore.view == 'preventive'" />
     <PreventiveMonthDetails v-if="viewStore.view == 'preventive-monthly'" />
     <CalendarView v-if="viewStore.view == 'calendar'" />
+    <MyProfile v-if="viewStore.view == 'profile'" />
+    <ProfileSignIn v-if="viewStore.view == 'signin'" />
   </div>
 </template>

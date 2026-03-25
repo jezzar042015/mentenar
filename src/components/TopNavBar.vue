@@ -1,6 +1,6 @@
 <template>
     <div class="sticky w-full bg-white shadow top-0 left-0 flex flex-col justify-between z-10">
-        
+
         <div>
             <div class="pt-4 px-4 md:pt-6 md:px-10 flex justify-between">
                 <div class="md:space-y-1">
@@ -33,8 +33,13 @@
                     :class="viewStore.view === 'preventive' || viewStore.view === 'preventive-monthly' ? 'text-blue-500' : 'text-gray-500'"
                     @click="viewStore.setView('preventive')" />
             </div>
+            <div>
+                <PersonIcon class="h-6 w-6 md:h-7 md:w-7 cursor-pointer transition-colors"
+                    :class="viewStore.view === 'profile' ? 'text-blue-500' : 'text-gray-500'"
+                    @click="viewStore.setView('profile')" />
+            </div>
             <div v-if="false">
-                <CalendarIcon class="h-6 w-6 md:h-7 md:w-7 cursor-pointer transition-colors" 
+                <CalendarIcon class="h-6 w-6 md:h-7 md:w-7 cursor-pointer transition-colors"
                     :class="viewStore.view === 'calendar' ? 'text-blue-500' : 'text-gray-500'"
                     @click="viewStore.setView('calendar')" />
 
@@ -54,6 +59,7 @@
     import { useInstructionsStore } from '@/stores/tasks-instructions';
     import { usePreventiveStore } from '@/stores/preventive';
     import { useFollowupsStore } from '@/stores/followups';
+    import PersonIcon from '@/icons/PersonIcon.vue';
 
     const viewStore = useViewsStore()
     const ti = useInstructionsStore()
