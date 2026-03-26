@@ -5,7 +5,6 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const useFollowupsStore = defineStore('followups', () => {
-    // const data = ref<FollowupItem[]>([])
     const data = useStorage<FollowupItem[]>('khoc-followup-items', [], localStorage, { mergeDefaults: true })
     const latestUpdate = useStorage<string>('khoc-followup-latest-update', '', localStorage)
     const fetching = ref(false)

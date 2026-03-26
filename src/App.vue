@@ -6,6 +6,8 @@
   import { useInstructionsStore } from './stores/tasks-instructions';
   import { useScheduleStore } from './stores/schedules';
   import { useURLStore } from './stores/url';
+  import { useAuthStore } from './stores/auth';
+  import { useAccountsStore } from './stores/accounts';
   import AppDashboard from './pages/AppDashboard.vue'
   import FollowupItems from './pages/FollowupItems.vue'
   import PreventiveList from './pages/PreventiveList.vue'
@@ -15,6 +17,7 @@
   import CalendarView from './pages/CalendarView.vue';
   import MyProfile from './pages/MyProfile.vue';
   import ProfileSignIn from './pages/ProfileSignIn.vue';
+  import PendingReimbursables from './pages/PendingReimbursables.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -22,6 +25,8 @@
   const instructions = useInstructionsStore()
   const scheds = useScheduleStore()
   const url = useURLStore()
+  const auth = useAuthStore()
+  const accounts = useAccountsStore()
 
   const reload = async () => {
     if (viewStore.view == 'followups' || viewStore.view == 'followup-details') await followup.pull()
@@ -30,6 +35,10 @@
     if (viewStore.view == 'home') {
       await followup.pull()
       await preventive.pullMonth()
+    }
+
+    if (viewStore.view == 'profile' && auth.token) {
+      await accounts.pull()
     }
   }
 
@@ -41,6 +50,7 @@
     if (preventive.shouldPull) await preventive.pullMonth()
     if (followup.shouldPull) await followup.pull()
     if (instructions.data.length === 0) await instructions.fetchAll()
+    if (auth.token.length > 0) await accounts.pull()
   })
 </script>
 
@@ -55,5 +65,6 @@
     <CalendarView v-if="viewStore.view == 'calendar'" />
     <MyProfile v-if="viewStore.view == 'profile'" />
     <ProfileSignIn v-if="viewStore.view == 'signin'" />
+    <PendingReimbursables v-if="viewStore.view == 'reimbursements'" />
   </div>
 </template>
