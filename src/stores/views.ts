@@ -26,7 +26,7 @@ export const useViewsStore = defineStore('views', () => {
         "settings": "Settings",
         "instruction": "Task Instruction",
         "calendar": "Calendar Activies",
-        "profile": "KH Operating Committee",
+        "profile": "Operating Committee",
         "signin": ""
     })
 
