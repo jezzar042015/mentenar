@@ -26,6 +26,14 @@ export const useAccountsStore = defineStore('accounts', () => {
         return reimbursements.value.filter(r => r.status == 'For Reimbursement')
     })
 
+    const unreceivedContributions = computed(() => {
+        return contributions.value
+            .map(c => c.amount * c.delayed)
+            .reduce((acc, item) => {
+                return acc + (Number(item) || 0);
+            }, 0);
+    })
+
     const forReimbursementsBalance = computed(() => {
         return forReimbursementsItems.value.reduce((acc, item) => {
             return acc + (Number(item?.amount) || 0);
@@ -33,9 +41,11 @@ export const useAccountsStore = defineStore('accounts', () => {
     })
 
     const monthlyExpensesBalance = computed(() => {
-        return monthly.value.filter(f=> f.status === 'Unused').reduce((acc, item) => {
-            return acc + (Number(item?.amount) || 0);
-        }, 0);
+        return monthly.value
+            .filter(f => f.status === 'Unused')
+            .reduce((acc, item) => {
+                return acc + (Number(item?.amount) || 0);
+            }, 0);
     })
 
     const approvedExpensesBalance = computed(() => {
@@ -81,6 +91,14 @@ export const useAccountsStore = defineStore('accounts', () => {
             currency: 'PHP',
             minimumFractionDigits: 2,
         }).format(fundsAvailable.value);
+    })
+
+    const formattedReceivableContributions = computed(()=> {
+        return new Intl.NumberFormat('en-PH', {
+            style: 'currency',
+            currency: 'PHP',
+            minimumFractionDigits: 2,
+        }).format(unreceivedContributions.value);
     })
 
     const pull = async () => {
@@ -130,6 +148,8 @@ export const useAccountsStore = defineStore('accounts', () => {
         fundsAvailable,
         formattedFundsAvailable,
         formattedMonthlyExpensesBalance,
-        formattedApprovedExpensesBalance
+        formattedApprovedExpensesBalance,
+        unreceivedContributions,
+        formattedReceivableContributions
     }
 })

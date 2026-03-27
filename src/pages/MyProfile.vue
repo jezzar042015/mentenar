@@ -16,52 +16,70 @@
             </div>
         </div>
 
-        <div v-else class="mt-15 px-4 space-y-9">
-            <div>
-                <div class="text-gray-800">KHOC Fund Balance</div>
-                <div class="text-3xl font-bold">{{ accounts.formattedBalance }}</div>
-            </div>
+        <div v-else class="mt-10 space-y-5">
 
-            <div>
-                <div class="text-gray-800">For Reimbursements</div>
-                <div class="flex justify-between">
-                    <span class="text-3xl font-bold">
-                        {{ accounts.formattedReimbursementsBalance }}
-                    </span>
-                    <span @click="gotoReimbursements">
-                        <CaretLeftIcon class="h-10 w-10 rotate-180" />
-                    </span>
+            <div class="bg-white shadow-md space-y-7 p-4 rounded-md">
+                <div>
+                    <div class="text-gray-800">Pending Contributions</div>
+                    <div class="flex justify-between">
+                        <span class="text-2xl font-bold">
+                            {{ accounts.formattedReceivableContributions }}
+                        </span>
+                        <span>
+                            <CaretLeftIcon class="h-10 w-10 rotate-180" />
+                        </span>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <div class="text-gray-800">Estimated Utility Expenses</div>
-                <div class="flex justify-between">
-                    <span class="text-3xl font-bold">
-                        {{ accounts.formattedMonthlyExpensesBalance }}
-                    </span>
-                    <span>
-                        <CaretLeftIcon class="h-10 w-10 rotate-180" />
-                    </span>
+            <div class="bg-white shadow-md space-y-6 p-5 rounded-md">
+                <div>
+                    <div class="text-gray-800">KHOC Fund Balance</div>
+                    <div class="text-2xl font-bold">{{ accounts.formattedBalance }}</div>
                 </div>
-            </div>
 
-            <div>
-                <div class="text-gray-800">Approved Future Expenses</div>
-                <div class="flex justify-between">
-                    <span class="text-3xl font-bold">
-                        {{ accounts.formattedApprovedExpensesBalance }}
-                    </span>
-                    <span>
-                        <CaretLeftIcon class="h-10 w-10 rotate-180" />
-                    </span>
+                <div>
+                    <div class="text-gray-800">For Reimbursements</div>
+                    <div class="flex justify-between">
+                        <span class="text-2xl font-bold">
+                            {{ accounts.formattedReimbursementsBalance }}
+                        </span>
+                        <span @click="gotoReimbursements">
+                            <CaretLeftIcon class="h-10 w-10 rotate-180" />
+                        </span>
+                    </div>
                 </div>
-            </div>
 
-            <hr>
-            <div>
-                <div class="text-gray-800">Available Funds Balance</div>
-                <div class="text-4xl font-bold">{{ accounts.formattedFundsAvailable }}</div>
+                <div>
+                    <div class="text-gray-800">Unpaid Utility Expenses</div>
+                    <div class="flex justify-between">
+                        <span class="text-2xl font-bold">
+                            {{ accounts.formattedMonthlyExpensesBalance }}
+                        </span>
+                        <span>
+                            <CaretLeftIcon class="h-10 w-10 rotate-180" />
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-gray-800">Approved Future Expenses</div>
+                    <div class="flex justify-between">
+                        <span class="text-2xl font-bold">
+                            {{ accounts.formattedApprovedExpensesBalance }}
+                        </span>
+                        <span>
+                            <CaretLeftIcon class="h-10 w-10 rotate-180" />
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <hr class="border-0 border-b border-b-gray-300 mb-4">
+
+                    <div class="text-gray-800">Available Funds Balance</div>
+                    <div class="text-3xl font-bold">{{ accounts.formattedFundsAvailable }}</div>
+                </div>
             </div>
         </div>
     </div>
