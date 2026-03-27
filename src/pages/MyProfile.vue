@@ -9,14 +9,15 @@
                     Kingdom Hall User
                 </h2>
             </div>
-            <div class="mt-20 flex justify-center ">
+
+            <div class="mt-10 flex justify-center ">
                 <button @click="initSignin" class="shadow-lg rounded-md py-3 px-5 bg-blue-500 text-white">
                     Sign in as KHOC Member
                 </button>
             </div>
         </div>
 
-        <div v-else class="mt-10 space-y-5">
+        <div v-else class="mt-6 space-y-5">
 
             <div class="bg-white shadow-md space-y-7 p-4 rounded-md">
                 <div>
@@ -25,7 +26,7 @@
                         <span class="text-2xl font-bold">
                             {{ accounts.formattedReceivableContributions }}
                         </span>
-                        <span>
+                        <span @click="gotoContributions">
                             <CaretLeftIcon class="h-10 w-10 rotate-180" />
                         </span>
                     </div>
@@ -90,6 +91,7 @@
     import { useAccountsStore } from '@/stores/accounts';
     import { useAuthStore } from '@/stores/auth';
     import { useViewsStore } from '@/stores/views';
+    import { onMounted } from 'vue';
 
     const view = useViewsStore()
     const auth = useAuthStore()
@@ -97,11 +99,18 @@
 
     const initSignin = () => {
         view.setView('signin')
-        view.showHeader = false
     }
 
     const gotoReimbursements = () => {
         view.showHeader = false
         view.setView('reimbursements')
     }
+
+    const gotoContributions = () => {
+        view.setView('contributions')
+    }
+
+    onMounted(() => {
+        view.showHeader = true
+    })
 </script>

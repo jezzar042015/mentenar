@@ -9,4 +9,7 @@ export type AppView =
     'calendar' |
     'profile' |
     'signin' |
-    'reimbursements'
+    'reimbursements' |
+    'contributions' |
+    'monthly-expenses' |
+    'approved-expenses'

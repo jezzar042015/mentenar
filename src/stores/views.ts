@@ -28,7 +28,10 @@ export const useViewsStore = defineStore('views', () => {
         "calendar": "Calendar Activies",
         "profile": "Operating Committee",
         "signin": "",
-        "reimbursements": ""
+        "reimbursements": "",
+        "contributions": "",
+        "approved-expenses": "",
+        "monthly-expenses": ""
     })
 
     const setView = (v: AppView) => {

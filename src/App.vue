@@ -18,6 +18,7 @@
   import MyProfile from './pages/MyProfile.vue';
   import ProfileSignIn from './pages/ProfileSignIn.vue';
   import PendingReimbursables from './pages/PendingReimbursables.vue';
+  import CongContributions from './pages/CongContributions.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -66,5 +67,6 @@
     <MyProfile v-if="viewStore.view == 'profile'" />
     <ProfileSignIn v-if="viewStore.view == 'signin'" />
     <PendingReimbursables v-if="viewStore.view == 'reimbursements'" />
+    <CongContributions v-if="viewStore.view == 'contributions'" />
   </div>
 </template>

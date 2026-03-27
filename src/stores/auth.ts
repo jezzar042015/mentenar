@@ -32,16 +32,17 @@ export const useAuthStore = defineStore('auth', () => {
 
             const result = await response.json() as AuthResponse
 
+            fetching.value = false
+
             if (result.status == 200) {
                 token.value = result.token
                 role.value = result.role
+                return true
+            } else if (result.status == 400) {
+                return false
             }
 
-            // data.value = result.data
-            // latestUpdate.value = result.timestamp
-            fetching.value = false
 
-            return true
         } catch (error) {
             console.log(error);
             fetching.value = false
