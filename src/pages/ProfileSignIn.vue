@@ -63,6 +63,7 @@
     import { computed, onMounted, ref } from 'vue'
     import { onClickOutside } from '@vueuse/core'
     import FetchingSpinner from '@/components/FetchingSpinner.vue'
+    import { useAccountsStore } from '@/stores/accounts'
 
     const roles = ref<string[]>([
         'Admin', 'Accounts', 'Member'
@@ -80,6 +81,7 @@
 
     const view = useViewsStore()
     const auth = useAuthStore()
+    const account = useAccountsStore()
 
     function toggleDropdown() {
         open.value = !open.value
@@ -103,10 +105,13 @@
     const signin = async () => {
         signing.value = true
         const resp = await auth.authenticate(role.value, key.value)
-        signing.value = false
+
         if (resp) {
+            await account.pull()
+            signing.value = false
             cancel()
         } else {
+            signing.value = false
             error.value = true
         }
 

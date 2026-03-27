@@ -19,6 +19,8 @@
   import ProfileSignIn from './pages/ProfileSignIn.vue';
   import PendingReimbursables from './pages/PendingReimbursables.vue';
   import CongContributions from './pages/CongContributions.vue';
+  import MonthlyExpenses from './pages/MonthlyExpenses.vue';
+  import ApprovedExpenses from './pages/ApprovedExpenses.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -44,7 +46,6 @@
   }
 
   onMounted(async () => {
-    // pull data if not loaded or pull if last pull was a week ago
     await url.parseURL()
     await viewStore.handleViewRequest()
     if (scheds.shouldPull) await scheds.pull()
@@ -68,5 +69,7 @@
     <ProfileSignIn v-if="viewStore.view == 'signin'" />
     <PendingReimbursables v-if="viewStore.view == 'reimbursements'" />
     <CongContributions v-if="viewStore.view == 'contributions'" />
+    <MonthlyExpenses v-if="viewStore.view == 'monthly-expenses'" />
+    <ApprovedExpenses v-if="viewStore.view == 'approved-expenses'" />
   </div>
 </template>

@@ -8,27 +8,21 @@
                 <span>Operating Committee</span>
             </div>
             <div class="font-bold text-2xl mb-10">
-                Pending Contributions
+                Unpaid Approved Expenses
             </div>
 
             <div class="space-y-5">
-                <template v-for="cong in accounts.contributions" :key="cong.cong">
-                    <ContributionItem :cong />
+                <template v-for="a in accounts.approved" :key="a.date + a.name">
+                    <ApprovedExpenseItem :a />
                 </template>
-
-                <div class="flex justify-between py-3">
-                    <div class="w-1/2 font-bold text-lg">Contributions</div>
-                    <div class="text-2xl font-bold">{{ accounts.formattedReceivableContributions }}</div>
-                </div>
             </div>
-
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import ContributionItem from '@/components/ContributionItem.vue';
-    import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
+    import ApprovedExpenseItem from '@/components/ApprovedExpenseItem.vue';
+import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
     import { useAccountsStore } from '@/stores/accounts';
     import { useViewsStore } from '@/stores/views';
     import { onMounted } from 'vue';
@@ -40,7 +34,6 @@
         views.showHeader = true
         views.setView('profile')
     }
-
     onMounted(() => {
         views.showHeader = false
     })

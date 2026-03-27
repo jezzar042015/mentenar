@@ -22,11 +22,11 @@
             <div class="bg-white shadow-md space-y-7 p-4 rounded-md">
                 <div>
                     <div class="text-gray-800">Pending Contributions</div>
-                    <div class="flex justify-between">
+                    <div @click="gotoContributions" class="flex justify-between">
                         <span class="text-2xl font-bold">
                             {{ accounts.formattedReceivableContributions }}
                         </span>
-                        <span @click="gotoContributions">
+                        <span>
                             <CaretLeftIcon class="h-10 w-10 rotate-180" />
                         </span>
                     </div>
@@ -41,11 +41,11 @@
 
                 <div>
                     <div class="text-gray-800">For Reimbursements</div>
-                    <div class="flex justify-between">
+                    <div @click="gotoReimbursements" class="flex justify-between">
                         <span class="text-2xl font-bold">
                             {{ accounts.formattedReimbursementsBalance }}
                         </span>
-                        <span @click="gotoReimbursements">
+                        <span>
                             <CaretLeftIcon class="h-10 w-10 rotate-180" />
                         </span>
                     </div>
@@ -53,7 +53,7 @@
 
                 <div>
                     <div class="text-gray-800">Unpaid Utility Expenses</div>
-                    <div class="flex justify-between">
+                    <div @click="gotoUnpaidUtilityExpenses" class="flex justify-between">
                         <span class="text-2xl font-bold">
                             {{ accounts.formattedMonthlyExpensesBalance }}
                         </span>
@@ -65,7 +65,7 @@
 
                 <div>
                     <div class="text-gray-800">Approved Future Expenses</div>
-                    <div class="flex justify-between">
+                    <div @click="gotoApprovedExpenses" class="flex justify-between">
                         <span class="text-2xl font-bold">
                             {{ accounts.formattedApprovedExpensesBalance }}
                         </span>
@@ -78,7 +78,7 @@
                 <div>
                     <hr class="border-0 border-b border-b-gray-300 mb-4">
 
-                    <div class="text-gray-800">Available Funds Balance</div>
+                    <div class="text-gray-800">{{ fundsLeftLabel }}</div>
                     <div class="text-3xl font-bold">{{ accounts.formattedFundsAvailable }}</div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
     import { useAccountsStore } from '@/stores/accounts';
     import { useAuthStore } from '@/stores/auth';
     import { useViewsStore } from '@/stores/views';
-    import { onMounted } from 'vue';
+    import { computed, onMounted } from 'vue';
 
     const view = useViewsStore()
     const auth = useAuthStore()
@@ -109,6 +109,18 @@
     const gotoContributions = () => {
         view.setView('contributions')
     }
+
+    const gotoUnpaidUtilityExpenses = () => {
+        view.setView('monthly-expenses')
+    }
+
+    const gotoApprovedExpenses = () => {
+        view.setView('approved-expenses')
+    }
+
+    const fundsLeftLabel = computed(() => {
+        return accounts.fundsAvailable >= 0 ? 'Available Funds Balance' : 'Funds Dificit'
+    })
 
     onMounted(() => {
         view.showHeader = true
