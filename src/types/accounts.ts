@@ -7,6 +7,7 @@ export interface AccountsResponse {
         balance: number
         monthly: MonthlyExpense[]
         approved: ApprovedExpense[]
+        contributions: MonthlyContribution[]
     }
 }
 
@@ -21,6 +22,7 @@ export interface Reimbursement {
 
 export interface MonthlyExpense {
     name: string
+    type: string
     status: string
     amount: number
 }
@@ -30,5 +32,12 @@ export interface ApprovedExpense {
     name: string
     desc: string
     status: string
+    amount: number
+}
+
+export interface MonthlyContribution {
+    cong: string
+    resolved: string
+    delayed: number
     amount: number
 }

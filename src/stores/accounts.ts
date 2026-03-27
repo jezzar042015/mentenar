@@ -1,4 +1,4 @@
-import type { AccountsResponse, ApprovedExpense, MonthlyExpense, Reimbursement } from "@/types/accounts";
+import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, Reimbursement } from "@/types/accounts";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
@@ -8,6 +8,7 @@ export const useAccountsStore = defineStore('accounts', () => {
     const reimbursements = useStorage<Reimbursement[]>('khoc-reimbursements', [], localStorage, { mergeDefaults: true })
     const monthly = useStorage<MonthlyExpense[]>('khoc-monthly-expenses', [], localStorage, { mergeDefaults: true })
     const approved = useStorage<ApprovedExpense[]>('khoc-approved-expenses', [], localStorage, { mergeDefaults: true })
+    const contributions = useStorage<MonthlyContribution[]>('khoc-contributions', [], localStorage, { mergeDefaults: true })
     const latestUpdate = useStorage<string>('khoc-accounts-latest-update', '', localStorage)
     const fetching = ref(false)
     const balance = useStorage<number>('khoc-accounts-balance', 0, localStorage)
@@ -32,7 +33,7 @@ export const useAccountsStore = defineStore('accounts', () => {
     })
 
     const monthlyExpensesBalance = computed(() => {
-        return monthly.value.reduce((acc, item) => {
+        return monthly.value.filter(f=> f.status === 'Unused').reduce((acc, item) => {
             return acc + (Number(item?.amount) || 0);
         }, 0);
     })
@@ -93,6 +94,7 @@ export const useAccountsStore = defineStore('accounts', () => {
             reimbursements.value = result.data?.reimbursements ?? []
             monthly.value = result.data?.monthly ?? []
             approved.value = result.data?.approved ?? []
+            contributions.value = result.data?.contributions ?? []
             balance.value = result.data?.balance ?? 0
             latestUpdate.value = result.timestamp
             fetching.value = false
@@ -118,6 +120,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         balance,
         monthly,
         approved,
+        contributions,
         pull,
         shouldPull,
         formattedBalance,
