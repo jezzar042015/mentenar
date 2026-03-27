@@ -1,6 +1,6 @@
 <template>
-    <div @click="loadMonth"
-        :class="[itemBorder, itemBg, { 'text-white': isThisMonth }, 'p-4 rounded-sm border-l-8 flex justify-between cursor-pointer']">
+    <div @click="loadMonth" v-if="!isCompleted || isThisMonth"
+        :class="[itemBorder, itemBg, { 'text-white': isThisMonth }, 'p-4 rounded-sm border-l-8 flex justify-between cursor-pointer md:h-full']">
         <div class="space-y-1 flex-1">
             <div class="flex items-center gap-3">
                 <span class="text-xs bg-red-500 p-1 text-white rounded-md" v-if="isLate">Late</span>
@@ -44,6 +44,10 @@
 
     const completedTasks = computed(() => {
         return m.tasks.filter(t => t.completed)
+    })
+
+    const isCompleted = computed(()=> {
+        return completedTasks.value.length === m.tasks.length
     })
 
     const loadMonth = () => {

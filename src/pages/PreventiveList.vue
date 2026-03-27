@@ -1,12 +1,12 @@
 <template>
-    <div class="px-4 py-5 mt-5">
+    <div class="px-4 py-4 mt-4">
 
         <div v-if="preventiveStore.fetching">
             <FetchingSpinner />
         </div>
 
         <div class="grid grid-cols-1 gap-2 " v-else-if="!showTasks">
-            <div class="space-y-2 md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 ">
+            <div class="space-y-2 md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-2 ">
                 <template v-for="m in preventiveStore.data">
                     <PreventiveMonthItem :m />
                 </template>

@@ -1,28 +1,17 @@
 <template>
     <div class="px-4 ">
 
-        <!-- If not authenticated -->
-        <div v-if="!auth.token" class="mt-15 flex flex-col h-full items-center justify-center ">
-            <div class="flex space-x-1 items-center justify-center">
-                <span>Hello! </span>
-                <h2 class="font-bold ">
-                    Kingdom Hall User
-                </h2>
-            </div>
-
-            <div class="mt-10 flex justify-center ">
-                <button @click="initSignin" class="shadow-lg rounded-md py-3 px-5 bg-blue-500 text-white">
-                    Sign in as KHOC Member
-                </button>
-            </div>
-        </div>
+        <template v-if="!auth.token">
+            <UnauthenticatedProfile />
+        </template>
 
         <div v-else class="mt-6 space-y-5">
 
             <div class="bg-white shadow-md space-y-7 p-4 rounded-md">
                 <div>
                     <div class="text-gray-800">Pending Contributions</div>
-                    <div @click="gotoContributions" class="flex justify-between">
+                    <!-- mobile screens -->
+                    <div @click="gotoContributions" class="flex justify-between cursor-pointer md:hidden">
                         <span class="text-2xl font-bold">
                             {{ accounts.formattedReceivableContributions }}
                         </span>
@@ -30,6 +19,19 @@
                             <CaretLeftIcon class="h-10 w-10 rotate-180" />
                         </span>
                     </div>
+
+                    <!-- md screens -->
+                    <div class="hidden md:flex">
+                        <div class="text-3xl font-bold w-1/3">
+                            {{ accounts.formattedReceivableContributions }}
+                        </div>
+                        <div class="w-2/3 bg-white px-10">
+                            <template v-for="c in accounts.contributions" :key="c.cong">
+                                <ContributionItem :cong="c" />
+                            </template>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -40,10 +42,10 @@
                 </div>
 
                 <div>
-                    <div class="text-gray-800">For Reimbursements</div>
-                    <div @click="gotoReimbursements" class="flex justify-between">
+                    <div class="text-gray-800">Unpaid Utility Expenses</div>
+                    <div @click="gotoUnpaidUtilityExpenses" class="flex justify-between">
                         <span class="text-2xl font-bold">
-                            {{ accounts.formattedReimbursementsBalance }}
+                            {{ accounts.formattedMonthlyExpensesBalance }}
                         </span>
                         <span>
                             <CaretLeftIcon class="h-10 w-10 rotate-180" />
@@ -52,10 +54,10 @@
                 </div>
 
                 <div>
-                    <div class="text-gray-800">Unpaid Utility Expenses</div>
-                    <div @click="gotoUnpaidUtilityExpenses" class="flex justify-between">
+                    <div class="text-gray-800">For Reimbursements</div>
+                    <div @click="gotoReimbursements" class="flex justify-between">
                         <span class="text-2xl font-bold">
-                            {{ accounts.formattedMonthlyExpensesBalance }}
+                            {{ accounts.formattedReimbursementsBalance }}
                         </span>
                         <span>
                             <CaretLeftIcon class="h-10 w-10 rotate-180" />
@@ -87,6 +89,8 @@
 </template>
 
 <script setup lang="ts">
+    import ContributionItem from '@/components/ContributionItem.vue';
+    import UnauthenticatedProfile from '@/components/UnauthenticatedProfile.vue';
     import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
     import { useAccountsStore } from '@/stores/accounts';
     import { useAuthStore } from '@/stores/auth';
@@ -96,10 +100,6 @@
     const view = useViewsStore()
     const auth = useAuthStore()
     const accounts = useAccountsStore()
-
-    const initSignin = () => {
-        view.setView('signin')
-    }
 
     const gotoReimbursements = () => {
         view.showHeader = false
