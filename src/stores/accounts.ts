@@ -109,6 +109,10 @@ export const useAccountsStore = defineStore('accounts', () => {
             fetching.value = true
             const response = await fetch(`${url}?token=${auth.token}`)
             const result = await response.json() as AccountsResponse
+
+            // Set the token to falsy state
+            if (result.status === 400) auth.token = ''
+            
             reimbursements.value = result.data?.reimbursements ?? []
             monthly.value = result.data?.monthly ?? []
             approved.value = result.data?.approved ?? []
