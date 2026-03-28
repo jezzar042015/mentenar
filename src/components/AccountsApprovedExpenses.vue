@@ -18,7 +18,7 @@
         <div class="hidden md:block">
             <div class="flex justify-between">
                 <div class="text-cyan-700 font-semibold text-xl">Approved Future Maintenance Expenses</div>
-                <div class="text-3xl font-semibold text-right px-10 text-cyan-700">
+                <div class="text-2xl font-semibold text-right px-10 text-cyan-700">
                    &dash; {{ accounts.formattedApprovedExpensesBalance }}
                 </div>
             </div>

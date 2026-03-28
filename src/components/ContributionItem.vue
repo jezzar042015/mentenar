@@ -7,17 +7,18 @@
                     {{ cong.cong }}
                 </div>
                 <div class="text-xs">
-                    March
+                    {{ delayedMonths || 'No delay' }}
                 </div>
             </div>
-            <div :class="['text-xl font-semibold', {'text-gray-300': payable == 0}]">{{ formattedPayable }}</div>
+            <div :class="['text-xl font-semibold', { 'text-gray-300': payable == 0 }]">{{ formattedPayable }}</div>
         </div>
 
         <!-- big screens -->
-         <div class="hidden md:flex justify-between">
+        <div class="hidden md:grid grid-cols-3 justify-between items-center">
             <div>{{ cong.cong }}</div>
-            <div :class="['font-semibold', {'text-gray-300': payable == 0}]">{{ formattedPayable }}</div>
-         </div>
+            <div class="text-sm">{{ delayedMonths || '-' }}</div>
+            <div :class="['font-semibold text-right', { 'text-gray-300': payable == 0 }]">{{ formattedPayable }}</div>
+        </div>
     </div>
 </template>
 
@@ -39,5 +40,27 @@
             currency: 'PHP',
             minimumFractionDigits: 2,
         }).format(payable.value);
+    })
+
+    const delayedMonths = computed(() => {
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        const currentMonthIndex = new Date().getMonth(); // 0-indexed (Jan is 0)
+        let selectedMonths = [];
+
+        for (let i = 0; i < cong.delayed; i++) {
+            // Calculate index and handle negative wrap-around using modulo
+            let targetIndex = (currentMonthIndex - i) % 12;
+            if (targetIndex < 0) targetIndex += 12;
+
+            selectedMonths.unshift(monthNames[targetIndex]);
+        }
+
+        // Formatting: handle the " & " for the last item and commas for the rest
+        if (selectedMonths.length <= 1) return selectedMonths.join("");
+
+        const lastMonth = selectedMonths.pop();
+        return `${selectedMonths.join(", ")} & ${lastMonth}`;
     })
 </script>

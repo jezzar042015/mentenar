@@ -16,7 +16,7 @@
         <!-- md screens -->
         <div class="hidden md:flex justify-between">
             <div class="font-semibold text-xl text-cyan-700">Pending Congregation Contributions</div>
-            <div class="text-3xl font-semibold w-1/3 text-right px-10 text-cyan-700">
+            <div class="text-2xl font-semibold w-1/3 text-right px-10 text-cyan-700">
                 {{ accounts.formattedReceivableContributions }}
             </div>
         </div>

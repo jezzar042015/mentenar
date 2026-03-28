@@ -18,7 +18,7 @@
         <div class="hidden md:block">
             <div class="flex justify-between items-center">
                 <div class="text-cyan-700 font-semibold text-xl">For Reimbursements</div>
-                <div class="text-3xl font-semibold w-1/3 text-right px-10 text-cyan-700">
+                <div class="text-2xl font-semibold w-1/3 text-right px-10 text-cyan-700">
                    &dash; {{ accounts.formattedReimbursementsBalance }}
                 </div>
 

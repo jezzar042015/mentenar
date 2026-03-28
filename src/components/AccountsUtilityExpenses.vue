@@ -16,7 +16,7 @@
         <div class="hidden md:block">
             <div class="flex justify-between">
                 <div class="font-semibold text-xl text-cyan-700">Unpaid Utility Expenses</div>
-                <div class="text-3xl font-semibold w-1/3 text-right px-10 text-cyan-700">
+                <div class="text-2xl font-semibold w-1/3 text-right px-10 text-cyan-700">
                    &dash; {{ accounts.formattedMonthlyExpensesBalance }}
                 </div>
             </div>

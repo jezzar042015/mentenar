@@ -21,7 +21,7 @@
             <div class="bg-white space-y-4 md:space-y-6 p-5 rounded-md">
                 <div class="md:flex md:justify-between">
                     <div class="text-gray-800 md:font-semibold md:text-xl md:text-cyan-700">KHOC Fund Balance</div>
-                    <div class="text-2xl md:text-3xl md:pr-10 font-semibold md:text-cyan-700">{{
+                    <div class="text-2xl md:pr-10 font-semibold md:text-cyan-700">{{
                         accounts.formattedBalance }}
                     </div>
                 </div>
