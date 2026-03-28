@@ -24,7 +24,7 @@
             </div>
 
             <div class="w-2/3 bg-white px-5">
-                <template v-for="a in accounts.approved" :key="a.date + a.name">
+                <template v-for="a in accounts.approvedExpensesItems" :key="a.date + a.name">
                     <ApprovedExpenseItem :a />
                 </template>
             </div>

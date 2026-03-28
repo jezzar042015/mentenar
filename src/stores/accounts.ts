@@ -48,10 +48,16 @@ export const useAccountsStore = defineStore('accounts', () => {
             }, 0);
     })
 
+    const approvedExpensesItems = computed(() => {
+        return approved.value
+            .filter(a => a.status === 'Approved')
+    })
+
     const approvedExpensesBalance = computed(() => {
-        return approved.value.reduce((acc, item) => {
-            return acc + (Number(item?.amount) || 0);
-        }, 0);
+        return approvedExpensesItems.value
+            .reduce((acc, item) => {
+                return acc + (Number(item?.amount) || 0);
+            }, 0);
     })
 
     const fundsAvailable = computed(() => {
@@ -93,7 +99,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         }).format(fundsAvailable.value);
     })
 
-    const formattedReceivableContributions = computed(()=> {
+    const formattedReceivableContributions = computed(() => {
         return new Intl.NumberFormat('en-PH', {
             style: 'currency',
             currency: 'PHP',
@@ -142,6 +148,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         pull,
         shouldPull,
         formattedBalance,
+        approvedExpensesItems,
         approvedExpensesBalance,
         forReimbursementsItems,
         forReimbursementsBalance,
