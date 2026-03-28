@@ -50,11 +50,25 @@
             </div>
 
             <div v-if="(filter == 'completed') && followupsStore.completed.length > 0" class="space-y-4">
-                <div class="space-y-3 md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-3">
-                    <template v-for="f in followupsStore.completed" :key="f.task">
-                        <FollowupItem :f :stat="'completed'" />
-                    </template>
-                </div>
+
+                <template v-for="g in followupsStore.groupedCompleted" :key="g.month">
+                    <div class="px-6 flex gap-2 items-center text-xl font-semibold">
+                        <div>
+                            <CalendarIcon class="h-4 w-4"/>
+                        </div>
+                        <div>
+                            {{ g.month }}
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-3">
+
+                        <template v-for="f in g.items" :key="f.task">
+                            <FollowupItem :f :stat="'completed'" />
+                        </template>
+
+                    </div>
+                </template>
             </div>
         </div>
 
@@ -67,6 +81,7 @@
     import { ref, computed } from 'vue'
     import FollowupItem from '@/components/FollowupItem.vue'
     import FollowupFilters from '@/components/FollowupFilters.vue'
+import CalendarIcon from '@/icons/CalendarIcon.vue'
 
     const followupsStore = useFollowupsStore()
     const filter = ref<FollowupListFilter>('all')

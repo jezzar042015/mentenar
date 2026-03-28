@@ -52,6 +52,32 @@ export const useFollowupsStore = defineStore('followups', () => {
             .sort((a, b) => new Date(b.completed).getTime() - new Date(a.completed).getTime());;
     })
 
+    const groupedCompleted = computed(() => {
+        const grouped: Record<string, FollowupItem[]> = {}
+
+        const filtered = data.value
+            .filter(item => item.status === 'Completed')
+            .sort((a, b) => new Date(b.completed).getTime() - new Date(a.completed).getTime())
+
+        filtered.forEach(item => {
+            const date = new Date(item.completed)
+
+            const month = date.toLocaleString('en-US', {
+                month: 'long',
+                year: 'numeric'
+            })
+
+            grouped[month] ??= []
+            grouped[month].push(item)
+        })
+
+        // convert object to array
+        return Object.entries(grouped).map(([month, items]) => ({
+            month,
+            items
+        }))
+    })
+
     const overdue = computed(() => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -151,6 +177,7 @@ export const useFollowupsStore = defineStore('followups', () => {
         shouldPull,
         active,
         completed,
+        groupedCompleted,
         events
     }
 });
