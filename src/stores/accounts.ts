@@ -159,6 +159,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         formattedReimbursementsBalance,
         fundsAvailable,
         formattedFundsAvailable,
+        monthlyExpensesBalance,
         formattedMonthlyExpensesBalance,
         formattedApprovedExpensesBalance,
         unreceivedContributions,
