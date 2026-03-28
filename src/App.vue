@@ -52,7 +52,7 @@
     if (preventive.shouldPull) await preventive.pullMonth()
     if (followup.shouldPull) await followup.pull()
     if (instructions.data.length === 0) await instructions.fetchAll()
-    if (auth.token.length > 0) await accounts.pull()
+    if (auth.token.length > 0 && accounts.shouldPull) await accounts.pull()
   })
 </script>
 
