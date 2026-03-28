@@ -6,11 +6,11 @@
             :count-upcoming="followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length" />
 
 
-        <div v-if="followupsStore.fetching">
+        <!-- <div v-if="followupsStore.fetching">
             <FetchingSpinner />
-        </div>
+        </div> -->
 
-        <div class="mt-5 flex flex-col p-2 bg-gray-100 space-y-4" v-else>
+        <div class="mt-5 flex flex-col p-2 bg-gray-100 space-y-4">
 
             <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">Overdue</div>
@@ -65,7 +65,6 @@
     import type { FollowupListFilter } from '@/types/followups'
     import { useFollowupsStore } from '@/stores/followups'
     import { ref, computed } from 'vue'
-    import FetchingSpinner from '@/components/FetchingSpinner.vue'
     import FollowupItem from '@/components/FollowupItem.vue'
     import FollowupFilters from '@/components/FollowupFilters.vue'
 
