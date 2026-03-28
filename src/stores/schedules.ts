@@ -54,6 +54,7 @@ export const useScheduleStore = defineStore('schedules', () => {
     })
 
     return {
+        data,
         thisWeek,
         nextWeek,
         fetching,

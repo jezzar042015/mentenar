@@ -12,4 +12,5 @@ export type AppView =
     'reimbursements' |
     'contributions' |
     'monthly-expenses' |
-    'approved-expenses'
+    'approved-expenses' |
+    'schedules'

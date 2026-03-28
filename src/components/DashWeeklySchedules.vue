@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="bg-white p-4 rounded-md space-y-2 shadow-xl">
-            <div>
+            <div @click="gotoWeeklySchedules">
                 <h2 class="text-lg font-semibold">Weekly Schedules</h2>
                 <h2 class="text-sm">{{ weekSched.week }}</h2>
             </div>
@@ -58,9 +58,16 @@
 <script setup lang="ts">
     import CleaningMop from '@/icons/CleaningMop.vue';
     import GarbageIcon from '@/icons/GarbageIcon.vue';
+    import { useViewsStore } from '@/stores/views';
     import type { WeeklyScheduleItem } from '@/types/weekly-schedules';
 
     const { weekSched } = defineProps<{
         weekSched: WeeklyScheduleItem
     }>()
+
+    const view = useViewsStore()
+
+    const gotoWeeklySchedules = () => {
+        view.setView('schedules')
+    }
 </script>

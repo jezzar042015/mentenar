@@ -21,6 +21,7 @@
   import CongContributions from './pages/CongContributions.vue';
   import MonthlyExpenses from './pages/MonthlyExpenses.vue';
   import ApprovedExpenses from './pages/ApprovedExpenses.vue';
+import WeeklySchudules from './pages/WeeklySchudules.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -71,5 +72,6 @@
     <CongContributions v-if="viewStore.view == 'contributions'" />
     <MonthlyExpenses v-if="viewStore.view == 'monthly-expenses'" />
     <ApprovedExpenses v-if="viewStore.view == 'approved-expenses'" />
+    <WeeklySchudules v-if="viewStore.view == 'schedules'" />
   </div>
 </template>

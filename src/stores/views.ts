@@ -31,7 +31,8 @@ export const useViewsStore = defineStore('views', () => {
         "reimbursements": "",
         "contributions": "",
         "approved-expenses": "",
-        "monthly-expenses": ""
+        "monthly-expenses": "",
+        "schedules": ""
     })
 
     const setView = (v: AppView) => {
