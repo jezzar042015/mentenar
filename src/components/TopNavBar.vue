@@ -60,13 +60,15 @@
     import { usePreventiveStore } from '@/stores/preventive';
     import { useFollowupsStore } from '@/stores/followups';
     import PersonIcon from '@/icons/PersonIcon.vue';
+    import { useAccountsStore } from '@/stores/accounts';
 
     const viewStore = useViewsStore()
     const ti = useInstructionsStore()
     const pm = usePreventiveStore()
     const fu = useFollowupsStore()
+    const acc = useAccountsStore()
 
-    const hasFetching = computed(() => ti.fetching || pm.fetching || fu.fetching)
+    const hasFetching = computed(() => ti.fetching || pm.fetching || fu.fetching || acc.fetching)
 
     const header = computed(() => viewStore.headers[viewStore.view])
 </script>

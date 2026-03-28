@@ -1,5 +1,6 @@
 <template>
-    <div class="shadow-md rounded-md p-4 bg-white space-y-5">
+    <!-- mobile screens -->
+    <div class="md:hidden shadow-md rounded-md p-4 bg-white space-y-5">
         <div>
             <div class="text-xs text-gray-600">Payee</div>
             <div class="text-2xl">{{ r.name }}</div>
@@ -16,7 +17,14 @@
             <div class="text-xs text-gray-600">Amount</div>
             <div class="text-2xl font-bold">{{ formattedAmount }}</div>
         </div>
+    </div>
 
+    <!-- larger screens -->
+    <div class="hidden md:block">
+        <div class="flex justify-between items-center border-0 border-b border-b-gray-300 py-1">
+            <div class="text-sm">{{ r.desc }}</div>
+            <div class="font-semibold">{{ formattedAmount }}</div>
+        </div>
     </div>
 </template>
 

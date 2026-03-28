@@ -1,87 +1,47 @@
 <template>
-    <div class="px-4 ">
+    <div class="px-4 py-5 bg-white -mt-5">
 
         <template v-if="!auth.token">
             <UnauthenticatedProfile />
         </template>
 
-        <div v-else class="mt-6 space-y-5">
-
-            <div class="bg-white shadow-md space-y-7 p-4 rounded-md">
-                <div>
-                    <div class="text-gray-800">Pending Contributions</div>
-                    <!-- mobile screens -->
-                    <div @click="gotoContributions" class="flex justify-between cursor-pointer md:hidden">
-                        <span class="text-2xl font-bold">
-                            {{ accounts.formattedReceivableContributions }}
-                        </span>
-                        <span>
-                            <CaretLeftIcon class="h-10 w-10 rotate-180" />
-                        </span>
-                    </div>
-
-                    <!-- md screens -->
-                    <div class="hidden md:flex">
-                        <div class="text-3xl font-bold w-1/3">
-                            {{ accounts.formattedReceivableContributions }}
-                        </div>
-                        <div class="w-2/3 bg-white px-10">
-                            <template v-for="c in accounts.contributions" :key="c.cong">
-                                <ContributionItem :cong="c" />
-                            </template>
-                        </div>
-                    </div>
-
-                </div>
+        <div v-else class="mt-6 space-y-1 md:space-y-3">
+            <div class="bg-white px-4 py-3 ">
+                <div class="text-2xl font-bold md:text-3xl md:text-cyan-700">KHOC Financial Status</div>
+                <div class="text-sm">As of {{ currentDate }}</div>
             </div>
 
-            <div class="bg-white shadow-md space-y-6 p-5 rounded-md">
-                <div>
-                    <div class="text-gray-800">KHOC Fund Balance</div>
-                    <div class="text-2xl font-bold">{{ accounts.formattedBalance }}</div>
-                </div>
+            <div class="bg-white space-y-7 p-4 rounded-md">
+                <AccountsContributions />
+            </div>
 
-                <div>
-                    <div class="text-gray-800">Unpaid Utility Expenses</div>
-                    <div @click="gotoUnpaidUtilityExpenses" class="flex justify-between">
-                        <span class="text-2xl font-bold">
-                            {{ accounts.formattedMonthlyExpensesBalance }}
-                        </span>
-                        <span>
-                            <CaretLeftIcon class="h-10 w-10 rotate-180" />
-                        </span>
+            <hr class="mx-4 border-0 border-b-4 border-b-gray-400 mb-4">
+
+
+            <div class="bg-white space-y-4 md:space-y-6 p-5 rounded-md">
+                <div class="md:flex md:justify-between">
+                    <div class="text-gray-800 md:font-semibold md:text-xl md:text-cyan-700">KHOC Fund Balance</div>
+                    <div class="text-2xl md:text-3xl md:pr-10 font-semibold md:text-cyan-700">{{
+                        accounts.formattedBalance }}
                     </div>
                 </div>
 
+                <AccountsUtilityExpenses />
+                <AccountsReimbursements v-if="accounts.forReimbursementsBalance > 0" />
+                <AccountsApprovedExpenses v-if="accounts.approvedExpensesBalance > 0" />
+
                 <div>
-                    <div class="text-gray-800">For Reimbursements</div>
-                    <div @click="gotoReimbursements" class="flex justify-between">
-                        <span class="text-2xl font-bold">
-                            {{ accounts.formattedReimbursementsBalance }}
-                        </span>
-                        <span>
-                            <CaretLeftIcon class="h-10 w-10 rotate-180" />
-                        </span>
+                    <hr class="border-0 border-b-2 border-b-gray-400 mb-2">
+                    <div class="md:flex md:justify-between">
+                        <div
+                            :class="['text-gray-800 md:font-semibold md:text-2xl', accounts.fundsAvailable < 0 ? 'md:text-rose-600' : 'md:text-cyan-700']">
+                            {{ fundsLeftLabel }}</div>
+                        <div
+                            :class="['text-3xl font-semibold md:pr-10', accounts.fundsAvailable < 0 ? 'text-rose-600' : 'text-cyan-700']">
+                            {{ accounts.formattedFundsAvailable }}</div>
                     </div>
-                </div>
-
-                <div>
-                    <div class="text-gray-800">Approved Future Expenses</div>
-                    <div @click="gotoApprovedExpenses" class="flex justify-between">
-                        <span class="text-2xl font-bold">
-                            {{ accounts.formattedApprovedExpensesBalance }}
-                        </span>
-                        <span>
-                            <CaretLeftIcon class="h-10 w-10 rotate-180" />
-                        </span>
-                    </div>
-                </div>
-
-                <div>
-                    <hr class="border-0 border-b border-b-gray-300 mb-4">
-
-                    <div class="text-gray-800">{{ fundsLeftLabel }}</div>
-                    <div class="text-3xl font-bold">{{ accounts.formattedFundsAvailable }}</div>
+                    <hr class="border-0 border-b-2 border-b-gray-400 mt-2">
+                    <hr class="border-0 border-b-4 border-b-gray-400 mt-1">
                 </div>
             </div>
         </div>
@@ -89,9 +49,11 @@
 </template>
 
 <script setup lang="ts">
-    import ContributionItem from '@/components/ContributionItem.vue';
+    import AccountsApprovedExpenses from '@/components/AccountsApprovedExpenses.vue';
+    import AccountsContributions from '@/components/AccountsContributions.vue';
+    import AccountsReimbursements from '@/components/AccountsReimbursements.vue';
+    import AccountsUtilityExpenses from '@/components/AccountsUtilityExpenses.vue';
     import UnauthenticatedProfile from '@/components/UnauthenticatedProfile.vue';
-    import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
     import { useAccountsStore } from '@/stores/accounts';
     import { useAuthStore } from '@/stores/auth';
     import { useViewsStore } from '@/stores/views';
@@ -101,25 +63,13 @@
     const auth = useAuthStore()
     const accounts = useAccountsStore()
 
-    const gotoReimbursements = () => {
-        view.showHeader = false
-        view.setView('reimbursements')
-    }
-
-    const gotoContributions = () => {
-        view.setView('contributions')
-    }
-
-    const gotoUnpaidUtilityExpenses = () => {
-        view.setView('monthly-expenses')
-    }
-
-    const gotoApprovedExpenses = () => {
-        view.setView('approved-expenses')
-    }
-
     const fundsLeftLabel = computed(() => {
         return accounts.fundsAvailable >= 0 ? 'Available Funds Balance' : 'Funds Dificit'
+    })
+
+    const currentDate = computed(() => {
+        const d = new Date()
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     })
 
     onMounted(() => {

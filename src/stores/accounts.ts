@@ -142,6 +142,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         pull,
         shouldPull,
         formattedBalance,
+        approvedExpensesBalance,
         forReimbursementsItems,
         forReimbursementsBalance,
         formattedReimbursementsBalance,
