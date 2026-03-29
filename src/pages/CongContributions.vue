@@ -1,5 +1,9 @@
 <template>
     <div class="p-6">
+        <Teleport :to="'body'">
+            <ContributionsForm :target @unset-target="target = null" />
+        </Teleport>
+
         <div>
             <div @click="exit" class="flex space-x-0 items-center cursor-pointer">
                 <span>
@@ -13,7 +17,7 @@
 
             <div class="space-y-5">
                 <template v-for="cong in accounts.contributions" :key="cong.cong">
-                    <ContributionItem :cong />
+                    <ContributionItem :cong @click="target = cong" />
                 </template>
 
                 <div class="flex justify-between py-3">
@@ -29,12 +33,16 @@
 <script setup lang="ts">
     import ContributionItem from '@/components/ContributionItem.vue';
     import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
+    import type { MonthlyContribution } from '@/types/accounts';
     import { useAccountsStore } from '@/stores/accounts';
     import { useViewsStore } from '@/stores/views';
-    import { onMounted } from 'vue';
+    import { onMounted, ref, Teleport } from 'vue';
+    import ContributionsForm from '@/components/modals/ContributionsForm.vue';
 
     const views = useViewsStore()
     const accounts = useAccountsStore()
+
+    const target = ref<MonthlyContribution | null>(null)
 
     const exit = () => {
         views.showHeader = true

@@ -42,8 +42,8 @@ export interface MonthlyContribution {
     amount: number
 }
 
-export interface PostResponses {
-    status: 202 | 204
+export interface PostResponse {
+    status: '202' | '204'
     message: string
 }
 

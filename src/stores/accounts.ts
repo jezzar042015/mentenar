@@ -1,4 +1,4 @@
-import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, Reimbursement } from "@/types/accounts";
+import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostResponse, Reimbursement } from "@/types/accounts";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
@@ -107,9 +107,9 @@ export const useAccountsStore = defineStore('accounts', () => {
         }).format(unreceivedContributions.value);
     })
 
-    const pull = async () => {
+    const url = 'https://script.google.com/macros/s/AKfycbyAQefUYAyineiBgfRWYLrXPl0wDiulgUirIeL5g7tuKuTHgnVlfPd9D47Z9n7dFy8Lvw/exec'
 
-        const url = 'https://script.google.com/macros/s/AKfycbyAQefUYAyineiBgfRWYLrXPl0wDiulgUirIeL5g7tuKuTHgnVlfPd9D47Z9n7dFy8Lvw/exec'
+    const pull = async () => {
 
         try {
             fetching.value = true
@@ -118,7 +118,7 @@ export const useAccountsStore = defineStore('accounts', () => {
 
             // Set the token to falsy state
             if (result.status === 400) auth.token = ''
-            
+
             reimbursements.value = result.data?.reimbursements ?? []
             monthly.value = result.data?.monthly ?? []
             approved.value = result.data?.approved ?? []
@@ -130,6 +130,24 @@ export const useAccountsStore = defineStore('accounts', () => {
         } catch (error) {
             console.log(error);
             fetching.value = false
+        }
+    }
+
+    const setContribution = async (payload: PostContributionPayload) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const resp = await response.json() as PostResponse;
+
+        if (resp.status.toString() == '202') {
+            const contribution = contributions.value.find(c => c.cong === payload.data.cong)
+            if (contribution) contribution.delayed = payload.data.months
         }
     }
 
@@ -150,6 +168,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         approved,
         contributions,
         pull,
+        setContribution,
         shouldPull,
         formattedBalance,
         approvedExpensesItems,
