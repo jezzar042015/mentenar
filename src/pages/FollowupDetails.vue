@@ -80,10 +80,18 @@
                     <div v-for="value in followup.active.list" :key="value.task" class="flex items-start space-x-2">
                         <span :class="[
                             'flex mt-1 h-4 w-4 rounded-sm border relative overflow-hidden',
-                            value.completed ? 'bg-orange-600 border-orange-600 scale-105' : 'bg-transparent border-black/70 scale-100'
-                        ]">
+                            value.completed ? 'bg-blue-600 border-blue-600 scale-105' : 'bg-transparent border-black/70 scale-100'
+                        ]" v-if="followup.active.status === 'Completed'">
                             <CheckIcon v-if="value.completed" class="absolute -top-1 -left-0.5 h-5 w-5 text-white" />
                         </span>
+
+                        <span :class="[
+                            'flex mt-1 h-4 w-4 rounded-sm border relative overflow-hidden',
+                            value.completed ? 'bg-orange-600 border-orange-600 scale-105' : 'bg-transparent border-black/70 scale-100'
+                        ]" v-else>
+                            <CheckIcon v-if="value.completed" class="absolute -top-1 -left-0.5 h-5 w-5 text-white" />
+                        </span>
+
                         <span :class="['flex-1', value.completed ? 'line-through' : '']">{{ value.task }}</span>
 
                     </div>
@@ -139,7 +147,6 @@
     })
 
     const isCompleted = computed(() => followup.active?.status === 'Completed')
-
 
 
 </script>
