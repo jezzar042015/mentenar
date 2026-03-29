@@ -8,6 +8,7 @@ export interface FollowupItem {
     status: string
     remarks: string
     list: FollowupChecklistItem[]
+    link: string
 }
 
 export interface FollowupChecklistItem {
