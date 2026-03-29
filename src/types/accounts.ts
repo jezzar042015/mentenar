@@ -23,7 +23,7 @@ export interface Reimbursement {
 export interface MonthlyExpense {
     name: string
     type: string
-    status: string
+    status: 'Unused' | 'Used'
     amount: number
 }
 

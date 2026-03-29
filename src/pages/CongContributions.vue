@@ -15,7 +15,7 @@
                 Pending Contributions
             </div>
 
-            <div class="space-y-5">
+            <div class="space-y-2">
                 <template v-for="cong in accounts.contributions" :key="cong.cong">
                     <ContributionItem :cong @click="target = cong" />
                 </template>

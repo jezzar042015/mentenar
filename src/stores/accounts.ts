@@ -1,4 +1,4 @@
-import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostResponse, Reimbursement } from "@/types/accounts";
+import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostMonthlyExpensePayload, PostResponse, Reimbursement } from "@/types/accounts";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
@@ -151,6 +151,24 @@ export const useAccountsStore = defineStore('accounts', () => {
         }
     }
 
+    const setMonthlyExpenseStatus = async (payload: PostMonthlyExpensePayload) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const resp = await response.json() as PostResponse;
+
+        if (resp.status.toString() == '202') {
+            const monthExpense = monthly.value.find(c => c.name === payload.data.name)
+            if (monthExpense) monthExpense.status = payload.data.status
+        }
+    }
+
     const shouldPull = computed(() => {
         if (!latestUpdate.value) return true;
         const lastUpdateDate = new Date(latestUpdate.value);
@@ -168,7 +186,8 @@ export const useAccountsStore = defineStore('accounts', () => {
         approved,
         contributions,
         pull,
-        setContribution,
+        setContribution, 
+        setMonthlyExpenseStatus,
         shouldPull,
         formattedBalance,
         approvedExpensesItems,
