@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
         <TransactionDetails :target @unset-target="unsetTarget" />
-        <TransactionForm v-if="form"/>
+        <TransactionForm v-if="form" @close="form = false"/>
     </Teleport>
     <div class="h-screen overflow-hidden flex flex-col">
         <div class="pt-6 px-6 pb-3">
