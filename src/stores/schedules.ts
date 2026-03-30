@@ -22,8 +22,13 @@ export const useScheduleStore = defineStore('schedules', () => {
         return 1 + Math.round(diff / (7 * 24 * 60 * 60 * 1000))
     })
 
+    const currentYear = computed(() => {
+        const date = new Date()
+        return date.getFullYear()
+    })
+
     const thisWeek = computed(() => {
-        return data.value.find(w => w.weekNum === currentWeekNum.value)
+        return data.value.find(w => w.weekNum === currentWeekNum.value && w.year === currentYear.value)
     })
 
     const nextWeek = computed(() => {
@@ -60,5 +65,6 @@ export const useScheduleStore = defineStore('schedules', () => {
         fetching,
         pull,
         shouldPull,
+        currentYear,
     }
 })

@@ -14,7 +14,7 @@
             </div>
 
             <div v-for="s in scheds.data" :key="s.weekNum + s.week" class="p-2 border-0 border-b border-b-gray-300">
-                <div class="pb-2 text-xl text-cyan-700">{{ s.week }}</div>
+                <div class="pb-2 text-xl text-cyan-700">{{ s.week }}, {{ s.year }}</div>
                 
                 <div class="grid grid-cols-2">
                     <div class="text-xs flex items-center gap-1">
@@ -23,7 +23,7 @@
                         </div>
                         <div> Garbage Disposal</div>
                     </div>
-                    <div class="font-semibold">{{ s.garbage }}</div>
+                    <div class="font-semibold text-sm">{{ s.garbage }}</div>
 
                 </div>
 
@@ -38,11 +38,11 @@
                     <div class="pt-2 space-y-1">
                         <div class="flex justify-between items-center">
                             <div class="text-xs w-1/2">Hall 1 & Exteriors</div>
-                            <div class="font-semibold flex-1">{{ s.cleaning.hall1 }}</div>
+                            <div class="font-semibold text-sm flex-1">{{ s.cleaning.hall1 }}</div>
                         </div>
                         <div class="flex justify-between items-center">
                             <div class="text-xs w-1/2">Hall 2 & Exteriors</div>
-                            <div class="font-semibold flex-1">{{ s.cleaning.hall2 }}</div>
+                            <div class="font-semibold text-sm flex-1">{{ s.cleaning.hall2 }}</div>
                         </div>
                     </div>
 

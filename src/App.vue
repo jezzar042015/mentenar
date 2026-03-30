@@ -21,7 +21,7 @@
   import CongContributions from './pages/CongContributions.vue';
   import MonthlyExpenses from './pages/MonthlyExpenses.vue';
   import ApprovedExpenses from './pages/ApprovedExpenses.vue';
-import WeeklySchudules from './pages/WeeklySchudules.vue';
+  import WeeklySchudules from './pages/WeeklySchudules.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -39,6 +39,7 @@ import WeeklySchudules from './pages/WeeklySchudules.vue';
     if (viewStore.view == 'home') {
       await followup.pull()
       await preventive.pullMonth()
+      await scheds.pull()
     }
 
     if (viewStore.view == 'profile' && auth.token) {

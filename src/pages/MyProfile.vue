@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <AccountsUtilityExpenses v-if="accounts.monthlyExpensesBalance > 0"/>
+                <AccountsUtilityExpenses :class="[{ 'md:hidden': accounts.monthlyExpensesBalance === 0 }]" />
                 <AccountsReimbursements v-if="accounts.forReimbursementsBalance > 0" />
                 <AccountsApprovedExpenses v-if="accounts.approvedExpensesBalance > 0" />
 

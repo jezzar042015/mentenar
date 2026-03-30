@@ -1,5 +1,8 @@
 <template>
     <div class="p-6">
+        <Teleport :to="'body'">
+            <MonthlyExpenseStatusForm :target @unset-target="target = null"/>
+        </Teleport>
         <div>
             <div @click="exit" class="flex space-x-0 items-center">
                 <span>
@@ -11,9 +14,9 @@
                 Unpaid Utility Expenses
             </div>
             <div>
-                <div class="space-y-5">
+                <div class="space-y-2">
                     <template v-for="m in account.monthly" :key="m.name">
-                        <MonthlyExpenseItem :m />
+                        <MonthlyExpenseItem :m @click="target = m" />
                     </template>
 
                     <div class="flex justify-between py-3">
@@ -28,13 +31,16 @@
 
 <script setup lang="ts">
     import MonthlyExpenseItem from '@/components/MonthlyExpenseItem.vue';
+    import MonthlyExpenseStatusForm from '@/components/modals/MonthlyExpenseStatusForm.vue';
     import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
+    import type { MonthlyExpense } from '@/types/accounts';
     import { useAccountsStore } from '@/stores/accounts';
     import { useViewsStore } from '@/stores/views';
-    import { onMounted } from 'vue';
+    import { onMounted, ref } from 'vue';
 
     const view = useViewsStore()
     const account = useAccountsStore()
+    const target = ref<MonthlyExpense | null>(null)
 
     const exit = () => {
         view.showHeader = true

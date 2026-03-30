@@ -23,7 +23,7 @@ export interface Reimbursement {
 export interface MonthlyExpense {
     name: string
     type: string
-    status: string
+    status: 'Unused' | 'Used'
     amount: number
 }
 
@@ -52,8 +52,8 @@ export interface Transaction {
     category: string
 }
 
-export interface PostResponses {
-    status: 202 | 204
+export interface PostResponse {
+    status: '202' | '204'
     message: string
 }
 

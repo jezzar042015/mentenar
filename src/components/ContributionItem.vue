@@ -1,7 +1,7 @@
 <template>
-    <div class="py-3 border-0 border-b border-b-gray-300 md:border-b-gray-200 md:py-1">
+    <div class="py-1 border-0 border-b border-b-gray-300 md:border-b-gray-200 md:py-1">
         <!-- mobile screens -->
-        <div class="flex justify-between md:hidden">
+        <div class="flex justify-between md:hidden cursor-pointer hover:bg-white p-3 hover:shadow rounded-sm">
             <div>
                 <div class="text-lg font-semibold">
                     {{ cong.cong }}
