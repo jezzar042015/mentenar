@@ -1,4 +1,7 @@
 <template>
+    <Teleport to="body">
+        <TransactionDetails :target @unset-target="unsetTarget" />
+    </Teleport>
     <div class="h-screen overflow-hidden flex flex-col">
         <div class="pt-6 px-6 pb-3">
             <div @click="exit" class="flex space-x-0 items-center">
@@ -11,7 +14,10 @@
                 Primary Account
             </div>
         </div>
-        <div class="mx-1 p-2 bg-lime-700 text-white font-semibold grid grid-cols-3 md:grid-cols-8 text-sm gap-1 rounded-xs">
+
+        <!-- Header -->
+        <div
+            class="mx-1 p-2 bg-lime-700 text-white font-semibold grid grid-cols-3 md:grid-cols-8 text-sm gap-1 rounded-xs">
             <div class="">Date</div>
             <div class="hidden md:inline col-span-1">Payee</div>
             <div class="hidden md:inline col-span-4">Description</div>
@@ -19,9 +25,10 @@
             <div class="text-right">Balance</div>
         </div>
 
+        <!-- Transaction Items -->
         <div class="flex-1 overflow-y-auto pt-2 pb-10">
             <template v-for="(t, i) in accounts.reversedTransactions" :key="i">
-                <TransactionItem :t />
+                <TransactionItem :t @click="target = t" />
             </template>
         </div>
     </div>
@@ -31,12 +38,16 @@
 <script setup lang="ts">
     import TransactionItem from '@/components/TransactionItem.vue';
     import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
+    import TransactionDetails from '@/components/modals/TransactionDetails.vue';
+    import type { Transaction } from '@/types/accounts';
     import { useAccountsStore } from '@/stores/accounts';
     import { useViewsStore } from '@/stores/views';
-    import { onMounted } from 'vue';
+    import { onMounted, ref } from 'vue';
 
     const accounts = useAccountsStore()
     const view = useViewsStore()
+    const target = ref<Transaction | null>()
+    const unsetTarget = () => { target.value = null }
 
     const exit = () => {
         view.showHeader = true
