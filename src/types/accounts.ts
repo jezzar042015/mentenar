@@ -42,6 +42,16 @@ export interface MonthlyContribution {
     amount: number
 }
 
+export interface Transaction {
+    date: string
+    payee: string
+    desc: string
+    flow: "IN" | "OUT"
+    amount: number
+    balance: number
+    category: string
+}
+
 export interface PostResponses {
     status: 202 | 204
     message: string
@@ -86,6 +96,6 @@ export interface PostUpdateApprovedExpensePayload {
         name: string
         desc: string
         status: 'For Approval' | 'Approved' | 'For Reimbursement'
-        amount: number  
+        amount: number
     }
 }
