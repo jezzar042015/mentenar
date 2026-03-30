@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
     import ApprovedExpenseItem from '@/components/ApprovedExpenseItem.vue';
-import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
+    import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
     import { useAccountsStore } from '@/stores/accounts';
     import { useViewsStore } from '@/stores/views';
     import { onMounted } from 'vue';

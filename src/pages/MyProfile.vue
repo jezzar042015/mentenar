@@ -19,13 +19,7 @@
 
 
             <div class="bg-white space-y-4 md:space-y-6 p-5 rounded-md">
-                <div class="md:flex md:justify-between">
-                    <div class="text-gray-800 md:font-semibold md:text-xl md:text-cyan-700">KHOC Fund Balance</div>
-                    <div class="text-2xl md:pr-10 font-semibold md:text-cyan-700">{{
-                        accounts.formattedBalance }}
-                    </div>
-                </div>
-
+                <AccountsFundBalance />
                 <AccountsUtilityExpenses :class="[{ 'md:hidden': accounts.monthlyExpensesBalance === 0 }]" />
                 <AccountsReimbursements v-if="accounts.forReimbursementsBalance > 0" />
                 <AccountsApprovedExpenses v-if="accounts.approvedExpensesBalance > 0" />
@@ -51,6 +45,7 @@
 <script setup lang="ts">
     import AccountsApprovedExpenses from '@/components/AccountsApprovedExpenses.vue';
     import AccountsContributions from '@/components/AccountsContributions.vue';
+import AccountsFundBalance from '@/components/AccountsFundBalance.vue';
     import AccountsReimbursements from '@/components/AccountsReimbursements.vue';
     import AccountsUtilityExpenses from '@/components/AccountsUtilityExpenses.vue';
     import UnauthenticatedProfile from '@/components/UnauthenticatedProfile.vue';

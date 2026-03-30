@@ -23,6 +23,10 @@ export const useAccountsStore = defineStore('accounts', () => {
         }).format(balance.value);
     })
 
+    const reversedTransactions = computed(() => {
+        return [...transactions.value].reverse()
+    });
+
     const forReimbursementsItems = computed(() => {
         return reimbursements.value.filter(r => r.status == 'For Reimbursement')
     })
@@ -189,7 +193,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         contributions,
         transactions,
         pull,
-        setContribution, 
+        setContribution,
         setMonthlyExpenseStatus,
         shouldPull,
         formattedBalance,
@@ -204,6 +208,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         formattedMonthlyExpensesBalance,
         formattedApprovedExpensesBalance,
         unreceivedContributions,
-        formattedReceivableContributions
+        formattedReceivableContributions,
+        reversedTransactions,
     }
 })
