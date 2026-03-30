@@ -11,22 +11,22 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.0",
+    "@tailwindcss/vite": "^4.2.2",
     "@vueuse/core": "^14.2.1",
     "pinia": "^3.0.4",
-    "tailwindcss": "^4.2.0",
-    "vue": "^3.5.28"
+    "tailwindcss": "^4.2.2",
+    "vue": "^3.5.31"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
-    "@types/node": "^24.10.13",
-    "@vitejs/plugin-vue": "^6.0.4",
-    "@vue/tsconfig": "^0.8.1",
+    "@types/node": "^25.5.0",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "@vue/tsconfig": "^0.9.1",
     "npm-run-all2": "^8.0.4",
-    "typescript": "~5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-vue-devtools": "^8.0.6",
-    "vue-tsc": "^3.2.4"
+    "typescript": "^6.0.2",
+    "vite": "^8.0.3",
+    "vite-plugin-vue-devtools": "^8.1.1",
+    "vue-tsc": "^3.2.6"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

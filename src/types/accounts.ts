@@ -76,6 +76,24 @@ export interface PostMonthlyExpensePayload {
     }
 }
 
+export interface PostReimbursementUpdatePayload {
+    token: string
+    target: 'set-reimbursement-status'
+    data: {
+        row: number
+        status: string
+        amount: "Reimbursed" | "For Reimbursement" | "Cancel"
+        payee: string
+    }
+}
+
+export interface PostCreateTransaction {
+    token: string
+    target: 'create-primary-transaction'
+    data: Transaction
+}
+
+
 export interface PostCreateApprovedExpensePayload {
     token: string
     target: 'create-approved-expense'
