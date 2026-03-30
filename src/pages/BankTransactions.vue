@@ -1,6 +1,7 @@
 <template>
     <Teleport to="body">
         <TransactionDetails :target @unset-target="unsetTarget" />
+        <TransactionForm v-if="form"/>
     </Teleport>
     <div class="h-screen overflow-hidden flex flex-col">
         <div class="pt-6 px-6 pb-3">
@@ -10,8 +11,9 @@
                 </span>
                 <span>Operating Committee</span>
             </div>
-            <div class="font-bold text-2xl mb-0">
-                Primary Account
+            <div class="mb-0 flex justify-between items-center">
+                <span class="font-bold text-2xl ">Primary Account</span>
+                <button @click="form = true" class="text-wrap w-16 bg-lime-700 text-white text-xs shadow p-2 rounded-sm -mr-3">New</button>
             </div>
         </div>
 
@@ -39,6 +41,7 @@
     import TransactionItem from '@/components/TransactionItem.vue';
     import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
     import TransactionDetails from '@/components/modals/TransactionDetails.vue';
+    import TransactionForm from '@/components/modals/TransactionForm.vue';
     import type { Transaction } from '@/types/accounts';
     import { useAccountsStore } from '@/stores/accounts';
     import { useViewsStore } from '@/stores/views';
@@ -46,6 +49,8 @@
 
     const accounts = useAccountsStore()
     const view = useViewsStore()
+    const form = ref(false)
+
     const target = ref<Transaction | null>()
     const unsetTarget = () => { target.value = null }
 
