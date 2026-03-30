@@ -11,8 +11,10 @@
                 Primary Account
             </div>
         </div>
-        <div class="mx-1 p-2 bg-lime-700 text-white font-semibold grid grid-cols-3 text-sm gap-1 rounded-xs">
+        <div class="mx-1 p-2 bg-lime-700 text-white font-semibold grid grid-cols-3 md:grid-cols-8 text-sm gap-1 rounded-xs">
             <div class="">Date</div>
+            <div class="hidden md:inline col-span-1">Payee</div>
+            <div class="hidden md:inline col-span-4">Description</div>
             <div class="text-right">Amount</div>
             <div class="text-right">Balance</div>
         </div>

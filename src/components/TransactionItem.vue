@@ -1,7 +1,9 @@
 <template>
     <div class="mx-1 px-2 text-sm py-1 space-y-0.5 odd:bg-gray-200">
-        <div class="grid grid-cols-3 gap-1">
+        <div class="grid grid-cols-3 md:grid-cols-8 gap-1">
             <div class="">{{ dateDisplay }}</div>
+            <div class="hidden md:inline col-span-1">{{ t.payee }}</div>
+            <div class="hidden md:inline col-span-4">{{ t.desc }}</div>
             <div class="text-right relative">
                 {{ formattedAmount }}
                 <span class="absolute top-0.5">
@@ -10,7 +12,7 @@
             </div>
             <div class="text-right">{{ formattedBalance }}</div>
         </div>
-        <div class="text-gray-500">{{ t.payee }}</div>
+        <div class="text-gray-500 md:hidden">{{ t.payee }}</div>
     </div>
 </template>
 

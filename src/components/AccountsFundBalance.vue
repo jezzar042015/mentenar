@@ -5,7 +5,7 @@
             <span class="text-2xl font-semibold">
                 {{ accounts.formattedBalance }}
             </span>
-            <span>
+            <span class="md:hidden">
                 <CaretLeftIcon class="h-10 w-10 rotate-180" />
             </span>
         </div>
