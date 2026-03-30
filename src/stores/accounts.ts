@@ -1,4 +1,4 @@
-import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostMonthlyExpensePayload, PostResponse, Reimbursement } from "@/types/accounts";
+import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostMonthlyExpensePayload, PostResponse, Reimbursement, Transaction } from "@/types/accounts";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
@@ -9,6 +9,7 @@ export const useAccountsStore = defineStore('accounts', () => {
     const monthly = useStorage<MonthlyExpense[]>('khoc-monthly-expenses', [], localStorage, { mergeDefaults: true })
     const approved = useStorage<ApprovedExpense[]>('khoc-approved-expenses', [], localStorage, { mergeDefaults: true })
     const contributions = useStorage<MonthlyContribution[]>('khoc-contributions', [], localStorage, { mergeDefaults: true })
+    const transactions = useStorage<Transaction[]>('khoc-transcations', [], localStorage, { mergeDefaults: true })
     const latestUpdate = useStorage<string>('khoc-accounts-latest-update', '', localStorage)
     const fetching = ref(false)
     const balance = useStorage<number>('khoc-accounts-balance', 0, localStorage)
@@ -123,6 +124,7 @@ export const useAccountsStore = defineStore('accounts', () => {
             monthly.value = result.data?.monthly ?? []
             approved.value = result.data?.approved ?? []
             contributions.value = result.data?.contributions ?? []
+            transactions.value = result.data?.transactions ?? []
             balance.value = result.data?.balance ?? 0
             latestUpdate.value = result.timestamp
             fetching.value = false
@@ -185,6 +187,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         monthly,
         approved,
         contributions,
+        transactions,
         pull,
         setContribution, 
         setMonthlyExpenseStatus,

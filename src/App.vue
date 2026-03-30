@@ -22,6 +22,7 @@
   import MonthlyExpenses from './pages/MonthlyExpenses.vue';
   import ApprovedExpenses from './pages/ApprovedExpenses.vue';
   import WeeklySchudules from './pages/WeeklySchudules.vue';
+  import BankTransactions from './pages/BankTransactions.vue';
 
   const viewStore = useViewsStore()
   const followup = useFollowupsStore()
@@ -74,5 +75,6 @@
     <MonthlyExpenses v-if="viewStore.view == 'monthly-expenses'" />
     <ApprovedExpenses v-if="viewStore.view == 'approved-expenses'" />
     <WeeklySchudules v-if="viewStore.view == 'schedules'" />
+    <BankTransactions v-if="viewStore.view == 'transactions'" />
   </div>
 </template>

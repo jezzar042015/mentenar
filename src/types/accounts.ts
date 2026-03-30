@@ -8,6 +8,7 @@ export interface AccountsResponse {
         monthly: MonthlyExpense[]
         approved: ApprovedExpense[]
         contributions: MonthlyContribution[]
+        transactions: Transaction[]
     }
 }
 
