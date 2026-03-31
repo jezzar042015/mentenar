@@ -1,5 +1,5 @@
 <template>
-    <div class="border-0 border-b border-b-gray-300 py-4 md:py-1">
+    <div class="border-0 border-b border-b-gray-300 py-4 px-4 transition-all duration-500 md:py-1 cursor-pointer rounded-sm hover:bg-orange-500 hover:text-white hover:shadow">
         <!-- mobile screens -->
         <div class="md:hidden">
             <div class="flex justify-between">

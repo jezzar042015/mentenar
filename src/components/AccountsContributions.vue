@@ -4,7 +4,7 @@
         <div class="md:hidden">
             <div class="text-gray-800">Pending Contributions</div>
             <div @click="gotoContributions" class="flex justify-between cursor-pointer ">
-                <span class="text-2xl font-semibold">
+                <span class="text-2xl font-semibold hover:scale-105 transition-all duration-300">
                     {{ accounts.formattedReceivableContributions }}
                 </span>
                 <span>

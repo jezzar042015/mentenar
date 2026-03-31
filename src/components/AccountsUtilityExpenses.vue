@@ -2,9 +2,9 @@
     <div>
 
         <!-- mobile screens -->
-        <div class="text-gray-800 md:font-semibold md:hidden">Unpaid Utility Expenses</div>
-        <div @click="gotoUnpaidUtilityExpenses" class="flex justify-between md:hidden">
-            <span class="text-2xl font-semibold">
+        <div class="text-gray-800 md:font-semibold md:hidden cursor-pointer">Unpaid Utility Expenses</div>
+        <div @click="gotoUnpaidUtilityExpenses" class="flex justify-between md:hidden cursor-pointer">
+            <span class="text-2xl font-semibold hover:scale-105 transition-transform duration-300">
                 {{ accounts.formattedMonthlyExpensesBalance }}
             </span>
             <span>
@@ -17,7 +17,7 @@
             <div class="flex justify-between">
                 <div class="font-semibold text-xl text-cyan-700">Unpaid Utility Expenses</div>
                 <div class="text-2xl font-semibold w-1/3 text-right px-10 text-cyan-700">
-                   &dash; {{ accounts.formattedMonthlyExpensesBalance }}
+                    &dash; {{ accounts.formattedMonthlyExpensesBalance }}
                 </div>
             </div>
 
