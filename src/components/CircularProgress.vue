@@ -36,7 +36,7 @@
             case 'amber':
                 return '#ffa431'
             case 'orange':
-                return '#ea580c'
+                return '#f0b100'
             case 'blue':
                 return '#155dfc'
             default:
