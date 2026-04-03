@@ -4,7 +4,7 @@
             <MonthlyExpenseStatusForm :target @unset-target="target = null"/>
         </Teleport>
         <div>
-            <div @click="exit" class="flex space-x-0 items-center">
+            <div @click="exit" class="flex space-x-0 items-center cursor-pointer">
                 <span>
                     <CaretLeftIcon class="h-5 w-5" />
                 </span>

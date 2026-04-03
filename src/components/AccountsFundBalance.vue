@@ -1,8 +1,8 @@
 <template>
     <div @click="gotoTransactions" class="md:flex md:justify-between">
         <div class="text-gray-800 md:font-semibold md:text-xl md:text-cyan-700">KHOC Fund Balance</div>
-        <div class="md:pr-10 md:text-cyan-700 flex justify-between ">
-            <span class="text-2xl font-semibold">
+        <div class="md:pr-10 md:text-cyan-700 flex justify-between cursor-pointer">
+            <span class="text-2xl font-semibold hover:scale-105 transition-all duration-300">
                 {{ accounts.formattedBalance }}
             </span>
             <span class="md:hidden">
