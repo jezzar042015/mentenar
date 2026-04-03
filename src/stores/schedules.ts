@@ -8,6 +8,35 @@ export const useScheduleStore = defineStore('schedules', () => {
     const latestUpdate = useStorage<string>('khoc-schedules-latest-update', '', localStorage)
     const fetching = ref(false)
 
+    const filteredData = computed(() => {
+        const now = new Date()
+
+        // Helper: convert ISO week/year → Date (Thursday of that week)
+        const getDateFromWeek = (year: number, week: number) => {
+            const simple = new Date(year, 0, 1 + (week - 1) * 7)
+            const dayOfWeek = simple.getDay()
+            const ISOweekStart = new Date(simple)
+
+            if (dayOfWeek <= 4) {
+                ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1)
+            } else {
+                ISOweekStart.setDate(simple.getDate() + (8 - simple.getDay()))
+            }
+
+            return ISOweekStart
+        }
+
+        // Get date 2 weeks ago
+        const twoWeeksAgo = new Date(now)
+        twoWeeksAgo.setDate(now.getDate() - 14)
+
+        return data.value.filter(item => {
+            const itemDate = getDateFromWeek(item.year, item.weekNum)
+
+            return itemDate >= twoWeeksAgo
+        })
+    })
+
     const currentWeekNum = computed(() => {
         const date = new Date()
 
@@ -60,11 +89,13 @@ export const useScheduleStore = defineStore('schedules', () => {
 
     return {
         data,
+        filteredData,
         thisWeek,
         nextWeek,
         fetching,
         pull,
         shouldPull,
         currentYear,
+        currentWeekNum,
     }
 })

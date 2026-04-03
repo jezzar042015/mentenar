@@ -17,6 +17,9 @@ export const useViewsStore = defineStore('views', () => {
     // default header visibility
     const showHeader = ref(true)
 
+    // secondaryView
+    const autoFilter = ref<string | null>(null)
+
     const headers = ref<Record<AppView, string>>({
         "home": "Maintenance Overview",
         "followups": "Follow Up Items",
@@ -36,8 +39,9 @@ export const useViewsStore = defineStore('views', () => {
         "transactions": "",
     })
 
-    const setView = (v: AppView) => {
+    const setView = (v: AppView, sv: string | null = null) => {
         view.value = v
+        autoFilter.value = sv
     }
 
     const handleViewRequest = async () => {
@@ -51,13 +55,14 @@ export const useViewsStore = defineStore('views', () => {
 
         if (url.allowedParams.v === 'followup-details' && url.allowedParams.ref) {
             fu.activeTask = url.allowedParams.ref
-            if (!fu.active?.task) 
+            if (!fu.active?.task)
                 view.value = 'followups'
         }
     }
 
     return {
         view,
+        autoFilter,
         showHeader,
         headers,
         setView,

@@ -1,9 +1,9 @@
 <template>
     <WeeklyCleaningTasks v-if="weeklyModal" />
-    <div class="bg-gray-200 p-4 h-screen">
-        <div class="mt-0 mb-10">
+    <div class="pt-4 px-4 h-full mb-10">
+        <div class="mt-0 h-full mb-10 ">
 
-            <div class="space-y-4  ">
+            <div class="space-y-4 mb-10">
 
                 <template v-if="scheds.thisWeek">
                     <DashWeeklySchedules :week-sched="scheds.thisWeek" />
@@ -25,19 +25,25 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-md space-y-4 shadow-xl">
-                    <div>
-                        <h2 class="text-lg font-semibold">Due this week</h2>
+                <div class="bg-white px-4 py-4 rounded-md space-y-6 shadow-xl md:grid grid-cols-2 gap-5">
+                    <div v-if="followup.overdue.length > 0" class="p-5 shadow-md h-full" @click="gotoTasksOverdues">
+                        <div class="flex items-center gap-1">
+                            <div>Overdue</div>
+                        </div>
+                        <div class="font-bold text-6xl text-red-500 flex items-start gap-2">
+                            <div> {{ followup.overdue.length }}</div>
+                            <div class="text-3xl">task{{ followup.overdue.length > 1 ? 's' : '' }}</div>
+                        </div>
                     </div>
 
-                    <div class="space-y-4 md:grid md:grid-cols-2 md:gap-3">
-                        <template v-for="item in followup.overdue" :key="item.task">
-                            <DashFollowUpCard :item />
-                        </template>
-
-                        <template v-for="item in followup.dueSoon" :key="item.task">
-                            <DashFollowUpCard :item />
-                        </template>
+                    <div v-if="followup.dueSoon.length > 0" class="p-5 shadow-md h-full" @click="gotoTasksDueSoon">
+                        <div class="flex items-center gap-1">
+                            <div>Overdue in 7 days</div>
+                        </div>
+                        <div class="font-bold text-6xl text-orange-500 flex items-start gap-2">
+                            <div> {{ followup.dueSoon.length }}</div>
+                            <div class="text-3xl">task{{ followup.dueSoon.length > 1 ? 's' : '' }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,20 +52,29 @@
 </template>
 
 <script setup lang="ts">
-    import DashFollowUpCard from '@/components/DashFollowUpCard.vue';
     import DashPreventiveCard from '@/components/DashPreventiveCard.vue';
     import DashWeeklySchedules from '@/components/DashWeeklySchedules.vue';
     import WeeklyCleaningTasks from '@/components/WeeklyCleaningTasks.vue';
     import { useFollowupsStore } from '@/stores/followups';
     import { usePreventiveStore } from '@/stores/preventive';
     import { useScheduleStore } from '@/stores/schedules';
+    import { useViewsStore } from '@/stores/views';
     import { ref, watch } from 'vue';
 
     const followup = useFollowupsStore()
     const pm = usePreventiveStore()
     const scheds = useScheduleStore()
+    const view = useViewsStore()
 
     const weeklyModal = ref(false)
+
+    const gotoTasksOverdues = () => {
+        view.setView('followups','overdue')
+    }
+
+    const gotoTasksDueSoon = () => {
+        view.setView('followups','due')
+    }
 
     watch(weeklyModal, (val) => {
         document.body.style.overflow = val ? 'hidden' : ''

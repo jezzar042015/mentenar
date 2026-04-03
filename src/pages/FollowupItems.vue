@@ -14,7 +14,7 @@
 
             <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">Overdue</div>
-                <div class="space-y-3 md:grid md:grid-cols-2 md:gap-3">
+                <div class="space-y-3 md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-3">
                     <template v-for="f in followupsStore.overdue" :key="f.task">
                         <FollowupItem :f :stat="'overdue'" />
                     </template>
@@ -54,7 +54,7 @@
                 <template v-for="g in followupsStore.groupedCompleted" :key="g.month">
                     <div class="px-6 flex gap-2 items-center text-xl font-semibold">
                         <div>
-                            <CalendarIcon class="h-4 w-4"/>
+                            <CalendarIcon class="h-4 w-4" />
                         </div>
                         <div>
                             {{ g.month }}
@@ -78,13 +78,15 @@
 <script setup lang="ts">
     import type { FollowupListFilter } from '@/types/followups'
     import { useFollowupsStore } from '@/stores/followups'
-    import { ref, computed } from 'vue'
+    import { useViewsStore } from '@/stores/views'
+    import { ref, computed, watch } from 'vue'
     import FollowupItem from '@/components/FollowupItem.vue'
     import FollowupFilters from '@/components/FollowupFilters.vue'
-import CalendarIcon from '@/icons/CalendarIcon.vue'
+    import CalendarIcon from '@/icons/CalendarIcon.vue'
 
     const followupsStore = useFollowupsStore()
     const filter = ref<FollowupListFilter>('all')
+    const view = useViewsStore()
 
     const setFilter = (f: FollowupListFilter) => {
         filter.value = f
@@ -94,4 +96,15 @@ import CalendarIcon from '@/icons/CalendarIcon.vue'
         return followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length + followupsStore.overdue.length + followupsStore.noDue.length
     })
 
+    watch(
+        () => view.autoFilter,
+        () => {
+            if (view.autoFilter) {
+                const f = view.autoFilter as FollowupListFilter
+                filter.value = f
+            }
+        },
+        {
+            immediate: true
+        })
 </script>

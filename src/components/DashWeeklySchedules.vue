@@ -1,8 +1,14 @@
 <template>
     <div>
         <div class="bg-white p-4 rounded-md space-y-2 shadow-xl">
-            <div @click="gotoWeeklySchedules">
-                <h2 class="text-lg font-semibold">Weekly Schedules</h2>
+            <div>
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-semibold">Weekly Schedules</h2>
+                    <div @click="gotoWeeklySchedules" class="flex items-center gap-2 cursor-pointer hover:bg-gray-100 transition-all hover:shadow p-2 rounded-md">
+                        <CalendarIcon class="h-6 w-6 opacity-75" />
+                        <span class="hidden md:block text-sm">See Full Schedule</span>
+                    </div>
+                </div>
                 <h2 class="text-sm">{{ weekSched.week }}</h2>
             </div>
             <hr class="border-0 border-b border-b-gray-300">
@@ -56,7 +62,8 @@
 </template>
 
 <script setup lang="ts">
-    import CleaningMop from '@/icons/CleaningMop.vue';
+    import CalendarIcon from '@/icons/CalendarIcon.vue';
+import CleaningMop from '@/icons/CleaningMop.vue';
     import GarbageIcon from '@/icons/GarbageIcon.vue';
     import { useViewsStore } from '@/stores/views';
     import type { WeeklyScheduleItem } from '@/types/weekly-schedules';
