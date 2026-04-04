@@ -1,6 +1,6 @@
 <template>
     <div @click="loadItem"
-        :class="['p-3 shadow-md bg-white border-l-7 rounded-md flex justify-between md:h-full', sideBorderColor]">
+        :class="['p-3 shadow-md bg-white border-l-7 rounded-md flex justify-between md:h-full cursor-pointer hover:bg-red-100 transition-all', sideBorderColor]">
         <div class="space-y-1">
             <div class="text-base">{{ f.task }}</div>
             <div class="flex text-xs space-x-2 items-center">

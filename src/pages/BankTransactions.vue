@@ -4,7 +4,7 @@
         <TransactionForm v-if="form" @close="form = false"/>
     </Teleport>
     <div class="h-screen overflow-hidden flex flex-col">
-        <div class="pt-6 px-6 pb-3">
+        <div class="pt-6 px-6 pb-3 cursor-pointer">
             <div @click="exit" class="flex space-x-0 items-center">
                 <span>
                     <CaretLeftIcon class="h-5 w-5" />
@@ -13,7 +13,7 @@
             </div>
             <div class="mb-0 flex justify-between items-center">
                 <span class="font-bold text-2xl ">Primary Account</span>
-                <button @click="form = true" class="text-wrap w-16 bg-lime-700 text-white text-xs shadow p-2 rounded-sm -mr-3">New</button>
+                <button @click="form = true" class="text-wrap w-16 bg-lime-700 text-white text-xs shadow p-2 rounded-sm -mr-3 hover:bg-lime-800 transition-all cursor-pointer">New</button>
             </div>
         </div>
 
