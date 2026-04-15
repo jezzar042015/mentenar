@@ -49,7 +49,8 @@ export const useAccountsStore = defineStore('accounts', () => {
         return monthly.value
             .filter(f => f.status === 'Unused')
             .reduce((acc, item) => {
-                return acc + (Number(item?.amount) || 0);
+                const amnt = item?.actual > 0 ? item.actual : item?.amount
+                return acc + (Number(amnt) || 0);
             }, 0);
     })
 

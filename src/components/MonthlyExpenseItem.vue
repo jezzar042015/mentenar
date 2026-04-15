@@ -29,7 +29,8 @@
     }>()
 
     const amount = computed(() => {
-        return m.amount * (m.status == 'Used' ? 0 : 1)
+        const amntToUse = m.actual > 0 ? m.actual : m.amount 
+        return amntToUse * (m.status == 'Used' ? 0 : 1)
     })
 
     const formattedAmount = computed(() => {

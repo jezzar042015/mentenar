@@ -26,6 +26,7 @@ export interface MonthlyExpense {
     type: string
     status: 'Unused' | 'Used'
     amount: number
+    actual: number
 }
 
 export interface ApprovedExpense {
@@ -73,6 +74,7 @@ export interface PostMonthlyExpensePayload {
     data: {
         name: string //name of the expense
         status: 'Used' | 'Unused'
+        actual: number
     }
 }
 

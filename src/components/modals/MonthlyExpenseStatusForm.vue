@@ -15,6 +15,12 @@
                 </div>
 
                 <div>
+                    <div class="text-sm text-gray-700">Actual Amount</div>
+                    <input type="text" v-model="displayAmount" @focus="handleFocus" @blur="handleBlur"
+                        class="py-2 px-0 text-lg font-semibold border-0 border-b border-b-gray-400 w-full outline-0">
+                </div>
+
+                <div>
                     <div class="text-sm text-gray-700">Utilization Status</div>
 
                     <select name="" id="" v-model="utilizationStatus"
@@ -52,6 +58,8 @@
 
     const utilizationStatus = ref<'Unused' | 'Used'>('Unused')
     const posting = ref(false)
+    const actualAmount = ref(0)
+    const displayAmount = ref('')
 
     const emits = defineEmits(['unset-target'])
 
@@ -68,7 +76,8 @@
             token: auth.token,
             data: {
                 name: target.name,
-                status: utilizationStatus.value
+                status: utilizationStatus.value,
+                actual: actualAmount.value,
             }
         })
 
@@ -76,8 +85,31 @@
         posting.value = false
     }
 
+    // format number → 1,000
+    const formatNumber = (value: number) => {
+        return new Intl.NumberFormat().format(value)
+    }
+
+    // remove commas → 1000
+    const parseNumber = (value: string) => {
+        return Number(value.replaceAll(",", '')) || 0
+    }
+
+    // when user clicks input
+    const handleFocus = () => {
+        displayAmount.value = actualAmount.value.toString() || ''
+    }
+
+    // when user leaves input
+    const handleBlur = () => {
+        actualAmount.value = parseNumber(displayAmount.value)
+        displayAmount.value = formatNumber(actualAmount.value)
+    }
+
     watch(() => target, (val) => {
         if (!val) return
         utilizationStatus.value = val.status
+        actualAmount.value = val.actual
+        displayAmount.value = formatNumber(actualAmount.value)
     }, { immediate: true })
 </script>
