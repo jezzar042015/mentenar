@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
         <TransactionDetails :target @unset-target="unsetTarget" />
-        <TransactionForm v-if="form" @close="form = false"/>
+        <TransactionForm v-if="form" @close="form = false" />
     </Teleport>
     <div class="h-screen overflow-hidden flex flex-col">
         <div class="pt-6 px-6 pb-3 cursor-pointer">
@@ -13,7 +13,13 @@
             </div>
             <div class="mb-0 flex justify-between items-center">
                 <span class="font-bold text-2xl ">Primary Account</span>
-                <button @click="form = true" class="text-wrap w-16 bg-lime-700 text-white text-xs shadow p-2 rounded-sm -mr-3 hover:bg-lime-800 transition-all cursor-pointer">New</button>
+                <div class="flex gap-2">
+                    <button v-if="accounts.branchFundTransactions.length > 0" @click="filterBranchProjects = !filterBranchProjects"
+                        :class="['text-wrap text-xs shadow py-2 px-4 rounded-sm transition-all cursor-pointer ', filterBranchProjects ? 'bg-lime-700 text-white ' : 'hover:bg-lime-800 hover:text-white']">
+                        Branch Project</button>
+                    <button @click="form = true"
+                        class="text-wrap w-16 bg-lime-700 text-white text-xs shadow p-2 rounded-sm -mr-3 hover:bg-lime-800 transition-all cursor-pointer">New</button>
+                </div>
             </div>
         </div>
 
@@ -29,8 +35,16 @@
 
         <!-- Transaction Items -->
         <div class="flex-1 overflow-y-auto pt-2 pb-10">
-            <template v-for="(t, i) in accounts.reversedTransactions" :key="i">
-                <TransactionItem :t @click="target = t" />
+            <template v-if="!filterBranchProjects">
+                <template v-for="(t, i) in accounts.reversedTransactions" :key="i">
+                    <TransactionItem :t @click="target = t" />
+                </template>
+            </template>
+
+            <template v-else>
+                <template v-for="(t, i) in accounts.branchFundTransactions" :key="i">
+                    <TransactionItem :t @click="target = t" />
+                </template>
             </template>
         </div>
     </div>
@@ -50,6 +64,8 @@
     const accounts = useAccountsStore()
     const view = useViewsStore()
     const form = ref(false)
+
+    const filterBranchProjects = ref(false)
 
     const target = ref<Transaction | null>()
     const unsetTarget = () => { target.value = null }

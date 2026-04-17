@@ -23,6 +23,26 @@ export const useAccountsStore = defineStore('accounts', () => {
         }).format(balance.value);
     })
 
+    const branchFundTransactions = computed(() => {
+        return transactions.value.filter(t => t.category === 'Branch Fund')
+    })
+
+    const branchFundBalance = computed(() => {
+        return branchFundTransactions.value
+            .reduce((acc, item) => {
+                const power = item.flow === 'IN' ? 1 : -1
+                return acc + (Number(item.amount) * power)
+            }, 0)
+    })
+
+    const formattedBranchFundBalance = computed(() => {
+        return new Intl.NumberFormat('en-PH', {
+            style: 'currency',
+            currency: 'PHP',
+            minimumFractionDigits: 2,
+        }).format(branchFundBalance.value);
+    })
+
     const reversedTransactions = computed(() => {
         return [...transactions.value].reverse()
     });
@@ -211,5 +231,8 @@ export const useAccountsStore = defineStore('accounts', () => {
         unreceivedContributions,
         formattedReceivableContributions,
         reversedTransactions,
+        branchFundTransactions,
+        branchFundBalance,
+        formattedBranchFundBalance,
     }
 })
