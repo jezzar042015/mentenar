@@ -24,7 +24,18 @@ export const useAccountsStore = defineStore('accounts', () => {
     })
 
     const branchFundTransactions = computed(() => {
-        return transactions.value.filter(t => t.category === 'Branch Fund')
+        let runningBalance = 0
+
+        return transactions.value
+            .filter(t => t.category === 'Branch Fund')
+            .map(t => {
+                runningBalance += (t.flow === 'IN' ? t.amount : -t.amount)
+
+                return {
+                    ...t,
+                    balance: runningBalance
+                }
+            })
     })
 
     const branchFundBalance = computed(() => {
