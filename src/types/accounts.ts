@@ -52,6 +52,7 @@ export interface Transaction {
     amount: number
     balance: number
     category: string
+    remarks: string
 }
 
 export interface PostResponse {

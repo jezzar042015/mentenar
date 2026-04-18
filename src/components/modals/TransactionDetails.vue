@@ -1,7 +1,7 @@
 <template>
-    <div v-if="target"
-        class="absolute bg-black/60 w-full h-screen top-0 left-0 md:hidden flex justify-center items-center">
-        <div class="p-6 flex flex-col bg-white w-full mx-3 rounded-md">
+    <div v-if="target" @click.self="unsetTarget"
+        class="absolute bg-black/60 w-full h-screen top-0 left-0 flex justify-center items-center">
+        <div class="p-6 flex flex-col bg-white w-full mx-3 max-w-md rounded-md">
             <div class="flex justify-between items-center">
                 <div class="text-sm uppercase mb-6">Transaction Details</div>
                 <div class="-mt-5">
@@ -33,6 +33,11 @@
                 <div>
                     <div class="text-sm text-gray-700">Amount</div>
                     <div class="text-lg font-semibold">{{ formattedAmount }}</div>
+                </div>
+
+                <div v-if="target.remarks">
+                    <div class="text-sm text-gray-700">Additional Details</div>
+                    <div class="text-lg font-semibold">{{ target.remarks }}</div>
                 </div>
 
             </div>
