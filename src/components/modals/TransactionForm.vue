@@ -52,7 +52,8 @@
         category: '',
         desc: '',
         flow: 'IN',
-        payee: ''
+        payee: '',
+        remarks: '',
     })
     const emits = defineEmits(['close'])
     const close = () => {
