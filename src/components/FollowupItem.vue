@@ -31,6 +31,14 @@
                 </span>
                 <span>{{ assignee }}</span>
             </div>
+            <div v-if="firstOfUncompletedTasks" class="flex items-start space-x-2 text-xs text-gray-600">
+                <span>
+                    <ArrowIcon class="-ml-0.5 mt-0.5 h-3 w-3 rotate-180" />
+                </span>
+                <span>
+                    {{ firstOfUncompletedTasks }}
+                </span>
+            </div>
         </div>
         <div class="h-4" v-if="f.list.length > 0 && stat !== 'completed'">
             <CircularProgress :all-count="f.list.length" :completed-count="completedList.length"
@@ -46,6 +54,7 @@
     import { useFollowupsStore } from '@/stores/followups';
     import PersonIcon from '@/icons/PersonIcon.vue';
     import CircularProgress from './CircularProgress.vue';
+    import ArrowIcon from '@/icons/ArrowIcon.vue';
 
     const view = useViewsStore()
     const followup = useFollowupsStore()
@@ -128,4 +137,11 @@
         followup.activeTask = f.task
         view.setView('followup-details')
     }
+
+    const firstOfUncompletedTasks = computed(() => {
+        if (stat == 'completed') return ''
+        const nonCompletedTasks = f.list.filter(i => !i.completed)
+        if (nonCompletedTasks.length == 0) return ''
+        return nonCompletedTasks[0].task
+    })
 </script>
