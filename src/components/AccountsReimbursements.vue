@@ -4,8 +4,8 @@
         <!-- mobile screens -->
         <div class="block md:hidden">
             <div class="text-gray-800">For Reimbursements</div>
-            <div @click="gotoReimbursements" class="flex justify-between md:hidden">
-                <span class="text-2xl font-semibold">
+            <div @click="gotoReimbursements" class="flex justify-between md:hidden cursor-pointer">
+                <span class="text-2xl font-semibold hover:scale-105 transition-transform duration-300">
                     {{ accounts.formattedReimbursementsBalance }}
                 </span>
                 <span>

@@ -2,10 +2,10 @@
     <div>
 
         <!-- mobile screens -->
-        <div class="md:hidden">
+        <div class="md:hidden cursor-pointer">
             <div class="text-gray-800">Approved Expenses & Remittances</div>
             <div @click="gotoApprovedExpenses" class="flex justify-between">
-                <span class="text-2xl font-semibold">
+                <span class="text-2xl font-semibold hover:scale-105 transition-transform duration-300">
                     {{ accounts.formattedApprovedExpensesBalance }}
                 </span>
                 <span>
