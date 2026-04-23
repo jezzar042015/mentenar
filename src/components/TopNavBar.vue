@@ -18,28 +18,28 @@
 
         <div class="w-full flex justify-between py-2 px-10 md:py-4 md:px-55 lg:justify-start lg:px-10 lg:gap-20">
             <div>
-                <HardHatIcon class="h-6 w-6 md:h-7 md:w-7 cursor-pointer transition-colors"
+                <HardHatIcon class="h-6 w-6 cursor-pointer transition-colors"
                     :class="viewStore.view === 'home' ? 'text-blue-500' : 'text-gray-500'"
                     @click="viewStore.setView('home')" />
             </div>
             <div>
 
-                <WrenchIcon class="h-6 w-6 md:h-7 md:w-7 cursor-pointer transition-colors"
+                <WrenchIcon class="h-6 w-6 cursor-pointer transition-colors"
                     :class="viewStore.view === 'followups' || viewStore.view === 'followup-details' ? 'text-blue-500' : 'text-gray-500'"
                     @click="viewStore.setView('followups')" />
             </div>
             <div>
-                <WarningIcon class="h-6 w-6 md:h-7 md:w-7 cursor-pointer transition-colors"
+                <WarningIcon class="h-6 w-6 cursor-pointer transition-colors"
                     :class="viewStore.view === 'preventive' || viewStore.view === 'preventive-monthly' ? 'text-blue-500' : 'text-gray-500'"
                     @click="viewStore.setView('preventive')" />
             </div>
             <div>
-                <PersonIcon class="h-6 w-6 md:h-7 md:w-7 cursor-pointer transition-colors"
+                <PersonIcon class="h-6 w-6 cursor-pointer transition-colors"
                     :class="viewStore.view === 'profile' ? 'text-blue-500' : 'text-gray-500'"
                     @click="viewStore.setView('profile')" />
             </div>
             <div v-if="false">
-                <CalendarIcon class="h-6 w-6 md:h-7 md:w-7 cursor-pointer transition-colors"
+                <CalendarIcon class="h-6 w-6 cursor-pointer transition-colors"
                     :class="viewStore.view === 'calendar' ? 'text-blue-500' : 'text-gray-500'"
                     @click="viewStore.setView('calendar')" />
 

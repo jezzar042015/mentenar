@@ -1,5 +1,5 @@
 <template>
-    <div class="py-5 bg-gray-100">
+    <div class="py-5 bg-gray-100 h-screen overflow-auto pb-30">
         <!-- filter -->
         <FollowupFilters @set-filters="setFilter" :active-filter="filter" :count-all="allPendingCount"
             :count-overdue="followupsStore.overdue.length"
@@ -10,7 +10,7 @@
             <FetchingSpinner />
         </div> -->
 
-        <div class="mt-5 flex flex-col p-2 bg-gray-100 space-y-4">
+        <div class="mt-5 flex flex-col pt-2 px-2 pb-10 bg-gray-100 space-y-4 h-fit">
 
             <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">Overdue</div>

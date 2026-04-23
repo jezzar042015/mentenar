@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-screen overflow-auto">
         <div class="p-5 space-y-2">
             <div class="pb-4">
                 <div @click="exit" class="flex space-x-0 items-center cursor-pointer">

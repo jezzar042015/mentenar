@@ -3,8 +3,8 @@
         <FollowupForm :target @unset-target="target = null" />
     </Teleport>
 
-    <div class="p-4 bg-white h-full mb-20">
-        <div v-if="followup.active">
+    <div class="bg-white h-screen overflow-hidden mb-20">
+        <div v-if="followup.active" class="h-full overflow-y-auto p-4 pb-20">
             <div class="my-4 flex gap-4 items-center">
                 <span v-if="!isCompleted"
                     class="px-3 py-1 border border-orange-600 text-orange-600 text-sm rounded-md self-center">
@@ -102,10 +102,12 @@
                 </div>
             </div>
 
-            <div class="flex gap-3 justify-between mt-15" v-if="auth.token">
+            <div class="flex gap-3 justify-between mt-10" v-if="auth.token">
                 <button @click="setFormTarget"
-                    class="py-2 px-4 shadow rounded-md cursor-pointer">Update</button>
+                    class="py-2 px-4 shadow-lg rounded-md cursor-pointer">Update</button>
             </div>
+
+            <div class="h-20"></div>
         </div>
 
     </div>

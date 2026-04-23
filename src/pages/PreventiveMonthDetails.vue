@@ -1,79 +1,82 @@
 <template>
+    <div class="h-screen overflow-auto pb-30">
+        <ShareModal :link="''" v-if="showShareModal" @close="stopShare" />
 
-    <ShareModal :link="''" v-if="showShareModal" @close="stopShare" />
-
-    <div v-if="pm.fetching || fu.fetching" class="flex flex-col gap-4 items-center justify-center py-20">
-        <FetchingSpinner />
-        <div class="px-20 text-center">
-            Holding on, fetching preventive maintenance assignments...
+        <div v-if="pm.fetching || fu.fetching" class="flex flex-col gap-4 items-center justify-center py-20">
+            <FetchingSpinner />
+            <div class="px-20 text-center">
+                Holding on, fetching preventive maintenance assignments...
+            </div>
         </div>
-    </div>
-    <TaskInstuction v-if="viewTi" @close="viewTi = false" />
 
-    <div class="bg-white p-4 mb-20" v-else>
-        <div class="px-2 pb-5" v-if="pm.activeMonthData?.month">
-            <div class="mt-5">
-                <div class="text-xl font-semibold flex gap-2 items-center">
+        <TaskInstuction v-if="viewTi" @close="viewTi = false" />
+
+        <div class="bg-white p-4 h-fit mb-20" v-else>
+            <div class="px-2 pb-5" v-if="pm.activeMonthData?.month">
+                <div class="mt-5">
+                    <div class="text-xl font-semibold flex gap-2 items-center">
+                        <span>
+                            <CalendarIcon class="h-6 w-6" />
+                        </span>
+                        <span>
+                            {{ pm.activeMonthData.month }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="text-base">
+                    {{ pm.activeMonthData.assigned }} Congregation
+                </div>
+
+                <div class="flex flex-col mt-5">
+                    <span class="text-xs text-gray-500">Schedule</span>
                     <span>
-                        <CalendarIcon class="h-6 w-6" />
-                    </span>
-                    <span>
-                        {{ pm.activeMonthData.month }}
+                        {{ target }}
                     </span>
                 </div>
-            </div>
 
-            <div class="text-base">
-                {{ pm.activeMonthData.assigned }} Congregation
-            </div>
-
-            <div class="flex flex-col mt-5">
-                <span class="text-xs text-gray-500">Schedule</span>
-                <span>
-                    {{ target }}
-                </span>
-            </div>
-
-            <div class="mt-10 text-xl mb-2 font-semibold flex gap-4 items-center">
-                <span>
-                    Task Items
-                </span>
-                <span class="text-gray-500">
-                    &bullet;
-                </span>
-                <span class="text-sm font-normal text-gray-500">
-                    {{ completedTasksCount }} of {{ pm.activeMonthData.tasks.length }}
-                </span>
-            </div>
-            <div class="space-y-2">
-                <template v-for="t in sortedTasks">
-                    <PreventiveInstructionItem :t @open-instructions="openTaskInstructions" />
-                </template>
-            </div>
-
-            <div v-if="pm.lateMonths.length > 0 && !pm.lateMonths.map(m => m.month).includes(pm.activeMonthData.month)"
-                class="mt-10 mb-2">
-                <div class="text-xl font-semibold">
+                <div class="mt-10 text-xl mb-2 font-semibold flex gap-4 items-center">
                     <span>
-                        Late Tasks From Previous Months
+                        Task Items
+                    </span>
+                    <span class="text-gray-500">
+                        &bullet;
+                    </span>
+                    <span class="text-sm font-normal text-gray-500">
+                        {{ completedTasksCount }} of {{ pm.activeMonthData.tasks.length }}
                     </span>
                 </div>
-                <div v-for="p in pm.lateMonths">
-                    <div class="mt-2 mb-3">{{ p.month }}</div>
 
-                    <div v-for="t in p.tasks" :key="t.tiId">
-                        <div v-if="!t.completed">
-                            <PreventiveInstructionItem :t @open-instructions="openTaskInstructions" />
+                <div class="space-y-2">
+                    <template v-for="t in sortedTasks">
+                        <PreventiveInstructionItem :t @open-instructions="openTaskInstructions" />
+                    </template>
+                </div>
+
+                <div v-if="pm.lateMonths.length > 0 && !pm.lateMonths.map(m => m.month).includes(pm.activeMonthData.month)"
+                    class="mt-10 mb-2">
+                    <div class="text-xl font-semibold">
+                        <span>
+                            Late Tasks From Previous Months
+                        </span>
+                    </div>
+                    <div v-for="p in pm.lateMonths">
+                        <div class="mt-2 mb-3">{{ p.month }}</div>
+
+                        <div v-for="t in p.tasks" :key="t.tiId">
+                            <div v-if="!t.completed">
+                                <PreventiveInstructionItem :t @open-instructions="openTaskInstructions" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mt-10" v-if="false">
-                <button @click.stop="share" class="flex gap-3 items-center shadow-md py-2 px-4 rounded-md bg-white">
-                    <ShareIcon class="h-4 w-4" />
-                    <span>Share</span>
-                </button>
+                <div class="mt-10" v-if="false">
+                    <button @click.stop="share" class="flex gap-3 items-center shadow-md py-2 px-4 rounded-md bg-white">
+                        <ShareIcon class="h-4 w-4" />
+                        <span>Share</span>
+                    </button>
+                </div>
             </div>
         </div>
 

@@ -60,7 +60,7 @@
 </script>
 
 <template>
-  <div class="bg-gray-50 font-notosans md:max-w-300 mx-auto min-h-screen">
+  <div class="bg-gray-50 h-screen overflow-hidden font-notosans md:max-w-300 mx-auto min-h-screen">
     <TopNavBar @reload="reload" class="" v-if="viewStore.showHeader" />
     <AppDashboard v-if="viewStore.view == 'home'" />
     <FollowupItems v-if="viewStore.view == 'followups'" />

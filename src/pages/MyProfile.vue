@@ -1,11 +1,11 @@
 <template>
-    <div class="px-4 py-5 bg-white -mt-5">
+    <div class="px-4 py-5 bg-white -mt-5 h-screen overflow-auto">
 
         <template v-if="!auth.token">
             <UnauthenticatedProfile />
         </template>
 
-        <div v-else class="mt-6 space-y-1 md:space-y-3">
+        <div v-else class="mt-6 space-y-1 md:space-y-3 pb-10 mb-20">
             <div class="bg-white px-4 py-3 ">
                 <div class="text-2xl font-bold md:text-3xl md:text-cyan-700">KHOC Financial Status</div>
                 <div class="text-sm">As of {{ currentDate }}</div>
