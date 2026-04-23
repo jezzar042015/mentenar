@@ -1,4 +1,8 @@
 <template>
+    <Teleport :to="'body'">
+        <FollowupForm :target @unset-target="target = null" />
+    </Teleport>
+
     <div class="p-4 bg-white h-full mb-20">
         <div v-if="followup.active">
             <div class="my-4 flex gap-4 items-center">
@@ -97,6 +101,11 @@
                     </div>
                 </div>
             </div>
+
+            <div class="flex gap-3 justify-between mt-15" v-if="auth.token">
+                <button @click="setFormTarget"
+                    class="py-2 px-4 shadow rounded-md cursor-pointer">Update</button>
+            </div>
         </div>
 
     </div>
@@ -104,13 +113,19 @@
 
 <script setup lang="ts">
     import CircularProgress from '@/components/CircularProgress.vue';
+    import FollowupForm from '@/components/modals/FollowupForm.vue';
     import CalendarIcon from '@/icons/CalendarIcon.vue';
     import CheckIcon from '@/icons/CheckIcon.vue';
     import PersonIcon from '@/icons/PersonIcon.vue';
+    import type { FollowupItem } from '@/types/followups';
+    import { useAuthStore } from '@/stores/auth';
     import { useFollowupsStore } from '@/stores/followups';
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
 
     const followup = useFollowupsStore()
+    const auth = useAuthStore()
+
+    const target = ref<FollowupItem | null>(null)
 
     const startDisplay = computed(() => {
         if (!followup.active) return ''
@@ -148,5 +163,7 @@
 
     const isCompleted = computed(() => followup.active?.status === 'Completed')
 
-
+    const setFormTarget = () => {
+        target.value = followup.active ?? null
+    }
 </script>
