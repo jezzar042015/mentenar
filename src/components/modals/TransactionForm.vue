@@ -1,5 +1,6 @@
 <template>
-    <div class="absolute bg-black/60 w-full h-screen top-0 left-0 flex justify-center items-center z-20 transition-all duration-500">
+    <div
+        class="absolute bg-black/60 w-full h-screen top-0 left-0 flex justify-center items-center z-20 transition-all duration-500">
         <div class="p-6 flex flex-col bg-white w-full mx-3 rounded-md max-w-2xl">
             <div class="flex justify-between items-center">
                 <div class="text-sm uppercase mb-6">New Transaction</div>
@@ -12,12 +13,23 @@
 
                 <div>
                     <div class="text-sm text-gray-700">Payee</div>
-                    <input type="text" v-model="target.payee" maxlength="8" class="border border-gray-400 rounded-md px-4 py-2 w-full">
+                    <input type="text" v-model="target.payee" maxlength="8"
+                        class="border border-gray-400 rounded-md px-4 py-2 w-full">
                 </div>
 
                 <div>
                     <div class="text-sm text-gray-700">Description</div>
-                    <input type="text" v-model="target.desc" maxlength="20" class="border border-gray-400 rounded-md px-4 py-2 w-full">
+                    <input type="text" v-model="target.desc" maxlength="20"
+                        class="border border-gray-400 rounded-md px-4 py-2 w-full">
+                </div>
+
+                <div>
+                    <div class="text-sm text-gray-700">Transaction</div>
+                    <select v-model="target.flow" class="border border-gray-400 rounded-md px-2 py-2 w-full">
+                        <option v-for="(value,key) in transactionFlow" :value="key">
+                            {{ value }}
+                        </option>
+                    </select>
                 </div>
 
                 <div>
@@ -27,7 +39,8 @@
 
                 <div>
                     <div class="text-sm text-gray-700">Amount</div>
-                    <input type="number" v-model="target.amount" class="border border-gray-400 rounded-md px-4 py-2 w-full">
+                    <input type="number" v-model="target.amount"
+                        class="border border-gray-400 rounded-md px-4 py-2 w-full">
                 </div>
 
             </div>
@@ -44,6 +57,9 @@
     import type { Transaction } from '@/types/accounts';
     import { computed, ref } from 'vue';
 
+    const transactionFlow = ref<Record<"IN" | "OUT", string>>(
+        { IN: "Incoming", OUT: "Outgoing" }
+    )
 
     const target = ref<Transaction>({
         date: new Date().toISOString().split("T")[0] || '',

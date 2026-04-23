@@ -17,7 +17,7 @@
                     <button v-if="accounts.branchFundTransactions.length > 0" @click="filterBranchProjects = !filterBranchProjects"
                         :class="['text-wrap text-xs shadow py-2 px-4 rounded-sm transition-all cursor-pointer ', filterBranchProjects ? 'bg-lime-700 text-white ' : 'hover:bg-lime-800 hover:text-white']">
                         Branch Project</button>
-                    <button v-show="false" @click="form = true"
+                    <button @click="form = true"
                         class="text-wrap w-16 bg-lime-700 text-white text-xs shadow p-2 rounded-sm -mr-3 hover:bg-lime-800 transition-all cursor-pointer">New</button>
                 </div>
             </div>
