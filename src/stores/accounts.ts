@@ -1,4 +1,4 @@
-import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostMonthlyExpensePayload, PostResponse, Reimbursement, Transaction } from "@/types/accounts";
+import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostCreateTransaction, PostMonthlyExpensePayload, PostResponse, Reimbursement, Transaction } from "@/types/accounts";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
@@ -207,6 +207,23 @@ export const useAccountsStore = defineStore('accounts', () => {
         }
     }
 
+    const addBankTransaction = async (payload: PostCreateTransaction) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const resp = await response.json() as PostResponse;
+
+        if (resp.status.toString() == '201') {
+            await pull()
+        }
+    }
+
     const shouldPull = computed(() => {
         if (!latestUpdate.value) return true;
         const lastUpdateDate = new Date(latestUpdate.value);
@@ -216,34 +233,35 @@ export const useAccountsStore = defineStore('accounts', () => {
     })
 
     return {
-        reimbursements,
-        latestUpdate,
-        fetching,
-        balance,
-        monthly,
         approved,
+        balance,
         contributions,
+        fetching,
+        latestUpdate,
+        monthly,
+        reimbursements,
         transactions,
         pull,
         setContribution,
         setMonthlyExpenseStatus,
-        shouldPull,
-        formattedBalance,
-        approvedExpensesItems,
+        addBankTransaction,
         approvedExpensesBalance,
-        forReimbursementsItems,
+        approvedExpensesItems,
+        branchFundBalance,
+        branchFundTransactions,
         forReimbursementsBalance,
+        forReimbursementsItems,
+        formattedApprovedExpensesBalance,
+        formattedBalance,
+        formattedBranchFundBalance,
+        formattedFundsAvailable,
+        formattedMonthlyExpensesBalance,
+        formattedReceivableContributions,
         formattedReimbursementsBalance,
         fundsAvailable,
-        formattedFundsAvailable,
         monthlyExpensesBalance,
-        formattedMonthlyExpensesBalance,
-        formattedApprovedExpensesBalance,
-        unreceivedContributions,
-        formattedReceivableContributions,
         reversedTransactions,
-        branchFundTransactions,
-        branchFundBalance,
-        formattedBranchFundBalance,
+        shouldPull,
+        unreceivedContributions,
     }
 })

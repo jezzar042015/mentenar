@@ -14,19 +14,30 @@
                 </div>
 
                 <div class="space-y-2">
+                    <div class="text-xs text-gray-600">Assignee(s)</div>
+                    <input type="text" v-model="formData.assignees"
+                        class="py-2 px-2 border border-gray-600 w-full rounded-sm">
+                </div>
+
+                <div class="space-y-2">
                     <div class="text-xs text-gray-600">Remarks</div>
                     <textarea name="" v-model="formData.remarks"
                         class="w-full py-2 px-2 border border-gray-600 rounded-sm"></textarea>
                 </div>
 
                 <div class="space-y-2">
-                    <div class="text-xs text-gray-600">Checklist</div>
-                    <div class="h-60 overflow-auto">
+                    <div class="text-xs text-gray-600">
+                        <span>Checklist</span>
+                        <span> {{formData.list.filter(f =>
+                            f.completed).length }} of {{ formData.list.length }}</span>
+
+                    </div>
+                    <div class="h-40 overflow-auto">
                         <div v-for="item in formData.list" :key="item.task" class="py-2"
                             @click="toggleChecklistStatus(item)">
                             <div class="flex gap-3 items-start transition-all duration-200 cursor-pointer">
                                 <span
-                                    :class="['flex border rounded-sm h-4 w-4 mt-1', { 'bg-black/70': item.completed }]"></span>
+                                    :class="['flex border border-blue-800/70 rounded-sm h-4 w-4 mt-1', { 'bg-blue-800/70': item.completed }]"></span>
                                 <span :class="[{ 'line-through': item.completed }]">
                                     {{ item.task }}
                                 </span>
@@ -141,7 +152,7 @@
         posting.value = false
 
         console.log(resp.status.toString());
-        
+
         if (resp.status.toString() == '200') {
             emits('update-target', formData.value)
             unsetTarget()

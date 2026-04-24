@@ -56,7 +56,7 @@ export interface Transaction {
 }
 
 export interface PostResponse {
-    status: '202' | '204'
+    status: '201' | '202' | '204'
     message: string
 }
 
