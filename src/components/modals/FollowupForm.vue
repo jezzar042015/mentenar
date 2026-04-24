@@ -48,20 +48,30 @@
 
         </div>
     </div>
+    <div v-if="posting" class="z-30 absolute top-0 left-0 w-full h-screen bg-white/90 flex items-center justify-center">
+        <FetchingSpinner />
+    </div>
 </template>
 
 <script setup lang="ts">
-    import type { FollowupChecklistItem, FollowupItem } from '@/types/followups';
+    import { useAuthStore } from '@/stores/auth';
+    import { useFollowupsStore } from '@/stores/followups';
+    import type { FollowupChecklistItem, FollowupItem, FollowupItemUpdatePayload } from '@/types/followups';
     import { computed, ref, toRaw, watch } from 'vue';
+    import FetchingSpinner from '../FetchingSpinner.vue';
 
     const { target } = defineProps<{
         target: FollowupItem | null
     }>()
 
     const formData = ref<FollowupItem | undefined>()
+    const followups = useFollowupsStore()
+    const auth = useAuthStore()
+    const posting = ref(false)
 
     const emits = defineEmits([
-        'unset-target'
+        'unset-target',
+        'update-target'
     ])
 
     const toggleChecklistStatus = (item: FollowupChecklistItem) => {
@@ -76,11 +86,15 @@
         if (!target || !formData.value) return null
 
         // 1. Helper to extract the relevant subset for comparison
-        const getComparisonState = (obj: FollowupItem) => ({
+        const getComparisonState = (obj: FollowupItem): FollowupItemUpdatePayload => ({
             assignees: obj.assignees,
             target: obj.target,
+            remarks: obj.remarks,
             // Map the list to only include the 'completed' value
-            list: obj.list?.map(item => ({ completed: item.completed })) || []
+            list: obj.list?.map(item => ({
+                task: item.task,
+                completed: item.completed
+            })) || []
         })
 
         const originalState = getComparisonState(target)
@@ -92,8 +106,13 @@
         if (hasChanges) {
             // 3. Return the specific object format you requested
             return {
-                target: formData.value.target,
+                target: new Date(formData.value.target).toLocaleString('en-US', {
+                    'month': 'short',
+                    'day': 'numeric',
+                    'year': 'numeric',
+                }),
                 assignees: formData.value.assignees,
+                remarks: formData.value.remarks,
                 list: formData.value.list // or map it if you only want 'completed' here too
             }
         }
@@ -104,15 +123,31 @@
     const hasChanges = computed(() => Boolean(changePayload.value))
 
     const post = async () => {
-        if (!formData.value) return
+        if (!formData.value || !changePayload.value) return
 
-        const payload = {
-            tasks: formData.value.task,
+        const data = {
+            task: formData.value.task,
             changes: changePayload.value
         }
 
-        console.log(payload);
+        posting.value = true
 
+        const resp = await followups.post({
+            target: 'update-followup-item',
+            token: auth.token,
+            data
+        })
+
+        posting.value = false
+
+        console.log(resp.status.toString());
+        
+        if (resp.status.toString() == '200') {
+            emits('update-target', formData.value)
+            unsetTarget()
+        } else {
+            return resp;
+        }
     }
 
     watch(

@@ -1,6 +1,6 @@
 <template>
     <Teleport :to="'body'">
-        <FollowupForm :target @unset-target="target = null" />
+        <FollowupForm :target @unset-target="target = null" @update-target="updateTarget" />
     </Teleport>
 
     <div class="bg-white h-screen overflow-hidden mb-20">
@@ -103,8 +103,7 @@
             </div>
 
             <div class="flex gap-3 justify-between mt-10" v-if="auth.token">
-                <button @click="setFormTarget"
-                    class="py-2 px-4 shadow-lg rounded-md cursor-pointer">Update</button>
+                <button @click="setFormTarget" class="py-2 px-4 shadow-lg rounded-md cursor-pointer">Update</button>
             </div>
 
             <div class="h-20"></div>
@@ -122,7 +121,7 @@
     import type { FollowupItem } from '@/types/followups';
     import { useAuthStore } from '@/stores/auth';
     import { useFollowupsStore } from '@/stores/followups';
-    import { computed, ref } from 'vue';
+    import { computed, ref, toRaw } from 'vue';
 
     const followup = useFollowupsStore()
     const auth = useAuthStore()
@@ -167,5 +166,13 @@
 
     const setFormTarget = () => {
         target.value = followup.active ?? null
+    }
+
+    const updateTarget = async (item: FollowupItem) => {
+        const index = followup.data.findIndex(a => a.task === item.task)
+
+        if (index !== -1) {
+            followup.data[index] = structuredClone(toRaw(item))
+        }
     }
 </script>

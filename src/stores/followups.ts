@@ -1,10 +1,12 @@
 import type { CalendarEvent } from "@/types/events";
-import type { FollowupItem } from "@/types/followups";
+import type { FollowupItem, PostFollowupItemUpdatePayload, PostFollowupUpdateResponse } from "@/types/followups";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const useFollowupsStore = defineStore('followups', () => {
+
+    const SERVER_URL = 'https://script.google.com/macros/s/AKfycbz5xjY8PSmmuBnwgnBd8sf73HODcLqF-5tEmWBkUC4W_gDorNjXPVWWAfphZpXctDjH/exec'
     const data = useStorage<FollowupItem[]>('khoc-followup-items', [], localStorage, { mergeDefaults: true })
     const latestUpdate = useStorage<string>('khoc-followup-latest-update', '', localStorage)
     const fetching = ref(false)
@@ -134,7 +136,7 @@ export const useFollowupsStore = defineStore('followups', () => {
     const pull = async () => {
         try {
             fetching.value = true
-            const response = await fetch('https://script.google.com/macros/s/AKfycbz5xjY8PSmmuBnwgnBd8sf73HODcLqF-5tEmWBkUC4W_gDorNjXPVWWAfphZpXctDjH/exec')
+            const response = await fetch(SERVER_URL)
             const result = await response.json()
             data.value = result.data
             latestUpdate.value = result.timestamp
@@ -142,8 +144,23 @@ export const useFollowupsStore = defineStore('followups', () => {
         } catch (error) {
             console.log(error);
             fetching.value = false
-            // data.value = `Error: ${error}`
         }
+    }
+
+    const post = async (data: PostFollowupItemUpdatePayload) => {
+
+        const response = await fetch(`${SERVER_URL}`, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'text/plain', // Using text/plain avoids CORS "preflight" issues with GAS
+            },
+            body: JSON.stringify(data)
+        });
+
+        const resp = await response.json() as PostFollowupUpdateResponse;
+
+        return resp;
     }
 
     const shouldPull = computed(() => {
@@ -169,6 +186,7 @@ export const useFollowupsStore = defineStore('followups', () => {
         fetching,
         activeTask,
         pull,
+        post,
         sorted,
         overdue,
         dueSoon,

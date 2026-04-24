@@ -16,5 +16,28 @@ export interface FollowupChecklistItem {
     completed: boolean
 }
 
+export interface FollowupItemUpdatePayload {
+    assignees?: string
+    target?: string
+    remarks?: string
+    list: FollowupChecklistItem[]
+
+}
+
+export interface PostFollowupItemUpdatePayload {
+    token: string
+    target: 'update-followup-item'
+    data: {
+        task: string,
+        changes: FollowupItemUpdatePayload
+    }
+}
+
+export interface PostFollowupUpdateResponse {
+    status: number
+    message: string
+    timestamp: string
+}
+
 
 export type FollowupListFilter = 'all' | 'overdue' | 'due' | 'due-weeks' | 'none' | 'completed'
