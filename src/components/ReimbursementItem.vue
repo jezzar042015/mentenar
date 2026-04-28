@@ -6,8 +6,10 @@
             <div class="text-2xl">{{ r.name }}</div>
         </div>
         <div>
-            <div class="text-xs text-gray-600">GCash Account</div>
-            <div>{{ r.gcash }}</div>
+            <div class="text-xs text-gray-600">{{isGCash ? 'GCash' : 'Bank'}} Account</div>
+            <div v-if="isGCash">{{ r.gcash }}</div>
+            <div v-else v-html="bankDetails"></div>
+
         </div>
         <div>
             <div class="text-xs text-gray-600">Description</div>
@@ -42,5 +44,14 @@
             currency: 'PHP',
             minimumFractionDigits: 2,
         }).format(r.amount);
+    })
+
+    const isGCash = computed(() => {
+        return !Number.isNaN(Number(r.gcash.replaceAll(' ', '')))
+    })
+
+    const bankDetails = computed(()=> {
+        if (isGCash.value) return ''
+        return  r.gcash.replaceAll('\n', '<br>')
     })
 </script>
