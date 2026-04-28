@@ -65,10 +65,10 @@
 </template>
 
 <script setup lang="ts">
+    import { computed, ref, toRaw, watch } from 'vue';
     import { useAuthStore } from '@/stores/auth';
     import { useFollowupsStore } from '@/stores/followups';
     import type { FollowupChecklistItem, FollowupItem, FollowupItemUpdatePayload } from '@/types/followups';
-    import { computed, ref, toRaw, watch } from 'vue';
     import FetchingSpinner from '../FetchingSpinner.vue';
 
     const { target } = defineProps<{

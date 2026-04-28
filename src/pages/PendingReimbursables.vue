@@ -1,5 +1,5 @@
 <template>
-    <div class="p-6">
+    <div class="p-6 h-screen overflow-auto">
         <div @click="exit" class="flex space-x-0 items-center">
             <span>
                 <CaretLeftIcon class="h-5 w-5" />
