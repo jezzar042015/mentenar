@@ -3,7 +3,7 @@
 
         <!-- mobile screens -->
         <div class="block md:hidden">
-            <div class="text-gray-800">For Reimbursements</div>
+            <div class="text-gray-800">Reimbursements & Payables</div>
             <div @click="gotoReimbursements" class="flex justify-between md:hidden cursor-pointer">
                 <span class="text-2xl font-semibold hover:scale-105 transition-transform duration-300">
                     {{ accounts.formattedReimbursementsBalance }}
@@ -17,7 +17,7 @@
         <!-- larger screens -->
         <div class="hidden md:block">
             <div class="flex justify-between items-center">
-                <div class="text-cyan-700 font-semibold text-xl">For Reimbursements</div>
+                <div class="text-cyan-700 font-semibold text-xl">Reimbursements & Payables</div>
                 <div class="text-2xl font-semibold w-1/3 text-right px-10 text-cyan-700">
                    &dash; {{ accounts.formattedReimbursementsBalance }}
                 </div>

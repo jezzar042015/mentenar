@@ -36,6 +36,7 @@ export const useAccountsStore = defineStore('accounts', () => {
                     balance: runningBalance
                 }
             })
+            .reverse()
     })
 
     const branchFundBalance = computed(() => {

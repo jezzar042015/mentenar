@@ -1,12 +1,23 @@
 <template>
     <!-- mobile screens -->
-    <div class="md:hidden shadow-md rounded-md p-4 bg-white space-y-5">
+    <div :class="['md:hidden shadow-md rounded-md p-4 space-y-5 relative',showActions ? 'bg-black/10' : 'bg-white']">
+        <div class="absolute right-2 top-0">
+            <div class="p-3 relative" @click.prevent="showActions = true">
+                <ElipsisIcon class="h-6 w-6 opacity-85" />
+                <div ref="actions" v-if="showActions"
+                    class="shadow-lg rounded bg-white absolute right-0 top-auto whitespace-nowrap space-y-1 p-1">
+                    <div class="p-3 bg-white">Make Changes</div>
+                    <hr class="border-0 border-b border-b-gray-100">
+                    <div class="p-3 bg-white">Set as Reimbursed</div>
+                </div>
+            </div>
+        </div>
         <div>
             <div class="text-xs text-gray-600">Payee</div>
             <div class="text-2xl">{{ r.name }}</div>
         </div>
         <div>
-            <div class="text-xs text-gray-600">{{isGCash ? 'GCash' : 'Bank'}} Account</div>
+            <div class="text-xs text-gray-600">{{ isGCash ? 'GCash' : 'Bank' }} Account</div>
             <div v-if="isGCash">{{ r.gcash }}</div>
             <div v-else v-html="bankDetails"></div>
 
@@ -31,12 +42,19 @@
 </template>
 
 <script setup lang="ts">
+    import ElipsisIcon from '@/icons/ElipsisIcon.vue';
     import type { Reimbursement } from '@/types/accounts';
-    import { computed } from 'vue';
+    import { onClickOutside } from '@vueuse/core';
+    import { computed, ref, useTemplateRef } from 'vue';
 
     const { r } = defineProps<{
         r: Reimbursement
     }>()
+
+    const actions = useTemplateRef<HTMLElement>('actions')
+    const showActions = ref(false)
+
+    onClickOutside(actions, () => showActions.value = false)
 
     const formattedAmount = computed(() => {
         return new Intl.NumberFormat('en-PH', {
@@ -50,8 +68,8 @@
         return !Number.isNaN(Number(r.gcash.replaceAll(' ', '')))
     })
 
-    const bankDetails = computed(()=> {
+    const bankDetails = computed(() => {
         if (isGCash.value) return ''
-        return  r.gcash.replaceAll('\n', '<br>')
+        return r.gcash.replaceAll('\n', '<br>')
     })
 </script>
