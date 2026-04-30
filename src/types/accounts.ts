@@ -21,6 +21,13 @@ export interface Reimbursement {
     gcash: string
 }
 
+export interface ReimbursementStatusPayload {
+    status: string
+    rowNum: number
+    amountCheck: number
+    nameCheck: string
+}
+
 export interface MonthlyExpense {
     name: string
     type: string
@@ -94,6 +101,18 @@ export interface PostCreateTransaction {
     token: string
     target: 'create-primary-transaction'
     data: Transaction
+}
+
+export interface PostCreatePayable {
+    token: string
+    target: 'create-new-payable'
+    data: Reimbursement
+}
+
+export interface PostUpdatePayableStatus {
+    token: string
+    target: 'update-payable-status'
+    data: ReimbursementStatusPayload
 }
 
 

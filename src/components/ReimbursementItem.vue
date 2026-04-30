@@ -1,14 +1,14 @@
 <template>
     <!-- mobile screens -->
-    <div :class="['md:hidden shadow-md rounded-md p-4 space-y-5 relative',showActions ? 'bg-black/10' : 'bg-white']">
+    <div :class="['md:hidden shadow-md rounded-md p-4 space-y-5 relative', showActions ? 'bg-black/10' : 'bg-white']">
         <div class="absolute right-2 top-0">
             <div class="p-3 relative" @click.prevent="showActions = true">
                 <ElipsisIcon class="h-6 w-6 opacity-85" />
                 <div ref="actions" v-if="showActions"
                     class="shadow-lg rounded bg-white absolute right-0 top-auto whitespace-nowrap space-y-1 p-1">
-                    <div class="p-3 bg-white">Make Changes</div>
+                    <div class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Make Changes</div>
                     <hr class="border-0 border-b border-b-gray-100">
-                    <div class="p-3 bg-white">Set as Reimbursed</div>
+                    <div @click="setAsReimbursed" class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Set as Reimbursed</div>
                 </div>
             </div>
         </div>
@@ -43,6 +43,8 @@
 
 <script setup lang="ts">
     import ElipsisIcon from '@/icons/ElipsisIcon.vue';
+    import { useAccountsStore } from '@/stores/accounts';
+    import { useAuthStore } from '@/stores/auth';
     import type { Reimbursement } from '@/types/accounts';
     import { onClickOutside } from '@vueuse/core';
     import { computed, ref, useTemplateRef } from 'vue';
@@ -52,6 +54,8 @@
     }>()
 
     const actions = useTemplateRef<HTMLElement>('actions')
+    const account = useAccountsStore()
+    const auth = useAuthStore()
     const showActions = ref(false)
 
     onClickOutside(actions, () => showActions.value = false)
@@ -72,4 +76,20 @@
         if (isGCash.value) return ''
         return r.gcash.replaceAll('\n', '<br>')
     })
+
+    const setAsReimbursed = async () => {
+        return
+
+        // await account.updatePayableStatus({
+        //     token: auth.token,
+        //     target: 'update-payable-status',
+        //     data: {
+        //         amountCheck: r.amount,
+        //         nameCheck: r.name,
+        //         status: "Reimbursed",
+        //         rowNum: 0,  
+        //     }
+
+        // })
+    }
 </script>

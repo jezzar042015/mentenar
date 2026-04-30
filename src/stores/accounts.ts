@@ -1,4 +1,4 @@
-import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostCreateTransaction, PostMonthlyExpensePayload, PostResponse, Reimbursement, Transaction } from "@/types/accounts";
+import type { AccountsResponse, ApprovedExpense, MonthlyContribution, MonthlyExpense, PostContributionPayload, PostCreatePayable, PostCreateTransaction, PostMonthlyExpensePayload, PostResponse, PostUpdatePayableStatus, Reimbursement, Transaction } from "@/types/accounts";
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
@@ -225,6 +225,40 @@ export const useAccountsStore = defineStore('accounts', () => {
         }
     }
 
+    const addNewPayable = async (payload: PostCreatePayable) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const resp = await response.json() as PostResponse;
+
+        if (resp.status.toString() == '201') {
+            reimbursements.value.push(payload.data)
+        }
+    }
+
+    const updatePayableStatus = async (payload: PostUpdatePayableStatus) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const resp = await response.json() as PostResponse;
+
+        if (resp.status.toString() == '201') {
+            reimbursements.value[payload.data.rowNum - 1].status = payload.data.status
+        }
+    }
+
     const shouldPull = computed(() => {
         if (!latestUpdate.value) return true;
         const lastUpdateDate = new Date(latestUpdate.value);
@@ -246,6 +280,8 @@ export const useAccountsStore = defineStore('accounts', () => {
         setContribution,
         setMonthlyExpenseStatus,
         addBankTransaction,
+        addNewPayable,
+        updatePayableStatus,
         approvedExpensesBalance,
         approvedExpensesItems,
         branchFundBalance,

@@ -83,10 +83,15 @@
 </template>
 
 <script setup lang="ts">
+    import { useAccountsStore } from '@/stores/accounts';
+    import { useAuthStore } from '@/stores/auth';
     import type { Reimbursement } from '@/types/accounts';
     import { computed, ref, watch } from 'vue';
+    import FetchingSpinner from '../FetchingSpinner.vue';
 
     const posting = ref(false)
+    const account = useAccountsStore()
+    const auth = useAuthStore()
     const emits = defineEmits(['close'])
 
     const target = ref<Reimbursement>({
@@ -140,7 +145,19 @@
     const post = async () => {
         if (!isFormComplete.value) return
 
-        
+        posting.value = true
+
+        const resp = await account.addNewPayable({
+            token: auth.token,
+            target: 'create-new-payable',
+            data: target.value
+        })
+
+        // if()
+
+        posting.value = false
+        close()
+
     }
 
     watch(
