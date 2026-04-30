@@ -147,13 +147,11 @@
 
         posting.value = true
 
-        const resp = await account.addNewPayable({
+        await account.addNewPayable({
             token: auth.token,
             target: 'create-new-payable',
             data: target.value
         })
-
-        // if()
 
         posting.value = false
         close()

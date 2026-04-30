@@ -23,9 +23,11 @@ export interface Reimbursement {
 
 export interface ReimbursementStatusPayload {
     status: string
-    rowNum: number
     amountCheck: number
     nameCheck: string
+    dateCheck: string
+    descCheck: string
+
 }
 
 export interface MonthlyExpense {
@@ -64,7 +66,10 @@ export interface Transaction {
 
 export interface PostResponse {
     status: '201' | '202' | '204'
-    message: string
+    message: string,
+    data?: {
+        index?: number
+    }
 }
 
 export interface PostContributionPayload {

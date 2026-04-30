@@ -255,7 +255,9 @@ export const useAccountsStore = defineStore('accounts', () => {
         const resp = await response.json() as PostResponse;
 
         if (resp.status.toString() == '201') {
-            reimbursements.value[payload.data.rowNum - 1].status = payload.data.status
+            if (resp.data?.index) {
+                reimbursements.value[resp.data.index - 1].status = payload.data.status
+            }
         }
     }
 

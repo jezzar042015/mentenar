@@ -6,9 +6,10 @@
                 <ElipsisIcon class="h-6 w-6 opacity-85" />
                 <div ref="actions" v-if="showActions"
                     class="shadow-lg rounded bg-white absolute right-0 top-auto whitespace-nowrap space-y-1 p-1">
-                    <div class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Make Changes</div>
-                    <hr class="border-0 border-b border-b-gray-100">
-                    <div @click="setAsReimbursed" class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Set as Reimbursed</div>
+                    <!-- <div class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Make Changes</div> -->
+                    <!-- <hr class="border-0 border-b border-b-gray-100"> -->
+                    <div @click="setAsReimbursed" class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Set
+                        as Reimbursed</div>
                 </div>
             </div>
         </div>
@@ -30,6 +31,10 @@
             <div class="text-xs text-gray-600">Amount</div>
             <div class="text-2xl font-bold">{{ formattedAmount }}</div>
         </div>
+        <div v-if="posting"
+            class="z-30 absolute top-0 left-0 w-full h-full bg-white/90 flex items-center justify-center">
+            <FetchingSpinner />
+        </div>
     </div>
 
     <!-- larger screens -->
@@ -48,6 +53,7 @@
     import type { Reimbursement } from '@/types/accounts';
     import { onClickOutside } from '@vueuse/core';
     import { computed, ref, useTemplateRef } from 'vue';
+    import FetchingSpinner from './FetchingSpinner.vue';
 
     const { r } = defineProps<{
         r: Reimbursement
@@ -57,6 +63,7 @@
     const account = useAccountsStore()
     const auth = useAuthStore()
     const showActions = ref(false)
+    const posting = ref(false)
 
     onClickOutside(actions, () => showActions.value = false)
 
@@ -78,18 +85,22 @@
     })
 
     const setAsReimbursed = async () => {
-        return
+        const d = r.date.split("T")[0]
 
-        // await account.updatePayableStatus({
-        //     token: auth.token,
-        //     target: 'update-payable-status',
-        //     data: {
-        //         amountCheck: r.amount,
-        //         nameCheck: r.name,
-        //         status: "Reimbursed",
-        //         rowNum: 0,  
-        //     }
+        showActions.value = false
+        posting.value = true
+        await account.updatePayableStatus({
+            token: auth.token,
+            target: 'update-payable-status',
+            data: {
+                status: "Reimbursed",
+                amountCheck: r.amount,
+                nameCheck: r.name,
+                dateCheck: d,
+                descCheck: r.desc
+            }
 
-        // })
+        })
+        posting.value = false
     }
 </script>
