@@ -20,6 +20,8 @@ export interface FollowupItemUpdatePayload {
     assignees?: string
     target?: string
     remarks?: string
+    completed?: string
+    status?: string
     list: FollowupChecklistItem[]
 
 }

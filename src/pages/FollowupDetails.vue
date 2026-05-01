@@ -102,13 +102,32 @@
                 </div>
             </div>
 
-            <div class="flex gap-3 justify-between mt-10" v-if="auth.token">
-                <button @click="setFormTarget" class="py-2 px-4 shadow-lg rounded-md cursor-pointer">Update</button>
+            <div class="flex flex-col gap-3 justify-between mt-10" v-if="auth.token">
+                <button @click="setFormTarget"
+                    class="py-2 px-4 shadow rounded-md cursor-pointer flex gap-3 items-center justify-center">
+                    <span>
+                        <WrenchIcon class="h-4 w-4" />
+                    </span>
+                    <span>Update</span>
+                </button>
+
+                <button v-if="canBeCompleted" @click="completeItem"
+                    class="py-2 px-4 shadow rounded-md cursor-pointer flex gap-2 items-center justify-center">
+                    <span>
+                        <CheckIcon class="h-4 w-4" />
+                    </span>
+                    <span>Complete</span>
+                </button>
             </div>
 
             <div class="h-20"></div>
         </div>
 
+    </div>
+    <div v-if="posting"
+        class="z-30 absolute top-0 left-0 w-full h-screen bg-white/90 flex flex-col items-center justify-center">
+        <FetchingSpinner />
+        <span class="text-sm">Completing this item...</span>
     </div>
 </template>
 
@@ -118,14 +137,17 @@
     import CalendarIcon from '@/icons/CalendarIcon.vue';
     import CheckIcon from '@/icons/CheckIcon.vue';
     import PersonIcon from '@/icons/PersonIcon.vue';
-    import type { FollowupItem } from '@/types/followups';
+    import type { FollowupItem, FollowupItemUpdatePayload } from '@/types/followups';
     import { useAuthStore } from '@/stores/auth';
     import { useFollowupsStore } from '@/stores/followups';
     import { computed, ref, toRaw } from 'vue';
+    import WrenchIcon from '@/icons/WrenchIcon.vue';
+    import FetchingSpinner from '@/components/FetchingSpinner.vue';
 
     const followup = useFollowupsStore()
     const auth = useAuthStore()
 
+    const posting = ref(false)
     const target = ref<FollowupItem | null>(null)
 
     const startDisplay = computed(() => {
@@ -164,6 +186,15 @@
 
     const isCompleted = computed(() => followup.active?.status === 'Completed')
 
+    const areListCompleted = computed(() => {
+        return completedCount.value === followup.active?.list.length
+    })
+
+    const canBeCompleted = computed(() => {
+        if (isCompleted.value) return false
+        return (areListCompleted.value)
+    })
+
     const setFormTarget = () => {
         target.value = followup.active ?? null
     }
@@ -173,6 +204,45 @@
 
         if (index !== -1) {
             followup.data[index] = structuredClone(toRaw(item))
+        }
+    }
+
+    const completeItem = async () => {
+        if (!followup.active) return
+
+        posting.value = true
+
+        const payload: {
+            task: string
+            changes: FollowupItemUpdatePayload
+        } = {
+            task: followup.active.task,
+            changes: {
+                status: "Completed",
+                completed: new Date().toLocaleString('en-US', {
+                    'month': 'short',
+                    'day': 'numeric',
+                    'year': 'numeric',
+                }),
+                list: []
+            }
+        }
+
+        const resp = await followup.post({
+            target: 'update-followup-item',
+            token: auth.token,
+            data: payload
+        })
+
+        posting.value = false
+
+        if (resp.status.toString() == '200') {
+            const index = followup.data.findIndex(a => a.task === payload.task)
+
+            if (index !== -1) {
+                followup.data[index].completed = payload.changes.completed ?? ""
+                followup.data[index].status = payload.changes.status ?? ""
+            }
         }
     }
 </script>

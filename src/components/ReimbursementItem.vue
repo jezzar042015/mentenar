@@ -59,12 +59,12 @@
         r: Reimbursement
     }>()
 
-    const actions = useTemplateRef<HTMLElement>('actions')
     const account = useAccountsStore()
     const auth = useAuthStore()
     const showActions = ref(false)
     const posting = ref(false)
-
+    
+    const actions = useTemplateRef<HTMLElement>('actions')
     onClickOutside(actions, () => showActions.value = false)
 
     const formattedAmount = computed(() => {

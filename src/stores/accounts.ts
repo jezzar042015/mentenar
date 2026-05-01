@@ -14,6 +14,8 @@ export const useAccountsStore = defineStore('accounts', () => {
     const fetching = ref(false)
     const balance = useStorage<number>('khoc-accounts-balance', 0, localStorage)
     const auth = useAuthStore()
+    const transactionsFilter = ref("Branch Fund")
+    const transactionsOnFilter = ref(false)
 
     const formattedBalance = computed(() => {
         return new Intl.NumberFormat('en-PH', {
@@ -21,6 +23,81 @@ export const useAccountsStore = defineStore('accounts', () => {
             currency: 'PHP',
             minimumFractionDigits: 2,
         }).format(balance.value);
+    })
+
+    const transactionCategories = ref([
+        "Contribution",
+        "Operation",
+        "Service Charge",
+        "Maintenance",
+        "Bank Charges",
+        "Resource Recovery",
+        "Supplies",
+        "Branch Fund",
+        "Window Blinds",
+    ])
+
+    const withRunningBalance = computed(() => {
+        let runningBalance = 0
+
+        return [...transactions.value]
+            .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()) // oldest → newest
+            .map(t => {
+                runningBalance += t.flow === 'IN' ? t.amount : -t.amount
+
+                return {
+                    ...t,
+                    balance: runningBalance
+                }
+            })
+    })
+
+    const filteredTransactions = computed(() => {
+        let source: Transaction[] = []
+
+        if (!transactionsOnFilter.value) {
+            // ✅ Use original running balance
+            source = [...withRunningBalance.value]
+        } else {
+            // ✅ Recompute running balance for filtered items only
+            let runningBalance = 0
+
+            source = [...transactions.value]
+                .filter(t => t.category === transactionsFilter.value)
+                .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()) // oldest → newest
+                .map(t => {
+                    runningBalance += t.flow === 'IN' ? t.amount : -t.amount
+
+                    return {
+                        ...t,
+                        balance: runningBalance
+                    }
+                })
+        }
+
+        // 👉 Reverse for display (latest first)
+        source = [...source].reverse()
+
+        // 👉 Grouping
+        const grouped: Record<string, any> = {}
+
+        for (const t of source) {
+            const date = new Date(t.date)
+            const monthKey = date.toLocaleString('en-US', { month: 'short', year: 'numeric' })
+
+            if (!grouped[monthKey]) {
+                grouped[monthKey] = {
+                    month: monthKey,
+                    summary: 0,
+                    transactions: []
+                }
+            }
+
+            grouped[monthKey].transactions.push(t)
+            grouped[monthKey].summary += t.flow === 'IN' ? t.amount : -t.amount
+        }
+
+        return Object.values(grouped)
     })
 
     const branchFundTransactions = computed(() => {
@@ -278,6 +355,10 @@ export const useAccountsStore = defineStore('accounts', () => {
         monthly,
         reimbursements,
         transactions,
+        transactionCategories,
+        transactionsFilter,
+        transactionsOnFilter,
+        filteredTransactions,
         pull,
         setContribution,
         setMonthlyExpenseStatus,

@@ -151,8 +151,6 @@
 
         posting.value = false
 
-        console.log(resp.status.toString());
-
         if (resp.status.toString() == '200') {
             emits('update-target', formData.value)
             unsetTarget()

@@ -64,6 +64,12 @@ export interface Transaction {
     remarks: string
 }
 
+export interface MonthGroupTransaction {
+    month: string,
+    summary: number,
+    transactions: Transaction[]
+}
+
 export interface PostResponse {
     status: '201' | '202' | '204'
     message: string,

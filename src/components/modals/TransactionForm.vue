@@ -35,7 +35,7 @@
                 <div>
                     <div class="text-sm text-gray-700">Category</div>
                     <select v-model="target.category" class="border border-gray-400 rounded-md px-2 py-2 w-full">
-                        <option v-for="c in categories" :value="c">
+                        <option v-for="c in account.transactionCategories" :value="c">
                             {{ c }}
                         </option>
                     </select>
@@ -75,17 +75,17 @@
         { IN: "Incoming", OUT: "Outgoing" }
     )
 
-    const categories = ref([
-        "Contribution",
-        "Operation",
-        "Service Charge",
-        "Maintenance",
-        "Bank Charges",
-        "Resource Recovery",
-        "Supplies",
-        "Branch Fund",
-        "Window Blinds",
-    ])
+    // const categories = ref([
+    //     "Contribution",
+    //     "Operation",
+    //     "Service Charge",
+    //     "Maintenance",
+    //     "Bank Charges",
+    //     "Resource Recovery",
+    //     "Supplies",
+    //     "Branch Fund",
+    //     "Window Blinds",
+    // ])
 
     const target = ref<Transaction>({
         date: new Date().toISOString().split("T")[0] || '',
