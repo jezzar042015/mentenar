@@ -3,7 +3,7 @@
 
         <!-- mobile screens -->
         <div class="md:hidden cursor-pointer">
-            <div class="text-gray-800">Approved Expenses & Remittances</div>
+            <div class="text-gray-800">Approved Expenses & Special Funds</div>
             <div @click="gotoApprovedExpenses" class="flex justify-between">
                 <span class="text-2xl font-semibold hover:scale-105 transition-transform duration-300">
                     {{ accounts.formattedApprovedExpensesBalance }}
@@ -17,7 +17,7 @@
         <!-- larger screens -->
         <div class="hidden md:block">
             <div class="flex justify-between">
-                <div class="text-cyan-700 font-semibold text-xl">Approved Future Maintenance Expenses & Other Remittances</div>
+                <div class="text-cyan-700 font-semibold text-xl">Approved Future Expenses & Special Funds</div>
                 <div class="text-2xl font-semibold text-right px-10 text-cyan-700">
                    &dash; {{ accounts.formattedApprovedExpensesBalance }}
                 </div>

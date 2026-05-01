@@ -45,7 +45,7 @@
 <script setup lang="ts">
     import AccountsApprovedExpenses from '@/components/AccountsApprovedExpenses.vue';
     import AccountsContributions from '@/components/AccountsContributions.vue';
-import AccountsFundBalance from '@/components/AccountsFundBalance.vue';
+    import AccountsFundBalance from '@/components/AccountsFundBalance.vue';
     import AccountsReimbursements from '@/components/AccountsReimbursements.vue';
     import AccountsUtilityExpenses from '@/components/AccountsUtilityExpenses.vue';
     import UnauthenticatedProfile from '@/components/UnauthenticatedProfile.vue';

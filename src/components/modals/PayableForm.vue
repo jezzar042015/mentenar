@@ -16,7 +16,7 @@
 
                     <div>
                         <div class="text-sm text-gray-700">Payee</div>
-                        <input type="text" v-model="target.name" maxlength="8"
+                        <input type="text" v-model="target.name" maxlength="15"
                             class="border border-gray-400 rounded-md px-4 py-2 w-full">
                     </div>
 
