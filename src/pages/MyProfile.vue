@@ -1,5 +1,8 @@
 <template>
     <div class="px-4 py-5 bg-white -mt-5 h-screen overflow-auto">
+        <Teleport to="body">
+            <PayableForm v-if="modal === 'payable-form'" @close="modal = ''" />
+        </Teleport>
 
         <template v-if="!auth.token">
             <UnauthenticatedProfile />
@@ -16,7 +19,6 @@
             </div>
 
             <hr class="mx-4 border-0 border-b-4 border-b-gray-400 mb-4">
-
 
             <div class="bg-white space-y-4 md:space-y-6 p-5 rounded-md">
                 <AccountsFundBalance />
@@ -38,6 +40,16 @@
                     <hr class="border-0 border-b-4 border-b-gray-400 mt-1">
                 </div>
             </div>
+
+            <hr class="mx-4 mt-15 mb-4 border-0 border-b border-b-gray-400 ">
+            <div class="p-4">
+                <div class="text-sm text-gray-500">ACTIONS</div>
+                <div class="mt-3 flex flex-col gap-2 cursor-pointer">
+                    <button @click="modal = 'payable-form'" class="shadow py-2 px-4 rounded">
+                        Create New Payable/Reimbursements
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -48,15 +60,17 @@
     import AccountsFundBalance from '@/components/AccountsFundBalance.vue';
     import AccountsReimbursements from '@/components/AccountsReimbursements.vue';
     import AccountsUtilityExpenses from '@/components/AccountsUtilityExpenses.vue';
+    import PayableForm from '@/components/modals/PayableForm.vue';
     import UnauthenticatedProfile from '@/components/UnauthenticatedProfile.vue';
     import { useAccountsStore } from '@/stores/accounts';
     import { useAuthStore } from '@/stores/auth';
     import { useViewsStore } from '@/stores/views';
-    import { computed, onMounted } from 'vue';
+    import { computed, onMounted, ref } from 'vue';
 
     const view = useViewsStore()
     const auth = useAuthStore()
     const accounts = useAccountsStore()
+    const modal = ref<'' | 'payable-form'>('')
 
     const fundsLeftLabel = computed(() => {
         return accounts.fundsAvailable >= 0 ? 'Available Funds Balance' : 'Funds Dificit'

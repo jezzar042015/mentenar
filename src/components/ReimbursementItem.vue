@@ -2,14 +2,16 @@
     <!-- mobile screens -->
     <div :class="['md:hidden shadow-md rounded-md p-4 space-y-5 relative', showActions ? 'bg-black/10' : 'bg-white']">
         <div class="absolute right-2 top-0">
-            <div class="p-3 relative" @click.prevent="showActions = true">
+            <div class="p-3 relative cursor-pointer" @click.prevent="showActions = true">
                 <ElipsisIcon class="h-6 w-6 opacity-85" />
                 <div ref="actions" v-if="showActions"
                     class="shadow-lg rounded bg-white absolute right-0 top-auto whitespace-nowrap space-y-1 p-1">
-                    <!-- <div class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Make Changes</div> -->
-                    <!-- <hr class="border-0 border-b border-b-gray-100"> -->
                     <div @click="setAsReimbursed" class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Set
                         as Reimbursed</div>
+                    <hr class="border-0 border-b border-b-gray-100">
+                    <div class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">
+                        Reimbursed & Create Transaction
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,6 +37,9 @@
             class="z-30 absolute top-0 left-0 w-full h-full bg-white/90 flex items-center justify-center">
             <FetchingSpinner />
         </div>
+        <!-- <Teleport to="body">
+
+        </Teleport> -->
     </div>
 
     <!-- larger screens -->
@@ -63,7 +68,7 @@
     const auth = useAuthStore()
     const showActions = ref(false)
     const posting = ref(false)
-    
+
     const actions = useTemplateRef<HTMLElement>('actions')
     onClickOutside(actions, () => showActions.value = false)
 

@@ -5,7 +5,7 @@
     </Teleport>
     <div class="h-screen overflow-hidden flex flex-col">
         <div class="pt-6 px-6 pb-3 cursor-pointer">
-            <div @click="exit" class="flex space-x-0 items-center">
+            <div @click="exit" class="flex space-x-0 items-center w-fit pr-5">
                 <span>
                     <CaretLeftIcon class="h-5 w-5" />
                 </span>
@@ -69,16 +69,15 @@
 </template>
 
 <script setup lang="ts">
-    import TransactionItem from '@/components/TransactionItem.vue';
     import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
+    import MonthGroup from '@/components/transactions/MonthGroup.vue';
     import TransactionDetails from '@/components/modals/TransactionDetails.vue';
     import TransactionForm from '@/components/modals/TransactionForm.vue';
     import type { Transaction } from '@/types/accounts';
+    import { onClickOutside } from '@vueuse/core';
+    import { onMounted, ref, useTemplateRef } from 'vue';
     import { useAccountsStore } from '@/stores/accounts';
     import { useViewsStore } from '@/stores/views';
-    import { onMounted, ref, useTemplateRef } from 'vue';
-    import { onClickOutside } from '@vueuse/core';
-    import MonthGroup from '@/components/transactions/MonthGroup.vue';
 
     const accounts = useAccountsStore()
     const view = useViewsStore()
@@ -98,6 +97,7 @@
 
     const setTransactionCategory = (category: string) => {
         accounts.transactionsFilter = category
+        if (!accounts.transactionsOnFilter) accounts.transactionsOnFilter = true
         showCategoriesSelection.value = false
     }
 
