@@ -13,14 +13,11 @@
                 <div class="text-sm text-gray-500 mb-2">
                     Copy the link below to share the preventive maintenance details with others.
                 </div>
-                <input type="text" readonly
-                    class="w-full border-gray-300 shadow-sm outline-none"
-                    :value="link" />
-                
-                <button class="mt-3 w-full py-2 bg-blue-500 text-white rounded-md"
-                    @click="copyLink">
+                <input type="text" readonly class="w-full border-gray-300 shadow-sm outline-none" :value="link" />
+
+                <button class="mt-3 w-full py-2 bg-blue-500 text-white rounded-md" @click="copyLink">
                     Copy Link
-                </button>  
+                </button>
             </div>
         </div>
     </div>
@@ -29,9 +26,11 @@
 <script setup lang="ts">
     import CloseIcon from '@/icons/CloseIcon.vue';
 
-    const emits = defineEmits(['close'])
+    const emits = defineEmits<{
+        (e: 'close'): void
+    }>()
 
-    const {link} = defineProps<{
+    const { link } = defineProps<{
         link: string
     }>()
 

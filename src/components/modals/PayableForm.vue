@@ -92,7 +92,10 @@
     const posting = ref(false)
     const account = useAccountsStore()
     const auth = useAuthStore()
-    const emits = defineEmits(['close'])
+
+    const emits = defineEmits<{
+        (e: 'close'): void
+    }>()
 
     const target = ref<Reimbursement>({
         date: '',

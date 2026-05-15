@@ -57,7 +57,10 @@
         target?: Transaction | null
     }>()
 
-    const emits = defineEmits(['unset-target'])
+    const emits = defineEmits<{
+        (e: 'unset-target'): void
+    }>()
+    
     const unsetTarget = () => {
         emits('unset-target')
     }

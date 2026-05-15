@@ -14,7 +14,7 @@
         </div>
 
         <!-- big screens -->
-        <div class="hidden md:grid grid-cols-3 justify-between items-center">
+        <div class="hidden md:grid grid-cols-3 justify-between items-center cursor-pointer">
             <div class="text-sm">{{ cong.cong }}</div>
             <div class="text-sm">{{ delayedMonths || '-' }}</div>
             <div :class="['font-semibold text-right', { 'text-gray-300': payable == 0 }]">{{ formattedPayable }}</div>

@@ -40,7 +40,11 @@
         countUpcoming: number,
         activeFilter: FollowupListFilter
     }>()
-    const emits = defineEmits(['set-filters'])
+    
+    const emits = defineEmits<{
+        (e: 'set-filters', f: FollowupListFilter): void
+    }>()
+
 
     const followups = useFollowupsStore()
 

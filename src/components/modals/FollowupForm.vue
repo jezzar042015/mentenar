@@ -29,7 +29,7 @@
                     <div class="text-xs text-gray-600">
                         <span>Checklist</span>
                         <span> {{formData.list.filter(f =>
-                            f.completed).length }} of {{ formData.list.length }}</span>
+                            f.completed).length}} of {{ formData.list.length }}</span>
 
                     </div>
                     <div class="h-40 overflow-auto">
@@ -80,10 +80,16 @@
     const auth = useAuthStore()
     const posting = ref(false)
 
-    const emits = defineEmits([
-        'unset-target',
-        'update-target'
-    ])
+    const emits = defineEmits<{
+        (
+            e: 'unset-target'
+        ): void
+
+        (
+            e: 'update-target',
+            item: FollowupItem
+        ): void
+    }>()
 
     const toggleChecklistStatus = (item: FollowupChecklistItem) => {
         item.completed = !item.completed

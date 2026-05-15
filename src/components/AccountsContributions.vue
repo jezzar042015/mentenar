@@ -1,5 +1,8 @@
 <template>
     <div>
+        <Teleport :to="'body'">
+            <ContributionsForm :target @unset-target="target = null" />
+        </Teleport>
         <!-- mobile screens -->
         <div class="md:hidden">
             <div class="text-gray-800">Pending Contributions</div>
@@ -24,7 +27,7 @@
         <div class="hidden md:flex">
             <div class="w-2/3 bg-white px-5">
                 <template v-for="c in accounts.contributions" :key="c.cong">
-                    <ContributionItem :cong="c" />
+                    <ContributionItem :cong="c" @click="target = c" />
                 </template>
             </div>
 
@@ -38,10 +41,14 @@
     import { useViewsStore } from '@/stores/views';
     import ContributionItem from './ContributionItem.vue';
     import CaretLeftIcon from '@/icons/CaretLeftIcon.vue';
+    import ContributionsForm from './modals/ContributionsForm.vue';
+    import type { MonthlyContribution } from '@/types/accounts';
+    import { ref } from 'vue';
 
     const accounts = useAccountsStore()
     const view = useViewsStore()
 
+    const target = ref<MonthlyContribution | null>(null)
     const gotoContributions = () => {
         view.setView('contributions')
     }

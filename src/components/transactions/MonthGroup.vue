@@ -22,9 +22,12 @@
         group: MonthGroupTransaction
     }>()
 
-    const emits = defineEmits([
-        'set-target'
-    ])
+    const emits = defineEmits<{
+        (
+            e: 'set-target',
+            t: Transaction
+        ): void
+    }>()
 
     const formattedBalance = computed(() => {
         return new Intl.NumberFormat('en-PH', {

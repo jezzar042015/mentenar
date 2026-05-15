@@ -4,7 +4,7 @@
         <div class="absolute right-2 top-0">
             <div class="p-3 relative cursor-pointer" @click.prevent="showActions = true">
                 <ElipsisIcon class="h-6 w-6 opacity-85" />
-                <div ref="actions" v-if="showActions"
+                <!-- <div  v-if="showActions"
                     class="shadow-lg rounded bg-white absolute right-0 top-auto whitespace-nowrap space-y-1 p-1">
                     <div @click="setAsReimbursed" class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">Set
                         as Reimbursed</div>
@@ -12,7 +12,8 @@
                     <div class="p-3 bg-white cursor-pointer rounded-sm hover:bg-amber-300">
                         Reimbursed & Create Transaction
                     </div>
-                </div>
+                </div> -->
+                <DropdownActions ref="actions" :show-actions @set-as-reimbursed="setAsReimbursed" />
             </div>
         </div>
         <div>
@@ -43,11 +44,13 @@
     </div>
 
     <!-- larger screens -->
-    <div class="hidden md:block">
-        <div class="flex justify-between items-center border-0 border-b border-b-gray-300 py-1">
+    <div class="hidden md:block relative" @click.prevent="showActions = true">
+        <div class="flex justify-between items-center border-0 border-b border-b-gray-300 py-1 cursor-pointer"
+            :class="{ 'bg-amber-300 rounded-sm px-2': showActions }">
             <div class="text-sm">{{ r.desc }}</div>
             <div class="font-semibold">{{ formattedAmount }}</div>
         </div>
+        <DropdownActions ref="actions" :show-actions @set-as-reimbursed="setAsReimbursed" />
     </div>
 </template>
 
@@ -55,10 +58,11 @@
     import ElipsisIcon from '@/icons/ElipsisIcon.vue';
     import { useAccountsStore } from '@/stores/accounts';
     import { useAuthStore } from '@/stores/auth';
-    import type { Reimbursement } from '@/types/accounts';
     import { onClickOutside } from '@vueuse/core';
     import { computed, ref, useTemplateRef } from 'vue';
+    import type { Reimbursement } from '@/types/accounts';
     import FetchingSpinner from './FetchingSpinner.vue';
+    import DropdownActions from './payables/DropdownActions.vue';
 
     const { r } = defineProps<{
         r: Reimbursement

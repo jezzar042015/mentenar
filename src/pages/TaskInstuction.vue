@@ -38,7 +38,8 @@
                 <div v-for="(e, ei) in instructions.active.elements" :key="e.element" class="mb-8">
                     <div class="text-blue-500 font-bold text-xl py-2">{{ e.element }}</div>
                     <div class="space-y-5">
-                        <div v-for="(checkItem, checkIndex) in e.items" :key="checkIndex" class="cursor-pointer hover:text-blue-800">
+                        <div v-for="(checkItem, checkIndex) in e.items" :key="checkIndex"
+                            class="cursor-pointer hover:text-blue-800">
                             <InstructionCheckItem :check-item :check-index :element-index="ei"
                                 :ti-id="instructions.active.id" />
                         </div>
@@ -57,5 +58,7 @@
     import { useInstructionsStore } from '@/stores/tasks-instructions';
 
     const instructions = useInstructionsStore()
-    const emits = defineEmits(['close'])
+    const emits = defineEmits<{
+        (e: 'close'): void
+    }>()
 </script>

@@ -16,5 +16,11 @@
     const { t } = defineProps<{
         t: PreventiveItem
     }>()
-    const emits = defineEmits(['open-instructions'])
+
+    const emits = defineEmits<{
+        (
+            e: 'open-instructions',
+            tiId: string
+        ): void
+    }>()
 </script>

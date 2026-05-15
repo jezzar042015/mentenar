@@ -19,8 +19,7 @@
 
                 <div>
                     <div class="text-sm text-gray-700">Description</div>
-                    <input type="text" v-model="target.desc" 
-                        class="border border-gray-400 rounded-md px-4 py-2 w-full">
+                    <input type="text" v-model="target.desc" class="border border-gray-400 rounded-md px-4 py-2 w-full">
                 </div>
 
                 <div>
@@ -98,7 +97,9 @@
         remarks: '',
     })
 
-    const emits = defineEmits(['close'])
+    const emits = defineEmits<{
+        (e: 'close'): void
+    }>()
 
     const close = () => {
         emits('close')

@@ -1,5 +1,6 @@
 <template>
-    <div v-if="target" @click="unsetTarget" class="absolute w-full h-screen bg-black/60 flex z-30 top-0 left-0 items-center justify-center">
+    <div v-if="target" @click="unsetTarget"
+        class="absolute w-full h-screen bg-black/60 flex z-30 top-0 left-0 items-center justify-center">
         <div class="bg-white p-5 rounded-md w-full m-6 max-w-md">
             <div class="text-sm uppercase mb-10">Update Expense Utilization</div>
 
@@ -61,7 +62,9 @@
     const actualAmount = ref(0)
     const displayAmount = ref('')
 
-    const emits = defineEmits(['unset-target'])
+    const emits = defineEmits<{
+        (e: 'unset-target'): void
+    }>()
 
     const unsetTarget = () => {
         emits('unset-target')
