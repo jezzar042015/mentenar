@@ -65,7 +65,7 @@
 
             <div class="flex flex-col mt-5 space-y-1 p-2 bg-amber-50" v-if="followup.active.remarks">
                 <span class="text-xs">Description</span>
-                <span>{{ followup.active.remarks }}</span>
+                <span v-html="refinedRemarks"></span>
             </div>
 
             <div class="mt-8" v-if="followup.active.list.length > 0">
@@ -245,4 +245,8 @@
             }
         }
     }
+
+    const refinedRemarks = computed(()=> {
+        return followup.active?.remarks.replaceAll('⏹️','<br>')
+    })
 </script>

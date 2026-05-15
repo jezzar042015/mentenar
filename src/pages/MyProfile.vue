@@ -44,9 +44,11 @@
             <hr class="mx-4 mt-15 mb-4 border-0 border-b border-b-gray-400 ">
             <div class="p-4">
                 <div class="text-sm text-gray-500">ACTIONS</div>
-                <div class="mt-3 flex flex-col gap-2 cursor-pointer">
-                    <button @click="modal = 'payable-form'" class="shadow py-2 px-4 rounded">
-                        Create New Payable/Reimbursements
+                <div class="mt-3 flex flex-col gap-2 cursor-pointer md:grid grid-cols-2">
+                    <button @click="modal = 'payable-form'"
+                        class="flex gap-1.5 items-center shadow py-2 px-4 rounded text-left cursor-pointer">
+                        <AddIcon class="h-5 w-5" />
+                        <span>Create New Payable or Reimbursements</span>
                     </button>
                 </div>
             </div>
@@ -62,6 +64,7 @@
     import AccountsUtilityExpenses from '@/components/AccountsUtilityExpenses.vue';
     import PayableForm from '@/components/modals/PayableForm.vue';
     import UnauthenticatedProfile from '@/components/UnauthenticatedProfile.vue';
+    import AddIcon from '@/icons/AddIcon.vue';
     import { useAccountsStore } from '@/stores/accounts';
     import { useAuthStore } from '@/stores/auth';
     import { useViewsStore } from '@/stores/views';

@@ -1,6 +1,8 @@
 <template>
     <div>
-
+        <Teleport :to="'body'">
+            <MonthlyExpenseStatusForm :target @unset-target="target = null" />
+        </Teleport>
         <!-- mobile screens -->
         <div class="text-gray-800 md:font-semibold md:hidden cursor-pointer">Unpaid Utility Expenses</div>
         <div @click="gotoUnpaidUtilityExpenses" class="flex justify-between md:hidden cursor-pointer">
@@ -24,7 +26,7 @@
             <div class="flex">
                 <div class="w-2/3 bg-white px-5">
                     <template v-for="m in accounts.monthly" :key="m.name">
-                        <MonthlyExpenseItem :m />
+                        <MonthlyExpenseItem :m @click="target = m"/>
                     </template>
                 </div>
             </div>
@@ -37,9 +39,14 @@
     import { useAccountsStore } from '@/stores/accounts';
     import { useViewsStore } from '@/stores/views';
     import MonthlyExpenseItem from './MonthlyExpenseItem.vue';
+    import MonthlyExpenseStatusForm from './modals/MonthlyExpenseStatusForm.vue';
+    import { ref } from 'vue';
+    import type { MonthlyExpense } from '@/types/accounts';
 
     const view = useViewsStore()
     const accounts = useAccountsStore()
+
+    const target = ref<MonthlyExpense | null>(null)
 
     const gotoUnpaidUtilityExpenses = () => {
         view.setView('monthly-expenses')
