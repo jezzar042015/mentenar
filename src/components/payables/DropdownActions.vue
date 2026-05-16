@@ -5,7 +5,7 @@
             Set
             as Reimbursed</div>
         <hr class="border-0 border-b border-b-gray-100">
-        <div class="p-3 md:p-2 bg-white cursor-pointer rounded-sm hover:bg-amber-300">
+        <div @click="emits('setAndCreate')" class="p-3 md:p-2 bg-white cursor-pointer rounded-sm hover:bg-amber-300">
             Reimbursed & Create Transaction
         </div>
     </div>
@@ -18,5 +18,6 @@
 
     const emits = defineEmits<{
         (e: 'setAsReimbursed'): void
+        (e: 'setAndCreate'): void
     }>()
 </script>

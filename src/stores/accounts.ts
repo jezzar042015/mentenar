@@ -334,7 +334,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         if (resp.status.toString() == '201') {
             if (resp.data?.index) {
                 reimbursements.value[resp.data.index - 1].status = payload.data.status
-            }
+            } 
         }
     }
 

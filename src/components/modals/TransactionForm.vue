@@ -64,7 +64,7 @@
     import { useAccountsStore } from '@/stores/accounts';
     import { useAuthStore } from '@/stores/auth';
     import type { Transaction } from '@/types/accounts';
-    import { computed, ref } from 'vue';
+    import { computed, onMounted, ref, toRaw } from 'vue';
     import FetchingSpinner from '../FetchingSpinner.vue';
 
     const account = useAccountsStore()
@@ -74,17 +74,9 @@
         { IN: "Incoming", OUT: "Outgoing" }
     )
 
-    // const categories = ref([
-    //     "Contribution",
-    //     "Operation",
-    //     "Service Charge",
-    //     "Maintenance",
-    //     "Bank Charges",
-    //     "Resource Recovery",
-    //     "Supplies",
-    //     "Branch Fund",
-    //     "Window Blinds",
-    // ])
+    const { draft } = defineProps<{
+        draft?: Transaction
+    }>()
 
     const target = ref<Transaction>({
         date: new Date().toISOString().split("T")[0] || '',
@@ -99,6 +91,7 @@
 
     const emits = defineEmits<{
         (e: 'close'): void
+        (e: 'update-isposting'): void
     }>()
 
     const close = () => {
@@ -109,6 +102,7 @@
         if (!isFormComplete.value) return
 
         posting.value = true
+        emits('update-isposting')
 
         await account.addBankTransaction({
             token: auth.token,
@@ -120,16 +114,6 @@
         close()
 
     }
-
-    const dateDisplay = computed(() => {
-        if (!target) return null
-        const date = new Date(target.value.date)
-        return date.toLocaleString('en-US', {
-            'month': 'long',
-            'day': 'numeric',
-            'year': 'numeric',
-        })
-    })
 
     const isFormComplete = computed(() => {
         const data = target.value;
@@ -154,11 +138,9 @@
         });
     });
 
-    const formattedAmount = computed(() => {
-        return Intl.NumberFormat('en-PH', {
-            style: 'currency',
-            currency: 'PHP',
-            minimumFractionDigits: 2
-        }).format(target.value.amount ?? 0)
+    onMounted(() => {
+        if (draft) {
+            target.value = structuredClone(toRaw(draft))
+        }
     })
 </script>
