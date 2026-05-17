@@ -5,10 +5,14 @@
             :count-overdue="followupsStore.overdue.length"
             :count-upcoming="followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length" />
 
+        <div v-if="auth.token" class="mx-4 mt-2 flex justify-end">
+            <button @click="form = 'new-item'"
+                class="text-sm bg-white p-2 shadow-md rounded-sm flex items-center gap-1.5 cursor-pointer">
+                <AddIcon class="w-5 h-5" />
+                <span> New Follow-up Item</span>
+            </button>
 
-        <!-- <div v-if="followupsStore.fetching">
-            <FetchingSpinner />
-        </div> -->
+        </div>
 
         <div class="mt-5 flex flex-col pt-2 px-2 pb-10 bg-gray-100 space-y-4 h-fit">
 
@@ -71,7 +75,9 @@
                 </template>
             </div>
         </div>
-
+        <Teleport to="body">
+            <FollowupItemForm v-if="form == 'new-item'" @close="form = ''" />
+        </Teleport>
     </div>
 </template>
 
@@ -79,14 +85,20 @@
     import type { FollowupListFilter } from '@/types/followups'
     import { useFollowupsStore } from '@/stores/followups'
     import { useViewsStore } from '@/stores/views'
+    import { useAuthStore } from '@/stores/auth'
     import { ref, computed, watch } from 'vue'
     import FollowupItem from '@/components/FollowupItem.vue'
     import FollowupFilters from '@/components/FollowupFilters.vue'
     import CalendarIcon from '@/icons/CalendarIcon.vue'
+    import AddIcon from '@/icons/AddIcon.vue'
+    import FollowupItemForm from '@/components/modals/FollowupItemForm.vue'
 
     const followupsStore = useFollowupsStore()
-    const filter = ref<FollowupListFilter>('all')
+    const auth = useAuthStore()
     const view = useViewsStore()
+
+    const filter = ref<FollowupListFilter>('all')
+    const form = ref<"" | "new-item">("")
 
     const setFilter = (f: FollowupListFilter) => {
         filter.value = f
