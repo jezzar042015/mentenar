@@ -281,7 +281,10 @@ export const useAccountsStore = defineStore('accounts', () => {
 
         if (resp.status.toString() == '202') {
             const monthExpense = monthly.value.find(c => c.name === payload.data.name)
-            if (monthExpense) monthExpense.status = payload.data.status
+            if (monthExpense) {
+                monthExpense.status = payload.data.status
+                monthExpense.actual = payload.data.actual
+            }
         }
     }
 
@@ -334,7 +337,7 @@ export const useAccountsStore = defineStore('accounts', () => {
         if (resp.status.toString() == '201') {
             if (resp.data?.index) {
                 reimbursements.value[resp.data.index - 1].status = payload.data.status
-            } 
+            }
         }
     }
 
