@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
-    "@types/node": "^25.8.0",
+    "@types/node": "^25.9.0",
     "@vitejs/plugin-vue": "^6.0.7",
     "@vue/tsconfig": "^0.9.1",
     "npm-run-all2": "^8.0.4",
@@ -27,7 +27,7 @@
     "vite": "^8.0.13",
     "vite-plugin-vue-devtools": "^8.1.2",
     "vite-qr": "^1.2.0",
-    "vue-tsc": "^3.2.9"
+    "vue-tsc": "^3.3.0"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

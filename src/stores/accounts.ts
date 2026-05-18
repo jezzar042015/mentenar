@@ -55,10 +55,7 @@ export const useAccountsStore = defineStore('accounts', () => {
     const filteredTransactions = computed(() => {
         let source: Transaction[] = []
 
-        if (!transactionsOnFilter.value) {
-            // ✅ Use original running balance
-            source = [...withRunningBalance.value]
-        } else {
+        if (transactionsOnFilter.value) {
             // ✅ Recompute running balance for filtered items only
             let runningBalance = 0
 
@@ -73,6 +70,9 @@ export const useAccountsStore = defineStore('accounts', () => {
                         balance: runningBalance
                     }
                 })
+        } else {
+            // ✅ Use original running balance
+            source = [...withRunningBalance.value]
         }
 
         // 👉 Reverse for display (latest first)
