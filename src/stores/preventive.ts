@@ -5,7 +5,6 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const usePreventiveStore = defineStore('preventive', () => {
-    // const data = ref<PreventiveResponse[]>([])
     const data = useStorage<PreventiveResponse[]>('khoc-preventive-data', [], localStorage, { mergeDefaults: true })
     const latestUpdate = useStorage<string>('khoc-preventive-latest-update', '', localStorage)
     const fetching = ref(false)
