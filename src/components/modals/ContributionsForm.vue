@@ -1,5 +1,5 @@
 <template>
-    <div v-if="target" @click="unsetTarget" class="absolute w-full h-screen bg-black/60 flex z-20 top-0 left-0 items-center justify-center" >
+    <div v-if="target" @click.self="unsetTarget" class="absolute w-full h-screen bg-black/60 flex z-20 top-0 left-0 items-center justify-center" >
         <div class="bg-white p-5 rounded-md w-full m-6 max-w-md">
             <div class="text-sm uppercase mb-10">Update Delayed Months</div>
 
@@ -25,8 +25,8 @@
 
             <div class="flex gap-3 justify-between mt-15">
                 <button @click="post"
-                    class="py-2 shadow rounded-md cursor-pointer w-1/2 bg-blue-600 text-white">Update</button>
-                <button @click="unsetTarget" class="py-2 shadow rounded-md cursor-pointer w-1/2">Close</button>
+                    class="py-2 shadow rounded-md cursor-pointer w-1/2 bg-amber-400 text-white">Update</button>
+                <button @click="unsetTarget" class="py-2 shadow bg-gray-50 rounded-md cursor-pointer w-1/2">Close</button>
             </div>
         </div>
     </div>

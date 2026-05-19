@@ -5,16 +5,9 @@
             :count-overdue="followupsStore.overdue.length"
             :count-upcoming="followupsStore.dueSoon.length + followupsStore.dueNextWeeks.length" />
 
-        <div v-if="auth.token" class="mx-4 mt-2 flex justify-end">
-            <button @click="form = 'new-item'"
-                class="text-sm bg-white p-2 shadow-md rounded-sm flex items-center gap-1.5 cursor-pointer">
-                <AddIcon class="w-5 h-5" />
-                <span> New Follow-up Item</span>
-            </button>
 
-        </div>
 
-        <div class="mt-5 flex flex-col pt-2 px-2 pb-10 bg-gray-100 space-y-4 h-fit">
+        <div class="relative mt-5 flex flex-col pt-2 px-2 pb-10 bg-gray-100 space-y-4 h-fit">
 
             <div v-if="(filter == 'overdue' || filter == 'all') && followupsStore.overdue.length > 0" class="space-y-4">
                 <div class="px-3 text-sm text-gray-800">Overdue</div>
@@ -75,6 +68,16 @@
                 </template>
             </div>
         </div>
+
+        <div v-if="auth.token" class="fixed bottom-5 right-5 md:right-auto md:ml-5 flex justify-end z-20 bg-transparent">
+            <button @click="form = 'new-item'"
+                class="text-sm bg-amber-400 text-white p-2 shadow-md rounded-full flex items-center gap-1.5 cursor-pointer">
+                <AddIcon class="w-10 h-10" />
+                <span class="hidden md:inline pr-4">Add New Follow-up Item</span>
+            </button>
+
+        </div>
+
         <Teleport to="body">
             <FollowupItemForm v-if="form == 'new-item'" @close="form = ''" />
         </Teleport>
