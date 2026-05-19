@@ -102,21 +102,22 @@
                 </div>
             </div>
 
-            <div class="flex flex-col gap-3 justify-between mt-10" v-if="auth.token">
+            <div class="flex flex-col gap-3 justify-between mt-10 fixed bottom-5 right-5" v-if="auth.token">
+                
                 <button @click="setFormTarget"
-                    class="py-2 px-4 shadow rounded-md cursor-pointer flex gap-3 items-center justify-center">
+                    class="py-4 px-4 shadow-lg rounded-full cursor-pointer flex gap-3 items-center justify-center bg-amber-400 text-white">
                     <span>
-                        <WrenchIcon class="h-4 w-4" />
+                        <WrenchIcon class="h-6 w-6" />
                     </span>
-                    <span>Update</span>
+                    <span class="hidden">Update</span>
                 </button>
 
                 <button v-if="canBeCompleted" @click="completeItem"
-                    class="py-2 px-4 shadow rounded-md cursor-pointer flex gap-2 items-center justify-center">
+                    class="py-3 px-2 shadow-lg rounded-full cursor-pointer flex gap-3 items-center justify-center bg-amber-400 text-white">
                     <span>
-                        <CheckIcon class="h-4 w-4" />
+                        <CheckIcon class="h-8 w-8" />
                     </span>
-                    <span>Complete</span>
+                    <span class="hidden">Complete</span>
                 </button>
             </div>
 
