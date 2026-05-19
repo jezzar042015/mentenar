@@ -18,17 +18,17 @@
         </div>
 
         <div class="text-sm md:text-base flex gap-2 md:gap-3 items-center mt-2">
-            <span :class="[isLate ? 'bg-red-500' : 'bg-blue-500', 'h-2 w-2 md:h-3 md:w-3 rounded-full']"></span>
+            <span :class="[isLate ? 'bg-red-500' : 'bg-amber-500', 'h-2 w-2 md:h-3 md:w-3 rounded-full']"></span>
             <span class="text-base font-semibold">{{ monthItem.assigned }} Congregation</span>
         </div>
 
         <div class="mt-2 flex items-center gap-2">
-            <span :class="[isLate ? ' text-red-600' : 'text-blue-600', 'text-sm font-bold']">
+            <span :class="[isLate ? ' text-red-600' : 'text-amber-500', 'text-sm font-bold']">
                 {{ completedRate }}%
             </span>
             <span class="flex-1">
                 <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div :class="[isLate ? 'bg-red-500' : 'bg-blue-500', 'h-full']"
+                    <div :class="[isLate ? 'bg-red-500' : 'bg-amber-500', 'h-full']"
                         :style="{ width: completedRate + '%' }">
                     </div>
                 </div>

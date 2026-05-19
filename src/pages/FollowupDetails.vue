@@ -7,17 +7,18 @@
         <div v-if="followup.active" class="h-full overflow-y-auto p-4 pb-20">
             <div class="my-4 flex gap-4 items-center">
                 <span v-if="!isCompleted"
-                    class="px-3 py-1 border border-orange-600 text-orange-600 text-sm rounded-md self-center">
+                    class="px-3 py-1 border border-amber-500 bg-amber-500 text-white text-sm rounded-md self-center">
                     {{ followup.active.status || 'Not Started' }}
                 </span>
 
-                <span v-else class="px-3 py-1 border border-blue-600 text-blue-600 text-sm rounded-md self-center">
+                <span v-else
+                    class="px-3 py-1 border border-green-600 bg-green-600 text-white text-sm rounded-md self-center">
                     {{ followup.active.status || 'Not Started' }}
                 </span>
             </div>
 
-            <h2 v-if="!isCompleted" class="text-xl font-bold my-5 text-orange-600">{{ followup.active.task }}</h2>
-            <h2 v-else class="text-xl font-bold my-5 text-blue-600">{{ followup.active.task }}</h2>
+            <h2 v-if="!isCompleted" class="text-xl font-bold my-5 text-amber-500">{{ followup.active.task }}</h2>
+            <h2 v-else class="text-xl font-bold my-5 text-green-600">{{ followup.active.task }}</h2>
 
 
             <div class="space-y-3">
@@ -71,12 +72,12 @@
             <div class="mt-8" v-if="followup.active.list.length > 0">
                 <div class="flex items-center justify-between pr-5">
                     <h2 :class="['uppercase font-semibold mb-3',
-                        isCompleted ? 'text-blue-600' : 'text-orange-600']">
+                        isCompleted ? 'text-green-600' : 'text-amber-500']">
                         Checklist
                     </h2>
                     <div class="-mt-3">
                         <CircularProgress :all-count="followup.active.list.length" :completed-count="completedCount"
-                            :color="isCompleted ? 'blue' : 'amber'" :label="'percent'" />
+                            :color="isCompleted ? 'green' : 'amber'" :label="'percent'" />
                     </div>
                 </div>
 
@@ -84,14 +85,14 @@
                     <div v-for="value in followup.active.list" :key="value.task" class="flex items-start space-x-2">
                         <span :class="[
                             'flex mt-1 h-4 w-4 rounded-sm border relative overflow-hidden',
-                            value.completed ? 'bg-blue-600 border-blue-600 scale-105' : 'bg-transparent border-black/70 scale-100'
+                            value.completed ? 'bg-green-600 border-green-600 scale-105' : 'bg-transparent border-black/70 scale-100'
                         ]" v-if="followup.active.status === 'Completed'">
                             <CheckIcon v-if="value.completed" class="absolute -top-1 -left-0.5 h-5 w-5 text-white" />
                         </span>
 
                         <span :class="[
                             'flex mt-1 h-4 w-4 rounded-sm border relative overflow-hidden',
-                            value.completed ? 'bg-orange-600 border-orange-600 scale-105' : 'bg-transparent border-black/70 scale-100'
+                            value.completed ? 'bg-amber-500 border-amber-500 scale-105' : 'bg-transparent border-black/70 scale-100'
                         ]" v-else>
                             <CheckIcon v-if="value.completed" class="absolute -top-1 -left-0.5 h-5 w-5 text-white" />
                         </span>
@@ -103,7 +104,7 @@
             </div>
 
             <div class="flex flex-col gap-3 justify-between mt-10 fixed bottom-5 right-5" v-if="auth.token">
-                
+
                 <button @click="setFormTarget"
                     class="py-4 px-4 shadow-lg rounded-full cursor-pointer flex gap-3 items-center justify-center bg-amber-400 text-white">
                     <span>
@@ -247,7 +248,7 @@
         }
     }
 
-    const refinedRemarks = computed(()=> {
-        return followup.active?.remarks.replaceAll('⏹️','<br>')
+    const refinedRemarks = computed(() => {
+        return followup.active?.remarks.replaceAll('⏹️', '<br>')
     })
 </script>

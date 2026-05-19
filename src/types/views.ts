@@ -15,3 +15,5 @@ export type AppView =
     'approved-expenses' |
     'schedules' |
     'transactions'
+
+export type CircularProgressThemes = 'blue' | 'red' | 'green' | 'amber' | 'dark-amber' | 'orange'

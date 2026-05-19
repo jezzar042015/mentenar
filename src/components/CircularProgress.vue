@@ -18,12 +18,13 @@
 </template>
 
 <script setup lang="ts">
+    import type { CircularProgressThemes } from '@/types/views';
     import { computed } from 'vue';
 
     const { completedCount, allCount, color = 'blue', label = 'over' } = defineProps<{
         completedCount: number
         allCount: number
-        color?: 'blue' | 'red' | 'green' | 'amber' | 'orange'
+        color?: CircularProgressThemes
         label?: 'over' | 'percent' | 'none'
     }>()
 
@@ -39,6 +40,8 @@
                 return '#f0b100'
             case 'blue':
                 return '#155dfc'
+            case 'dark-amber':
+                return '#973c00'
             default:
                 return '#3b82f6'
         }

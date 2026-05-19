@@ -1,10 +1,10 @@
 <template>
     <div @click="loadItem"
-        :class="['p-3 shadow-md bg-white border-l-7 rounded-md flex justify-between md:h-full cursor-pointer hover:bg-red-100 transition-all', sideBorderColor]">
+        :class="['p-3 shadow-md border-l-7 rounded-md flex justify-between md:h-full cursor-pointer hover:bg-red-100 transition-all', sideBorderColor, bgColor]">
         <div class="space-y-1">
             <div class="text-base">{{ f.task }}</div>
             <div class="flex text-xs space-x-2 items-center">
-                <span v-if="stat == 'overdue'" class="flex h-2 w-2 rounded-full bg-red-500"></span>
+                <span v-if="stat == 'overdue'" class="flex h-2 w-2 rounded-full bg-amber-50"></span>
                 <span v-if="stat == 'due'" class="flex h-2 w-2 rounded-full bg-orange-500"></span>
                 <span v-if="stat == 'none'" class="flex h-2 w-2 rounded-full bg-gray-500"></span>
                 <template v-if="stat === 'overdue'">
@@ -41,8 +41,8 @@
             </div>
         </div>
         <div class="h-4" v-if="f.list.length > 0 && stat !== 'completed'">
-            <CircularProgress :all-count="f.list.length" :completed-count="completedList.length"
-                :color="stat === 'due' ? 'red' : 'orange'" :label="'percent'" />
+            <CircularProgress :all-count="f.list.length" :completed-count="completedList.length" :color="circularTheme"
+                :label="'percent'" />
         </div>
     </div>
 </template>
@@ -55,6 +55,7 @@
     import PersonIcon from '@/icons/PersonIcon.vue';
     import CircularProgress from './CircularProgress.vue';
     import ArrowIcon from '@/icons/ArrowIcon.vue';
+    import type { CircularProgressThemes } from '@/types/views';
 
     const view = useViewsStore()
     const followup = useFollowupsStore()
@@ -115,11 +116,38 @@
     const sideBorderColor = computed(() => {
         const theme: Record<string, string> = {
             all: "",
-            due: "border-l-orange-600",
-            overdue: "border-l-red-600",
+            overdue: "border-l-amber-500",
+            due: "border-l-amber-500",
             none: "border-l-gray-500",
             'due-weeks': "border-l-yellow-500",
-            completed: "border-l-blue-600",
+            completed: "border-l-green-600",
+        }
+
+        return theme[stat] ?? ''
+    })
+
+    const bgColor = computed(() => {
+        const theme: Record<string, string> = {
+            all: "",
+            overdue: "bg-amber-500 text-white",
+            due: "bg-white",
+            none: "bg-white",
+            'due-weeks': "bg-white",
+            completed: "bg-white",
+        }
+
+        return theme[stat] ?? ''
+    })
+
+    const circularTheme = computed(() => {
+
+        const theme: Record<string, CircularProgressThemes> = {
+            all: "amber",
+            overdue: "dark-amber",
+            due: "amber",
+            none: "amber",
+            'due-weeks': "amber",
+            completed: "amber",
         }
 
         return theme[stat] ?? ''

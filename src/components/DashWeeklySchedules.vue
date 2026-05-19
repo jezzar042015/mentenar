@@ -4,7 +4,8 @@
             <div>
                 <div class="flex justify-between items-center">
                     <h2 class="text-lg font-semibold">Weekly Schedules</h2>
-                    <div @click="gotoWeeklySchedules" class="flex items-center gap-2 cursor-pointer hover:bg-gray-100 transition-all hover:shadow p-2 rounded-md">
+                    <div @click="gotoWeeklySchedules"
+                        class="flex items-center gap-2 cursor-pointer hover:bg-gray-100 transition-all hover:shadow p-2 rounded-md">
                         <CalendarIcon class="h-6 w-6 opacity-75" />
                         <span class="hidden md:block text-sm">See Full Schedule</span>
                     </div>
@@ -20,7 +21,7 @@
                     </span>
                     <div class="flex flex-col">
                         <span class="text-gray-600 text-sm">Garbage Disposal</span>
-                        <span class="text-lg font-semibold">
+                        <span class="text-lg font-semibold text-amber-500">
                             {{ weekSched.garbage }} Congregation
                         </span>
                     </div>
@@ -37,7 +38,7 @@
                             </span>
                             <div class="flex flex-col">
                                 <span class="text-gray-600 text-sm">HALL 1 & Outdoors</span>
-                                <span class="text-lg font-semibold">
+                                <span class="text-lg font-semibold text-amber-500">
                                     {{ weekSched.cleaning.hall1 }}
                                 </span>
                             </div>
@@ -49,7 +50,7 @@
                             </span>
                             <div class="flex flex-col">
                                 <span class="text-gray-600 text-sm">HALL 2 & Outdoors</span>
-                                <span class="text-lg font-semibold">
+                                <span class="text-lg font-semibold text-amber-500">
                                     {{ weekSched.cleaning.hall2 }}
                                 </span>
                             </div>
@@ -63,7 +64,7 @@
 
 <script setup lang="ts">
     import CalendarIcon from '@/icons/CalendarIcon.vue';
-import CleaningMop from '@/icons/CleaningMop.vue';
+    import CleaningMop from '@/icons/CleaningMop.vue';
     import GarbageIcon from '@/icons/GarbageIcon.vue';
     import { useViewsStore } from '@/stores/views';
     import type { WeeklyScheduleItem } from '@/types/weekly-schedules';
