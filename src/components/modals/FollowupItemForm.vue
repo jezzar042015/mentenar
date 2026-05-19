@@ -1,6 +1,6 @@
 <template>
     <div @click.self="emits('close')"
-        class="absolute top-0 left-0 z-10 h-screen w-full bg-black/60 flex items-center justify-center">
+        class="absolute top-0 left-0 z-30 h-screen w-full bg-black/60 flex items-center justify-center">
         <div
             class="bg-white p-5 rounded-md h-full md:max-h-[90%] max-w-md min-w-sm md:min-w-lg flex flex-col justify-between">
             <div>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="min-h-100 overflow-hidden">
+            <div class="min-h-100 overflow-hidden flex-1" >
                 <div v-if="activeSection == 'props'" class="py-2 px-4">
                     <div class="mt-4 space-y-6">
                         <div class="space-y-1">

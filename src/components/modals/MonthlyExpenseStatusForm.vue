@@ -33,7 +33,7 @@
             </div>
             <div class="flex gap-3 justify-between mt-15">
                 <button @click="post"
-                    class="py-2 shadow rounded-md cursor-pointer w-1/2 bg-blue-600 text-white">Update</button>
+                    class="py-2 shadow rounded-md cursor-pointer w-1/2 bg-amber-400 text-white">Update</button>
                 <button @click="unsetTarget" class="py-2 shadow rounded-md cursor-pointer w-1/2">Close</button>
             </div>
         </div>
